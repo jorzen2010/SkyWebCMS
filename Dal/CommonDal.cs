@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using Microsoft.ApplicationBlocks.Data;
+using System.Configuration;
 
 namespace Dal
 {
     public class CommonDal
     {
-        public static string ConnectionString = "server=(local);database=HealthCrm;uid=sa;password=8;min pool size=5;max pool size=512;";
+       // public static string ConnectionString = "server=(local);database=HealthCrm;uid=sa;password=8;min pool size=5;max pool size=512;";
+        public static string ConnectionString = ConfigManager.ConnectionStrings["default"].ConnectionString;
 
         #region 删除一个对象
         public static void DeleteObject(string table, string strwhere)
