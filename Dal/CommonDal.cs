@@ -116,17 +116,17 @@ namespace Dal
         {
 
 
-            string msg = ConnectionString;
+            string msg = "插入操作成功";
+            SqlConnection myconn = null;
 
-
-            SqlConnection myconn = new SqlConnection(CommonDal.ConnectionString);
+            
             try
-            {
-                // SqlHelper.ExecuteNonQuery(myconn, CommandType.StoredProcedure,StoredProcedure, arParames);
+            {    myconn = new SqlConnection(CommonDal.ConnectionString);
+                SqlHelper.ExecuteNonQuery(myconn, CommandType.StoredProcedure,StoredProcedure, arParames);
             }
             catch (SqlException ex)
             {
-                msg = ex.Message;
+                msg = "数据库错误:"+ex.Message;
                 throw ex;
                 
             }

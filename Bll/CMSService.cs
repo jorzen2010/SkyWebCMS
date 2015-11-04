@@ -15,12 +15,13 @@ namespace Bll
 {
     public  class CMSService
     {
+        
         public static Message InsertDto(string DtoName,string JsonString)
         {
            
-            Message msg = new Message();
-            SqlParameter[] arParames = null;
-            string StoredProcedure = "";
+             Message msg = new Message();
+             SqlParameter[] arParames = null;
+             string StoredProcedure = "";
 
 
             IMapping Mapping = MappingFactory.CreatMapping(DtoName);
