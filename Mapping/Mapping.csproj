@@ -47,6 +47,14 @@
     <Compile Include="UserMapping.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{5dee707c-fc50-499c-867d-fefe5b5e0b35}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dto\Dto.csproj">
+      <Project>{99673258-94c8-4da0-9e8c-d58eab142e01}</Project>
+      <Name>Dto</Name>
+    </ProjectReference>
     <ProjectReference Include="..\InterfaceMapping\InterfaceMapping.csproj">
       <Project>{b3c31ede-a5cc-4d42-baa6-2cc72d329493}</Project>
       <Name>InterfaceMapping</Name>

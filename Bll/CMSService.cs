@@ -21,16 +21,12 @@ namespace Bll
             Message msg = new Message();
             SqlParameter[] arParames = null;
             string StoredProcedure = "";
+
+
             IMapping Mapping = MappingFactory.CreatMapping(DtoName);
-           
-            
+         
             arParames = Mapping.JsonStringToSqlParameter(JsonString);
             StoredProcedure=Mapping.GetStoredProcedure();
-           
-
-
-
-
             msg.MessageInfo = CommonDal.Insert(arParames,StoredProcedure);
             
             return msg;

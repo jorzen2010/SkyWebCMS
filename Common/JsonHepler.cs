@@ -12,7 +12,7 @@ using System.Runtime.Serialization.Json;
 
 namespace Common
 {
-    public static class JsonHepler
+    public static class JsonHelper
     {
         /// <summary>  
         /// List转成json   

@@ -25,7 +25,7 @@ namespace SkyWebCMS.Controllers
             userDto.UserStatus = true;
 
            
-            string userJsonString=JsonHepler.JsonSerializerBySingleData(userDto);
+            string userJsonString=JsonHelper.JsonSerializerBySingleData(userDto);
             Message msg=CMSService.InsertDto("User",userJsonString);
             
             ViewBag.msg = msg.MessageInfo;

@@ -7,6 +7,8 @@ using System.Data;
 using System.Data.SqlClient;
 using Microsoft.ApplicationBlocks.Data;
 using InterfaceMapping;
+using Common;
+using Dto;
 
 namespace Mapping
 {
@@ -21,6 +23,8 @@ namespace Mapping
         public  SqlParameter[] JsonStringToSqlParameter(string jsonString)
         {
             SqlParameter[] arParames = new SqlParameter[1];
+            UserDto userDto = JsonHelper.JsonDeserializeBySingleData<UserDto>(jsonString);
+
             return arParames;
         }
     }
