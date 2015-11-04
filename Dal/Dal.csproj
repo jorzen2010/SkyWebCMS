@@ -45,7 +45,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommonDal.cs" />
-    <Compile Include="ConfigManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -57,9 +56,6 @@
       <Project>{99673258-94c8-4da0-9e8c-d58eab142e01}</Project>
       <Name>Dto</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="SkyWebCMS.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

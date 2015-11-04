@@ -12,8 +12,7 @@ namespace Dal
 {
     public class CommonDal
     {
-       // public static string ConnectionString = "server=(local);database=HealthCrm;uid=sa;password=8;min pool size=5;max pool size=512;";
-        public static string ConnectionString = ConfigManager.ConnectionStrings["default"].ConnectionString;
+        public static string ConnectionString = ConfigurationManager.AppSettings["connectionStrings"];
 
         #region 删除一个对象
         public static void DeleteObject(string table, string strwhere)
@@ -117,7 +116,7 @@ namespace Dal
         {
 
 
-            string msg = "插入操作成功执行";
+            string msg = ConnectionString;
 
 
             SqlConnection myconn = new SqlConnection(CommonDal.ConnectionString);
