@@ -28,7 +28,6 @@ namespace Mapping
             
             return StoredProcedure;
         }
-            
         public  SqlParameter[] JsonStringToSqlParameter(string jsonString)
         {
            

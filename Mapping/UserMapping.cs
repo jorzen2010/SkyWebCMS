@@ -27,8 +27,7 @@ namespace Mapping
             }
 
             return StoredProcedure;
-        }
-            
+        }           
         public  SqlParameter[] JsonStringToSqlParameter(string jsonString)
         {
             SqlParameter[] arParames = new SqlParameter[8];
