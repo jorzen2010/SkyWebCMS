@@ -1,4 +1,5 @@
-﻿@{
+﻿@using System.Configuration;
+@{
     Layout = null;
 }
 
@@ -46,10 +47,10 @@
                         <div class="center">
                             <h1>
                                 <i class="icon-leaf green"></i>
-                                <span class="red">教练学缘</span>
-                                <span class="white">通用管理系统</span>
+                                <span class="red">@ConfigurationManager.AppSettings["Company"]</span>
+                                <span class="white">@ConfigurationManager.AppSettings["WebName"]</span>
                             </h1>
-                            <h4 class="blue">&copy; 北京沃西基网络科技有限公司</h4>
+                            <h4 class="blue">&copy; @ConfigurationManager.AppSettings["Copyright"]</h4>
                         </div>
 
                         <div class="space-6"></div>

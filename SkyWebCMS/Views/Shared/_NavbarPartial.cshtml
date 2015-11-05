@@ -1,4 +1,5 @@
-﻿<div class="navbar navbar-default" id="navbar">
+﻿@using System.Configuration;
+<div class="navbar navbar-default" id="navbar">
     <script type="text/javascript">
         try { ace.settings.check('navbar', 'fixed') } catch (e) { }
     </script>
@@ -8,7 +9,7 @@
             <a href="#" class="navbar-brand">
                 <small>
                     <i class="icon-leaf"></i>
-                    JLXY通用后台管理系统
+                    @ConfigurationManager.AppSettings["Company"]&copy; @ConfigurationManager.AppSettings["WebName"]
                 </small>
             </a><!-- /.brand -->
         </div><!-- /.navbar-header -->

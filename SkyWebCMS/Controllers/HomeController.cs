@@ -16,6 +16,7 @@ namespace SkyWebCMS.Controllers
 {
     public class HomeController : Controller
     {
+        
         public ActionResult Main()
         {
             return View();
