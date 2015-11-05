@@ -6,18 +6,17 @@
 
 <address>
     <table>
-    @foreach (var item in Model)
-    {
+   
         <tr>
-            <td>@item.UserId</td>
-            <td>@item.UserName</td>
-            <td>@item.UserPassword</td>
-            <td>@item.UserTelephone</td>
+            <td>@Model.UserId</td>
+            <td>@Model.UserName</td>
+            <td>@Model.UserPassword</td>
+            <td>@Model.UserTelephone</td>
             <td>
                 
             </td>
         </tr>
-    }
+   
         </table>
     One Microsoft Way<br />
     Redmond, WA 98052-6399<br />

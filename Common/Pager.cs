@@ -3,11 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
+using Microsoft.ApplicationBlocks.Data;
+using System.Data;
 
 namespace Common
 {
     public class Pager
     {
+        public string table;
+        public string strwhere="1=1";
+        public string FieldKey;
+        public string FiledShow="*";
+        public string FiledOrder;
+
         private int _pageSize;
         /// <summary>
         /// 每页数据量
@@ -42,6 +51,7 @@ namespace Common
         /// <summary>
         /// 实体
         /// </summary>
+        public DataTable EntityDataTable { get; set; }
         public IQueryable Entity { get; set; }
         /// <summary>
         /// 计算总页数

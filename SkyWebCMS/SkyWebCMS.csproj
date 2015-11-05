@@ -217,6 +217,8 @@
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Home\SelectOne.cshtml" />
+    <Content Include="Views\Home\SelectSome.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -240,6 +242,14 @@
     <ProjectReference Include="..\Dto\Dto.csproj">
       <Project>{99673258-94c8-4da0-9e8c-d58eab142e01}</Project>
       <Name>Dto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InterfaceMapping\InterfaceMapping.csproj">
+      <Project>{b3c31ede-a5cc-4d42-baa6-2cc72d329493}</Project>
+      <Name>InterfaceMapping</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Mapping\Mapping.csproj">
+      <Project>{8dab6dc6-77b1-43ca-9c08-6036cccb0aa2}</Project>
+      <Name>Mapping</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

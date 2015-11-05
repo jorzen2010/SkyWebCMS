@@ -12,7 +12,10 @@ namespace InterfaceMapping
     public interface IMapping
     {
         SqlParameter[] JsonStringToSqlParameter(string jsonString);
-        string GetStoredProcedure();
+        string GetStoredProcedure(string actionName);
+
+
+      
 
     }
 }

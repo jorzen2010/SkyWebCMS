@@ -33,7 +33,11 @@
     <Reference Include="ChnCharInfo">
       <HintPath>..\packages\ChnCharInfo.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.ApplicationBlocks.Data">
+      <HintPath>..\packages\Microsoft.ApplicationBlocks.Data.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
@@ -43,7 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommonDal.cs" />
     <Compile Include="CommonTools.cs" />
+    <Compile Include="DataConvertHelper.cs" />
     <Compile Include="JsonHepler.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="Pager.cs" />
