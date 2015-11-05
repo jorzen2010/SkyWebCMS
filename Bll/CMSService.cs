@@ -15,7 +15,7 @@ namespace Bll
     public  class CMSService
     {
         
-        public static Message InsertDto(string DtoName,string JsonString)
+        public static Message Insert(string DtoName,string JsonString)
         {
            
              Message msg = new Message();
@@ -32,8 +32,16 @@ namespace Bll
             return msg;
 
         }
+        public static Message Delete(string DtoName, string table, string strWhere)
+        {
+            Message msg = new Message();
+            IMapping Mapping = MappingFactory.CreatMapping(DtoName);
+            msg.MessageInfo = CommonDal.Delete(table, strWhere);
+            return msg;
+        
+        }
 
-        public static Message UpdateDto(string DtoName, string JsonString)
+        public static Message Update(string DtoName, string JsonString)
         {
             Message msg = new Message();
             SqlParameter[] arParames = null;

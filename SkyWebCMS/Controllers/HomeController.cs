@@ -31,7 +31,7 @@ namespace SkyWebCMS.Controllers
 
            
             string userJsonString=JsonHelper.JsonSerializerBySingleData(userDto);
-            Message msg=CMSService.UpdateDto("User",userJsonString);
+            Message msg=CMSService.Update("User",userJsonString);
             
             ViewBag.msg = msg.MessageInfo;
 
@@ -45,7 +45,7 @@ namespace SkyWebCMS.Controllers
             roleDto.RoleName = "超级管理员";
             roleDto.RoleDescription = "这是本系统的最高权限";
             string roleJsonString = JsonHelper.JsonSerializerBySingleData(roleDto);
-            Message msg = CMSService.InsertDto("Role", roleJsonString);
+            Message msg = CMSService.Insert("Role", roleJsonString);
 
             ViewBag.msg = msg.MessageInfo;
 
