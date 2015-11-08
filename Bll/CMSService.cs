@@ -64,12 +64,12 @@ namespace Bll
             pager=CommonDal.GetPager(pager);
             return pager; 
         }
-
+       
         public static DataTable SelectOne(string DtoName,string table,string strWhere)
         {
             IMapping Mapping = MappingFactory.CreatMapping(DtoName);
             DataTable dt = CommonDal.GetOneByWhere(table, strWhere);
-
+           
             return dt;
         }
         public static DataTable SelectSome(string DtoName, string table, string strWhere)
@@ -78,6 +78,15 @@ namespace Bll
             DataTable dt = CommonDal.GetSomeByWhere(table, strWhere);
 
             return dt;
+        }
+
+        public static Message UpdateFieldOneByOne(string DtoName, string table, string strWhere, string columnname, string columnvalue)
+        {
+            Message msg = new Message();
+            IMapping Mapping = MappingFactory.CreatMapping(DtoName);
+            msg.MessageInfo = CommonDal.SetFiledOneByOne(table, strWhere,columnname,columnvalue);
+            return msg;
+        
         }
 
     }

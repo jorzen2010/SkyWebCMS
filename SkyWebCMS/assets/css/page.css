@@ -1,0 +1,28 @@
+﻿/*SkyPager*/
+.SkyPager{float:right;}
+.SkyPager.pages
+{
+   height:30px;  line-height:30px; color:#949494;
+}
+.SkyPager .pages a {
+	 height:30px;  line-height:30px; float:left; padding:0 10px; border:solid 1px #d5d5d5; text-decoration: none; color:#949494; margin-left:2px; 
+}
+.SkyPager .pages a:hover {
+	
+	border-color:#8c3521; background:#428BCA; color:#fff;
+}
+.SkyPager .pages .pgEmpty {
+	border-color:#8c3521; background:#428BCA; color:#fff;
+	display:none;
+}
+.SkyPager .pages .pgCurrent {
+	border-color:#8c3521; background:#428BCA; color:#fff;
+}
+.SkyPager .pageCount {
+	font-weight: bold;
+	color: #555;
+	margin:4px 0 0 10px;
+	line-height: 22px;
+	float:left;
+}
+

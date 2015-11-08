@@ -14,7 +14,7 @@ using InterfaceMapping;
 
 namespace SkyWebCMS.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         
         public ActionResult Main()
@@ -23,38 +23,15 @@ namespace SkyWebCMS.Controllers
         }
         public ActionResult Index()
         {
-            UserDto userDto = new UserDto();
-
-            userDto.UserEmail = "jorzen2010@163.com";
-            userDto.UserId = 2;
-            userDto.UserName = "jorzen11";
-            userDto.UserPassword = "jorzen2008";
-            userDto.UserTelephone = "16852569656";
-            userDto.UserRegisterTime =System.DateTime.Now;
-            userDto.UserRoles = "1,2";
-            userDto.UserStatus = false;
-
-           
-            string userJsonString=JsonHelper.JsonSerializerBySingleData(userDto);
-            Message msg=CMSService.Update("User",userJsonString);
             
-            ViewBag.msg = msg.MessageInfo;
 
             return View();
         }
 
         public ActionResult About()
         {
-            RoleDto roleDto = new RoleDto();
-            roleDto.RoleId = 1;
-            roleDto.RoleName = "超级管理员";
-            roleDto.RoleDescription = "这是本系统的最高权限";
-            string roleJsonString = JsonHelper.JsonSerializerBySingleData(roleDto);
-            Message msg = CMSService.Insert("Role", roleJsonString);
+            
 
-            ViewBag.msg = msg.MessageInfo;
-
-            ViewBag.Message = msg.MessageInfo;
 
             return View();
         }
@@ -81,7 +58,10 @@ namespace SkyWebCMS.Controllers
             }
             pager.Entity = Listusers.AsQueryable();
 
-
+            ViewBag.PageNo = p ?? 1;
+            ViewBag.PageCount = pager.PageCount;
+            ViewBag.RecordCount = pager.Amount;
+            ViewBag.Message = pager.Amount;
             ViewBag.Message = pager.Amount;
 
             return View(pager.Entity);

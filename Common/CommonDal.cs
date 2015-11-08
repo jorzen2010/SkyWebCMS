@@ -20,7 +20,7 @@ namespace Common
         public static string Insert(SqlParameter[] arParames, string StoredProcedure)
         {
 
-            string msg = "Insert success";
+            string msg = "数据插入操作成功";
             SqlConnection myconn = null;
             try
             {
@@ -49,7 +49,7 @@ namespace Common
         public static string Update(SqlParameter[] arParames, string StoredProcedure)
         {
 
-            string msg = "Update Success";
+            string msg = "数据更新操作成功";
             SqlConnection myconn = null;
             try
             {
@@ -73,11 +73,13 @@ namespace Common
 
         #endregion
 
+        
+
         #region 更新一个字段
         public static string SetFiledOneByOne(string table, string strwhere, string columnname, string columnvalue)
         {
 
-            string msg = "Update One Filed Success";
+            string msg = "更新字段成功";
 
             SqlParameter[] arParames = new SqlParameter[4];
             arParames[0] = new SqlParameter("@table ", SqlDbType.VarChar, 200);
@@ -117,7 +119,7 @@ namespace Common
         public static string Delete(string table, string strwhere)
         {
 
-            string msg = "Delete success";
+            string msg = "删除操作成功执行";
             SqlParameter[] arParames = new SqlParameter[2];
             arParames[0] = new SqlParameter("@table ", SqlDbType.VarChar, 200);
             arParames[0].Value = table;

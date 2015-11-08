@@ -17,5 +17,6 @@ namespace Dto
         public DateTime UserRegisterTime { get; set; }
         public bool UserStatus { get; set; }
         
+        
     }
 }

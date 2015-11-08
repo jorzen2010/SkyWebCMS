@@ -1,0 +1,47 @@
+﻿        <div class="error-container">
+            <div class="well">
+                <h3 class="grey lighter smaller">
+                    <span class="blue bigger-125">
+                        <i class="icon-random"></i>
+                        @ViewBag.Message
+                    </span>
+                   
+                </h3>
+
+                <hr />
+                <h4 class="lighter smaller">
+                    注意：
+                    程序将会在<span id="tid" style="color:red;padding:0 10px; font-weight:bold;">5</span>秒后自动跳转。
+                    如果您的浏览器没有为您跳转，<a title="点击直接跳转！" href="@ViewBag.Url" class="btn btn-success">请点击这里</a>
+                </h4>
+
+    
+
+                
+
+                <hr />
+                <div class="space"></div>
+
+                <div class="center">
+                   
+
+                    <a href="/" class="btn btn-primary">
+                        <i class="icon-dashboard"></i>
+                        返回主页
+                    </a>
+                </div>
+            </div>
+        </div>
+
+ <script type="text/javascript">
+    var interval = setInterval(function () {
+        var sec = $('#tid').text() - 1;
+        if (sec <= 0) {
+            clearInterval(interval);
+            window.location = "@ViewBag.Url";
+        }
+        else {
+            $('#tid').text(sec);
+        }
+    }, 1000);
+</script>
