@@ -1,6 +1,6 @@
 ﻿@{
-    ViewBag.Title = "角色权限管理";
-    ViewBag.SmallTitle = "角色列表";
+    ViewBag.Title = "【类别】‘"+ViewBag.CategoryParentName+"’【管理】";
+    ViewBag.SmallTitle = "分类列表";
 }
 <!-- Pages styles -->
 @section HeadCss{
@@ -63,10 +63,10 @@
                                 <tr>
                                    
                                     <th>序号</th>
-                                    <th>角色名称</th>
-
-                                   
-                                    <th>操作</th>
+                                    <th>分类名称</th>
+                                    <th>分类描述</th>                               
+                                    <th>基本操作</th>
+                                    <th>下级操作</th>
                                 </tr>
                             </thead>
 
@@ -77,75 +77,53 @@
                                     
 
                                     <td>
-                                        @item.RoleId
+                                        @item.CategoryId
                                     </td>
 
-                                    <td>@item.RoleName</td>
+                                    <td>@item.CategoryName</td>
+                                    <td>@item.CategoryDescription</td>
 
                                 
                                     <td>
                                         <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
                                             
                                           
-@if (item.RoleName != "超级管理员" && item.RoleName != "普通管理员" && item.RoleName != "普通用户")
+@if (item.CategoryName != "文章分类")
                                             {
-                                            <a href="@Url.Action("Edit", "Role", new { id = item.RoleId })" class="btn btn-xs btn-warning">
+                                            <a href="@Url.Action("Edit", "Category", new { id = item.CategoryId, CategoryParentName = ViewBag.CategoryParentName })" class="btn btn-xs btn-warning">
                                                 <i class="icon-edit bigger-120"></i>编辑
                                             </a>
 } else
                                             { 
                                                 <a  class="btn btn-xs btn-default">
-                                                    <i class="icon-edit bigger-120"></i>系统内置权限，不允许编辑
+                                                    <i class="icon-edit bigger-120"></i>系统内置分类，不允许编辑
                                             </a>
                                             }
-                                            @if (item.RoleName != "超级管理员" && item.RoleName != "普通管理员" && item.RoleName != "普通用户")
-                                            {<a href="@Url.Action("Delete", "Role", new { id = item.RoleId })" class="btn btn-xs btn-danger btndel">
+                                            @if (item.CategoryName != "文章分类")
+                                            {<a href="@Url.Action("Delete", "Category", new { id = item.CategoryId })" class="btn btn-xs btn-danger btndel">
                                                 <i class="icon-trash bigger-120"></i>删除
                                             </a>
                                             }
                                             else
                                             { 
                                                 <a  class="btn btn-xs btn-default">
-                                                <i class="icon-trash bigger-120"></i>系统内置权限，不允许删除
+                                                <i class="icon-trash bigger-120"></i>系统内置分类，不允许删除
                                             </a>
                                             }
                                             
 
                                             
                                         </div>
-
-                                        <div class="visible-xs visible-sm hidden-md hidden-lg">
-                                            <div class="inline position-relative">
-                                                <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown">
-                                                    <i class="icon-cog icon-only bigger-110"></i>
-                                                </button>
-
-                                                <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
-                                                    <li>
-                                                        <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-                                                            <span class="blue">
-                                                                <i class="icon-zoom-in bigger-120"></i>
-                                                            </span>
-                                                        </a>
-                                                    </li>
-
-                                                    <li>
-                                                        <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
-                                                            <span class="green">
-                                                                <i class="icon-edit bigger-120"></i>
-                                                            </span>
-                                                        </a>
-                                                    </li>
-
-                                                    <li>
-                                                        <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                                            <span class="red">
-                                                                <i class="icon-trash bigger-120"></i>
-                                                            </span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
+                                    </td>
+                                    <td>
+                                        <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">         
+                                                <a href="@Url.Action("Index", "Category", new { id = item.CategoryId, CategoryParentName = item.CategoryName })" class="btn btn-xs btn-info">
+                                                    <i class="icon-th bigger-120"></i>下级分类管理
+                                                </a>
+                                       
+                                            <a href="@Url.Action("Create", "Category", new { CategoryParentId = item.CategoryId, CategoryParentName = item.CategoryName })" class="btn btn-xs btn-success">
+                                                <i class="icon-double-angle-right bigger-120"></i>下级分类添加
+                                            </a>
                                         </div>
                                     </td>
                                 </tr>

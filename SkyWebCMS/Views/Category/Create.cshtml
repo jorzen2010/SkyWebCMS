@@ -1,7 +1,7 @@
-﻿@model SkyWebCMS.Models.CreateRoleViewModel
+﻿@model SkyWebCMS.Models.CreateCategoryViewModel
 @{
-    ViewBag.Title = "角色权限管理";
-    ViewBag.SmallTitle = "角色添加";
+    ViewBag.Title = "分类管理";
+    ViewBag.SmallTitle = "分类添加";
 }
 
 <div class="breadcrumbs" id="breadcrumbs">
@@ -56,28 +56,39 @@
             <div class="row">
                 <div class="col-xs-12">
                     
-@using (Html.BeginForm("Create", "Role", FormMethod.Post, new { @class="form-horizontal"}))
+@using (Html.BeginForm("Create", "Category", FormMethod.Post, new { @class="form-horizontal"}))
                   {
+    <div class="form-group">
+                            @Html.LabelFor(model => model.CategoryParentName, new { @class = "col-sm-3 control-label no-padding-right" })
+
+                            <div class="col-sm-9">
+                                @Html.HiddenFor(model => model.CategoryParentId, new { @class = "col-xs-10 col-sm-5" })
+                                @Html.TextBoxFor(model => model.CategoryParentName, new { @class = "col-xs-10 col-sm-5" ,@readonly=true })
+                                @Html.ValidationMessageFor(model => model.CategoryParentName)
+                            </div>
+                        </div>
 
 					    <div class="form-group">
-										 @Html.LabelFor(model => model.RoleName, new { @class = "col-sm-3 control-label no-padding-right" })
+										 @Html.LabelFor(model => model.CategoryName, new { @class = "col-sm-3 control-label no-padding-right" })
                                         
 										<div class="col-sm-9">
 											
-                                            @Html.TextBoxFor(model => model.RoleName, new { @class = "col-xs-10 col-sm-5" })
-                                            @Html.ValidationMessageFor(model => model.RoleName)
+                                            @Html.TextBoxFor(model => model.CategoryName, new { @class = "col-xs-10 col-sm-5" })
+                                            @Html.ValidationMessageFor(model => model.CategoryName)
 										</div>
 						 </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.RoleDescription, new { @class = "col-sm-3 control-label no-padding-right" })
+                            @Html.LabelFor(model => model.CategoryDescription, new { @class = "col-sm-3 control-label no-padding-right" })
 
                             <div class="col-sm-9">
 
-                                @Html.TextAreaFor(model => model.RoleDescription, new { @class = "col-xs-10 col-sm-5" })
-                                @Html.ValidationMessageFor(model => model.RoleDescription)
+                                @Html.TextAreaFor(model => model.CategoryDescription, new { @class = "col-xs-10 col-sm-5" })
+                                @Html.ValidationMessageFor(model => model.CategoryDescription)
                             </div>
                         </div>
+    
+                        
 
   
     

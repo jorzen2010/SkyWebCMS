@@ -129,7 +129,7 @@ namespace SkyWebCMS.Controllers
                 dto.UserName = model.UserName;
                 dto.UserPassword = CommonTools.ToMd5(model.UserPassword);
                 dto.UserRegisterTime = System.DateTime.Now;
-                dto.UserRoles = "0";
+                dto.UserRoles = "普通用户";
                 dto.UserStatus = true;
 
 

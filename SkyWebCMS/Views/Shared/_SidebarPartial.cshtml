@@ -104,16 +104,16 @@
 
             <ul class="submenu">
                 <li>
-                    <a href="tables.html">
+                    <a href="@Url.Action("Create", "Category", new { CategoryParentId = 0, CategoryParentName ="一级分类"})">
                         <i class="icon-double-angle-right"></i>
                         一级分类添加
                     </a>
                 </li>
 
                 <li>
-                    <a href="tables.html">
+                    <a href="@Url.Action("Index", "Category", new { id = 0, CategoryParentName = "一级分类" })">
                         <i class="icon-double-angle-right"></i>
-                        分类管理
+                        一级分类管理
                     </a>
                 </li>
             </ul>

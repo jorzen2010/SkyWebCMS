@@ -21,6 +21,10 @@ namespace Bll
             {
                 Mapping = new RoleMapping();
             }
+            if (DtoName == "Category")
+            {
+                Mapping = new CategoryMapping();
+            }
 
             return Mapping;
 
