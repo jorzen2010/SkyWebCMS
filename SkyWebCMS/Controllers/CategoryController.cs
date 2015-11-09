@@ -120,8 +120,7 @@ namespace SkyWebCMS.Controllers
         [HttpPost]
         public ActionResult Edit(EditCategoryViewModel model)
         {
-            try
-            {
+           
                 CategoryDto dto = new CategoryDto();
                 DataTable dt = CMSService.SelectOne("Category", "CMSCategory", "CategoryId=" + model.CategoryId);
                 foreach (DataRow dr in dt.Rows)
@@ -139,30 +138,42 @@ namespace SkyWebCMS.Controllers
                 return RedirectToAction("Index");
 
                 
-            }
-            catch
-            {
-                return View();
-            }
+           
         }
 
         //
         // GET: /Category/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
+      
         //
         // POST: /Category/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+     
+        public ActionResult Delete(int id,string CategoryName)
         {
             try
             {
-                // TODO: Add delete logic here
+                CategoryDto dto = new CategoryDto();
+                DataTable dt = CMSService.SelectOne("Category", "CMSCategory", "CategoryId=" + id);
+                foreach (DataRow dr in dt.Rows)
+                {
+                    dto = CategoryMapping.getDTO(dr);
+                }
+                string strwhere = "CategoryParentId="+id;
+                DataTable categorydt = CMSService.SelectSome("Category", "CMSCategory", strwhere);
 
-                return RedirectToAction("Index");
+                Message msg = new Message();
+                if (categorydt.Rows.Count > 0)
+                {
+                    msg.MessageInfo = "此角色还有" + categorydt.Rows.Count + "条相关数据，不允许删除";
+                    return RedirectTo("/Category/Index/" + dto.CategoryParentId + "?CategoryName=" + CategoryName, msg.MessageInfo);
+                }
+                else
+                {
+                    msg = CMSService.Delete("Category", "CMSCategory", "CategoryId=" + id);
+                    msg.MessageInfo = "数据删除操作成功";
+                    return RedirectTo("/Category/Index/" + dto.CategoryParentId + "?CategoryName=" + CategoryName, msg.MessageInfo);
+                }
+
+               
             }
             catch
             {

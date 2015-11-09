@@ -100,7 +100,7 @@
                                             </a>
                                             }
                                             @if (item.CategoryName != "文章分类")
-                                            {<a href="@Url.Action("Delete", "Category", new { id = item.CategoryId })" class="btn btn-xs btn-danger btndel">
+                                            {<a href="@Url.Action("Delete", "Category", new { id = item.CategoryId, CategoryParentName = ViewBag.CategoryParentName })" class="btn btn-xs btn-danger btndel">
                                                 <i class="icon-trash bigger-120"></i>删除
                                             </a>
                                             }
