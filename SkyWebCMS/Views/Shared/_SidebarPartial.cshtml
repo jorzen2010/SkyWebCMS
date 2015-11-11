@@ -6,19 +6,19 @@
     <div class="sidebar-shortcuts" id="sidebar-shortcuts">
         <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
             <button class="btn btn-success">
-                <i class="icon-signal"></i>
+               用户
             </button>
 
             <button class="btn btn-info">
-                <i class="icon-pencil"></i>
+                权限
             </button>
 
             <button class="btn btn-warning">
-                <i class="icon-group"></i>
+                分类
             </button>
 
             <button class="btn btn-danger">
-                <i class="icon-cogs"></i>
+                文章
             </button>
         </div>
 
@@ -39,6 +39,58 @@
                 <i class="icon-dashboard"></i>
                 <span class="menu-text"> 控制台 </span>
             </a>
+        </li>
+
+        <li>
+            <a href="#" class="dropdown-toggle">
+                <i class="icon-th"></i>
+                <span class="menu-text"> 文章管理 </span>
+
+                <b class="arrow icon-angle-down"></b>
+            </a>
+
+            <ul class="submenu">
+                <li>
+                    <a href="@Url.Action("Index", "Article")">
+                        <i class="icon-double-angle-right"></i>
+                        文章管理
+                    </a>
+                </li>
+                 <li>
+                    <a href="@Url.Action("Create", "Article")">
+                        <i class="icon-double-angle-right"></i>
+                        文章添加
+                    </a>
+                </li>
+
+               
+            </ul>
+        </li>
+
+        <li>
+            <a href="#" class="dropdown-toggle">
+                <i class="icon-camera"></i>
+                <span class="menu-text"> 图片管理 </span>
+
+                <b class="arrow icon-angle-down"></b>
+            </a>
+
+            <ul class="submenu">
+                <li>
+                    <a href="@Url.Action("Index", "Image")">
+                        <i class="icon-double-angle-right"></i>
+                        图片管理
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Create", "Image")">
+                        <i class="icon-double-angle-right"></i>
+                        图片添加
+                    </a>
+                </li>
+
+               
+            </ul>
         </li>
 
        
@@ -69,7 +121,7 @@
 
         <li>
             <a href="@Url.Action("Index", "Role")" class="dropdown-toggle">
-                <i class="icon-cog"></i>
+                <i class="icon-group"></i>
                 <span class="menu-text"> 角色权限管理 </span>
 
                 <b class="arrow icon-angle-down"></b>
@@ -129,6 +181,7 @@
     <div class="sidebar-collapse" id="sidebar-collapse">
         <i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i>
     </div>
+    
 
     <script type="text/javascript">
         try { ace.settings.check('sidebar', 'collapsed') } catch (e) { }

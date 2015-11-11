@@ -17,8 +17,8 @@ namespace SkyWebCMS.Controllers
 {
     public class CategoryController : BaseController
     {
-        //
-        // GET: /Category/
+        
+        // Category列表
         public ActionResult Index(int? p, int id, string CategoryParentName)
         {
             Pager pager = new Pager();
@@ -49,27 +49,26 @@ namespace SkyWebCMS.Controllers
 
         }
 
-        //
-        // GET: /Category/Details/5
+
+        // Category详情页
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        //
-        // GET: /Category/Create
+        
+        // 新增Category视图
         public ActionResult Create(int  CategoryParentId,string CategoryParentName)
         {
-            CreateCategoryViewModel model = new CreateCategoryViewModel();
+            CategoryModel model = new CategoryModel();
             model.CategoryParentId = CategoryParentId;
             model.CategoryParentName = CategoryParentName;
             return View();
         }
 
-        //
-        // POST: /Category/Create
+        // 新增Category操作
         [HttpPost]
-        public ActionResult Create(CreateCategoryViewModel model)
+        public ActionResult Create(CategoryModel model)
         {
             try
             {
@@ -95,16 +94,17 @@ namespace SkyWebCMS.Controllers
             }
         }
 
-        //
-        // GET: /Category/Edit/5
+        
+        // 编辑Category视图
         public ActionResult Edit(int id,string CategoryParentName)
         {
-            EditCategoryViewModel model = new EditCategoryViewModel();
+            CategoryModel model = new CategoryModel();
             DataTable dt = CMSService.SelectOne("Category", "CMSCategory", "CategoryId=" + id);
             foreach (DataRow dr in dt.Rows)
             {
                 CategoryDto dto = new CategoryDto();
                 dto = CategoryMapping.getDTO(dr);
+                model.CategoryId = dto.CategoryId;
                 model.CategoryName = dto.CategoryName;
                 model.CategoryDescription = dto.CategoryDescription;
                 model.CategoryParentId = dto.CategoryParentId;
@@ -115,10 +115,10 @@ namespace SkyWebCMS.Controllers
             return View(model);
         }
 
-        //
-        // POST: /Category/Edit/5
+        
+        // 编辑Category操作
         [HttpPost]
-        public ActionResult Edit(EditCategoryViewModel model)
+        public ActionResult Edit(CategoryModel model)
         {
            
                 CategoryDto dto = new CategoryDto();
@@ -127,6 +127,7 @@ namespace SkyWebCMS.Controllers
                 {
 
                     dto = CategoryMapping.getDTO(dr);
+                    dto.CategoryId = model.CategoryId;
                     dto.CategoryName = model.CategoryName;
                     dto.CategoryDescription = model.CategoryDescription;
                     dto.CategoryParentId = model.CategoryParentId;
@@ -135,17 +136,14 @@ namespace SkyWebCMS.Controllers
                 Message msg = CMSService.Update("Category", JsonString);
                 // TODO: Add update logic here
 
-                return RedirectToAction("Index");
+                return RedirectTo("/Category/Index/" + model.CategoryParentId + "?CategoryParentName=" + model.CategoryParentName, msg.MessageInfo);
 
                 
            
         }
 
-        //
-        // GET: /Category/Delete/5
-      
-        //
-        // POST: /Category/Delete/5
+       
+        // 删除Category
      
         public ActionResult Delete(int id,string CategoryName)
         {

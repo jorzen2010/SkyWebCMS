@@ -1,4 +1,4 @@
-﻿@model SkyWebCMS.Models.CreateRoleViewModel
+﻿@model SkyWebCMS.Models.RoleModel
 @{
     ViewBag.Title = "角色权限管理";
     ViewBag.SmallTitle = "角色添加";
@@ -58,7 +58,7 @@
                     
 @using (Html.BeginForm("Create", "Role", FormMethod.Post, new { @class="form-horizontal"}))
                   {
-
+  @Html.HiddenFor(model=>model.RoleId)
 					    <div class="form-group">
 										 @Html.LabelFor(model => model.RoleName, new { @class = "col-sm-3 control-label no-padding-right" })
                                         

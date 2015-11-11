@@ -1,4 +1,4 @@
-﻿@model SkyWebCMS.Models.EditCategoryViewModel
+﻿@model SkyWebCMS.Models.CategoryModel
 @{
     ViewBag.Title = "分类管理";
     ViewBag.SmallTitle = "分类添加";
@@ -58,11 +58,13 @@
                     
 @using (Html.BeginForm("Edit", "Category", FormMethod.Post, new { @class="form-horizontal"}))
                   {
+     @Html.HiddenFor(model => model.CategoryId, new { @class = "col-xs-10 col-sm-5" })
+     @Html.HiddenFor(model => model.CategoryParentId, new { @class = "col-xs-10 col-sm-5" })
     <div class="form-group">
                             @Html.LabelFor(model => model.CategoryParentName, new { @class = "col-sm-3 control-label no-padding-right" })
 
                             <div class="col-sm-9">
-                                @Html.HiddenFor(model => model.CategoryParentId, new { @class = "col-xs-10 col-sm-5" })
+                               
                                 @Html.TextBoxFor(model => model.CategoryParentName, new { @class = "col-xs-10 col-sm-5" ,@readonly=true })
                                 @Html.ValidationMessageFor(model => model.CategoryParentName)
                             </div>

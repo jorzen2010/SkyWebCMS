@@ -101,7 +101,7 @@
                                     <td>@item.UserRoles</td>
 
                                     <td class="hidden-480">
-                                        <a href="#" class="btn btn-xs btn-@(item.UserStatus ? "success" : "danger")" onclick="setstatus(@item.UserId,@(item.UserStatus ? "false" : "true"))">@(item.UserStatus ? "启用" : "禁用")</a>
+                                        <a href="#" class="btn btn-xs btn-@(item.UserStatus ? "success" : "danger")" onclick="SetStatus('CMSUser','UserId=@item.UserId','UserStatus',@(item.UserStatus ? "false" : "true"))">@(item.UserStatus ? "启用" : "禁用")</a>
                                         </td>
                                     <td>
                                         <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
@@ -200,21 +200,16 @@
 
    <script type="text/javascript">
 
-       function setstatus(id,value)
+
+       function SetStatus(table,strwhere,columnname,columnvalue)
        {
-            
-            var table="CMSUser";
-           var strwhere="UserId="+id;
-           var columnname="UserStatus";
-            var columnvalue=value;
-             var url = '@Url.Action("SetFieldOneByOne", "User")?table='+table+'&strwhere='+strwhere+'&columnname='+columnname+"&columnvalue="+columnvalue;
+           var url = '@Url.Action("SetFieldOneByOne", "User")?table='+table+'&strwhere='+strwhere+'&columnname='+columnname+"&columnvalue="+columnvalue;
+          
+           $.getJSON(url, function(data) {
 
-            
-          $.getJSON(url, function(data) {
-
-             window.location.reload();
+               window.location.reload();
            });
-          // alert("asdf");
+           // alert("asdf");
             
        }
 

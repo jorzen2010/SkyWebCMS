@@ -66,7 +66,7 @@ namespace SkyWebCMS.Controllers
         //
         // POST: /Role/Create
         [HttpPost]
-        public ActionResult Create(CreateRoleViewModel model)
+        public ActionResult Create(RoleModel model)
         {
             try
             {
@@ -79,10 +79,15 @@ namespace SkyWebCMS.Controllers
 
                 string JsonString = JsonHelper.JsonSerializerBySingleData(dto);
                 Message msg = CMSService.Insert("Role", JsonString);
-                return RedirectTo("/Role/Index", msg.MessageInfo); 
+                return RedirectTo("/Role/Index", msg.MessageInfo);
             }
             catch
             {
+                Message msg = new Message();
+                msg.MessageStatus = "Error";
+                msg.MessageInfo = "操作出错了";
+                ViewBag.Status = msg.MessageStatus;
+                ViewBag.msg = msg.MessageInfo;
                 return View();
             }
         }
@@ -91,7 +96,7 @@ namespace SkyWebCMS.Controllers
         // GET: /Role/Edit/5
         public ActionResult Edit(int id)
         {
-            EditRoleViewModel model = new EditRoleViewModel();
+            RoleModel model = new RoleModel();
             DataTable dt = CMSService.SelectOne("Role", "CMSRole", "RoleId=" + id);
             foreach (DataRow dr in dt.Rows)
             {
@@ -109,9 +114,9 @@ namespace SkyWebCMS.Controllers
         //
         // POST: /Role/Edit/5
         [HttpPost]
-        public ActionResult Edit(EditRoleViewModel model)
+        public ActionResult Edit(RoleModel model)
         {
-            
+            try{
                 RoleDto dto = new RoleDto();
                 DataTable dt = CMSService.SelectOne("Role", "CMSRole", "RoleId=" + model.RoleId);
                 foreach (DataRow dr in dt.Rows)
@@ -126,6 +131,16 @@ namespace SkyWebCMS.Controllers
                 // TODO: Add update logic here
 
                 return RedirectToAction("Index");
+             }
+            catch
+            {
+                Message msg = new Message();
+                msg.MessageStatus = "Error";
+                msg.MessageInfo = "操作出错了";
+                ViewBag.Status = msg.MessageStatus;
+                ViewBag.msg = msg.MessageInfo;
+                return View();
+            }
             
         }
 
@@ -133,6 +148,7 @@ namespace SkyWebCMS.Controllers
         // GET: /Role/Delete/5
         public ActionResult Delete(int id)
         {
+            try{
             RoleDto dto = new RoleDto();
             DataTable dt = CMSService.SelectOne("Role", "CMSRole", "RoleId=" + id);
             foreach(DataRow dr in dt.Rows)
@@ -153,6 +169,16 @@ namespace SkyWebCMS.Controllers
             msg=CMSService.Delete("Role", "CMSRole", "RoleId=" + id);
             msg.MessageInfo = "数据删除操作成功" ;
             return RedirectTo("/Role/Index", msg.MessageInfo);
+            }
+             }
+            catch
+            {
+                Message msg = new Message();
+                msg.MessageStatus = "Error";
+                msg.MessageInfo = "操作出错了";
+                ViewBag.Status = msg.MessageStatus;
+                ViewBag.msg = msg.MessageInfo;
+                return View();
             }
             
         }

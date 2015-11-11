@@ -42,7 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArticleMapping.cs" />
     <Compile Include="CategoryMapping.cs" />
+    <Compile Include="ImageMapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoleMapping.cs" />
     <Compile Include="UserMapping.cs" />

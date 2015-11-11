@@ -25,9 +25,17 @@ namespace Bll
             {
                 Mapping = new CategoryMapping();
             }
+            if (DtoName == "Article")
+            {
+                Mapping = new ArticleMapping();
+            }
+            if (DtoName == "Image")
+            {
+                Mapping = new ImageMapping();
+            }
 
             return Mapping;
-
+            
  
         
         }

@@ -1,0 +1,206 @@
+﻿@model SkyWebCMS.Models.ArticleModel
+@{
+    ViewBag.Title = "文章管理";
+    ViewBag.SmallTitle = "文章添加";
+}
+@section HeadCss{
+<link href="/umeditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+}
+@section HeadJS{
+    <script src="/assets/js/ajaxfileupload.js"></script>
+}
+<div class="breadcrumbs" id="breadcrumbs">
+    <script type="text/javascript">
+        try { ace.settings.check('breadcrumbs', 'fixed') } catch (e) { }
+    </script>
+
+    <ul class="breadcrumb">
+        <li>
+            <i class="icon-home home-icon"></i>
+            <a href="#">首页</a>
+        </li>
+
+        <li>
+            <a href="#">@ViewBag.Title</a>
+        </li>
+        <li class="active">@ViewBag.SmallTitle</li>
+    </ul><!-- .breadcrumb -->
+
+    <!-- #nav-search -->
+</div>
+
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            @ViewBag.Title
+            <small>
+                <i class="icon-double-angle-right"></i>
+                @ViewBag.SmallTitle
+            </small>
+        </h1>
+        
+    </div><!-- /.page-header -->
+
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- PAGE CONTENT BEGINS -->
+            @if (ViewBag.Status == "Error")
+            {
+
+                <div class="alert alert-warning">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <i class="icon-remove"></i>
+                    </button>
+                    <strong>提示：</strong>
+
+                    @ViewBag.msg
+                    <br />
+                </div>
+
+            }
+            <div class="row">
+                <div class="col-xs-12">
+                    
+@using (Html.BeginForm("Create", "Article", FormMethod.Post, new { @class="form-horizontal"}))
+                  {
+     @Html.HiddenFor(model=>model.ArticleId)
+     @Html.HiddenFor(model => model.ArticleEditor, new { @class = "col-xs-10 col-sm-5" })
+                           <div class="form-group">
+                            @Html.LabelFor(model => model.ArticleTitle, new { @class = "col-sm-1 control-label no-padding-right" })
+
+                            <div class="col-sm-11">
+                              
+                                @Html.TextBoxFor(model => model.ArticleTitle, new { @class = "col-xs-10 col-sm-5" })
+                                @Html.ValidationMessageFor(model => model.ArticleTitle)
+                            </div>
+                           </div>
+    
+                          <div class="form-group">
+                            @Html.LabelFor(model => model.ArticleImg, new { @class = "col-sm-1 control-label no-padding-right" })
+
+                              <div class="col-sm-4 input-group">
+
+                                 @Html.EditorFor(model => model.ArticleImg)                                  
+                              </div>
+                              <div class="col-sm-7 input-group">
+                                  @Html.ValidationMessageFor(model => model.ArticleImg)
+                                  </div>
+                              </div>
+    
+    
+                            <div class="form-group">
+                            @Html.LabelFor(model =>model.ArticleCategory, new { @class = "col-sm-1 control-label no-padding-right" })
+
+                            <div class="col-sm-11">
+                              
+                                @Html.DropDownListFor(model => model.ArticleCategory, ViewData["Category"] as IEnumerable<SelectListItem>, new { @class = "col-xs-10 col-sm-5" })
+                                @Html.ValidationMessageFor(model => model.ArticleCategory)
+                            </div>
+                           </div>
+    
+    
+                        
+                               
+                             
+                           <div class="form-group">
+                            @Html.LabelFor(model => model.ArticleAuthor, new { @class = "col-sm-1 control-label no-padding-right" })
+
+                            <div class="col-sm-11">
+                              
+                                @Html.TextBoxFor(model => model.ArticleAuthor, new { @class = "col-xs-10 col-sm-5" })
+                                @Html.ValidationMessageFor(model => model.ArticleAuthor)
+                            </div>
+                           </div>
+
+					    <div class="form-group">
+										 @Html.LabelFor(model => model.ArticleKeywords, new { @class = "col-sm-1 control-label no-padding-right" })
+                                        
+										<div class="col-sm-11">
+											
+                                            @Html.TextBoxFor(model => model.ArticleKeywords, new { @class = "col-xs-10 col-sm-5" })
+                                            @Html.ValidationMessageFor(model => model.ArticleKeywords)
+										</div>
+						 </div>
+    
+    <div class="form-group">
+										 @Html.LabelFor(model => model.ArticleDescription, new { @class = "col-sm-1 control-label no-padding-right" })
+                                        
+										<div class="col-sm-11">
+											
+                                            @Html.TextAreaFor(model => model.ArticleDescription, new { @class = "col-xs-10 col-sm-5 width-100" })
+                                            @Html.ValidationMessageFor(model => model.ArticleDescription)
+										</div>
+						 </div>
+     
+        <div class="form-group">
+										 @Html.LabelFor(model => model.ArticleContent, new { @class = "col-sm-1 control-label no-padding-right" })
+                                        
+            <div class="col-sm-11">
+                <textarea id="myEditor" name="ArticleContent" class="width-100">在这里输入文章内容</textarea>
+
+                @Html.ValidationMessageFor(model => model.ArticleContent)
+            </div>
+						 </div>
+    <div class="form-group">
+         <div class="col-sm-1"></div>
+             <div class="col-sm-11">
+                 @Html.LabelFor(model => model.ArticleTop)  @Html.ValidationMessageFor(model => model.ArticleTop)
+                 &nbsp;&nbsp;&nbsp;&nbsp;@Html.EditorFor(model => model.ArticleTop, new { @class = "ace ace-checkbox-2" })
+                 &nbsp;&nbsp;&nbsp;&nbsp;
+                 @Html.LabelFor(model => model.ArticleHot)  @Html.ValidationMessageFor(model => model.ArticleHot)
+                 &nbsp;&nbsp;&nbsp;&nbsp;@Html.EditorFor(model => model.ArticleHot, new { @class = "form-control" })
+                 &nbsp;&nbsp;&nbsp;&nbsp;
+                 @Html.LabelFor(model => model.ArticleClassic)  @Html.ValidationMessageFor(model => model.ArticleClassic)
+                 &nbsp;&nbsp;&nbsp;&nbsp;@Html.EditorFor(model => model.ArticleClassic, new { @class = "form-control" })
+                 &nbsp;&nbsp;&nbsp;&nbsp;
+             </div>
+         </div>
+
+                        
+
+  
+    
+                        <div class="clearfix form-actions">
+										<div class="col-md-offset-3 col-md-9">
+											<button class="btn btn-info" type="submit">
+												<i class="icon-ok bigger-110"></i>
+												提交
+											</button>
+
+											&nbsp; &nbsp; &nbsp;
+											<button class="btn" type="reset">
+												<i class="icon-undo bigger-110"></i>
+												重置
+											</button>
+										</div>
+						</div>
+}
+									
+								<!-- /.table-responsive -->
+
+                </div>
+                
+    <!-- /span -->
+            </div>
+
+            <!-- PAGE CONTENT ENDS -->
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+</div><!-- /.page-content -->
+@section BottomScripts {
+    @Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript" charset="utf-8" src="/umeditor/umeditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="/umeditor/umeditor.min.js"></script>
+<script type="text/javascript" src="/umeditor/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript">
+    //实例化编辑器
+    var um = UM.getEditor('myEditor');
+
+
+</script>
+
+
+
+}
+
+

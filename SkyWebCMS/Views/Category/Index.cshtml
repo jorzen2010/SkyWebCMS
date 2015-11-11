@@ -88,7 +88,7 @@
                                         <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
                                             
                                           
-@if (item.CategoryName != "文章分类")
+@if (item.CategoryName != "文章分类" && item.CategoryName != "图片分类")
                                             {
                                             <a href="@Url.Action("Edit", "Category", new { id = item.CategoryId, CategoryParentName = ViewBag.CategoryParentName })" class="btn btn-xs btn-warning">
                                                 <i class="icon-edit bigger-120"></i>编辑
@@ -99,7 +99,7 @@
                                                     <i class="icon-edit bigger-120"></i>系统内置分类，不允许编辑
                                             </a>
                                             }
-                                            @if (item.CategoryName != "文章分类")
+                                            @if (item.CategoryName != "文章分类" && item.CategoryName != "图片分类")
                                             {<a href="@Url.Action("Delete", "Category", new { id = item.CategoryId, CategoryParentName = ViewBag.CategoryParentName })" class="btn btn-xs btn-danger btndel">
                                                 <i class="icon-trash bigger-120"></i>删除
                                             </a>

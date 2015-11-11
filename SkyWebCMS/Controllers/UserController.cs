@@ -100,10 +100,15 @@ namespace SkyWebCMS.Controllers
 
                 return RedirectToAction("Index");
             }
-            catch 
+           
+            catch
             {
+                Message msg = new Message();
+                msg.MessageStatus = "Error";
+                msg.MessageInfo = "操作出错了";
+                ViewBag.Status = msg.MessageStatus;
+                ViewBag.msg = msg.MessageInfo;
                 return View();
-            
             }
            
         
@@ -137,8 +142,14 @@ namespace SkyWebCMS.Controllers
                 Message msg = CMSService.Insert("User", userJsonString);
                 return RedirectTo("/User/Index", msg.MessageInfo); 
             }
+            
             catch
             {
+                Message msg = new Message();
+                msg.MessageStatus = "Error";
+                msg.MessageInfo = "操作出错了";
+                ViewBag.Status = msg.MessageStatus;
+                ViewBag.msg = msg.MessageInfo;
                 return View();
             }
         }
@@ -176,22 +187,7 @@ namespace SkyWebCMS.Controllers
             return RedirectTo("/User/Index", msg.MessageInfo);
         }
 
-        //
-        // POST: /User/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+       
 
         public ActionResult Login()
         {
@@ -229,8 +225,14 @@ namespace SkyWebCMS.Controllers
 
 
             }
-            catch 
+             
+            catch
             {
+                Message msg = new Message();
+                msg.MessageStatus = "Error";
+                msg.MessageInfo = "操作出错了";
+                ViewBag.Status = msg.MessageStatus;
+                ViewBag.msg = msg.MessageInfo;
                 return View();
             }
         }

@@ -1,0 +1,47 @@
+﻿@{
+    string folder = (string)ViewData.ModelMetadata.AdditionalValues["Folder"];
+
+    var url = "/File/Upload?folder=" + folder;
+    var name = Html.NameForModel();
+    var id = Html.IdForModel();
+}
+ <input type="hidden" name="@name" id="@id" value="@Model" readonly="readonly" />   
+<input type="file" name="upload_@name" id="upload_@id" />
+<img id="loading_@id" src="/assets/images/loading.gif" style="display:none;">
+<span class="input-group-btn">
+    <button class="btn btn-sm btn-success" id="btn_@id" type="button">上传</button>
+</span><p><img style="height:100px;" id="image_@id" src="@Model" /></p>
+
+<script type="text/javascript">
+    $('#btn_@id').click(function () {
+        $.ajaxFileUpload
+        (
+            {
+                url: '@url',
+                secureuri: false,
+                fileElementId: 'upload_@id',
+                dataType: 'json',
+                beforeSend: function () {
+                    $("#loading_@id").show();
+                },
+                complete: function () {
+                    $("#loading_@id").hide();
+                },
+                success: function (data, status) {
+                    if (!data.success)
+                        alert(data.msg);
+                    else {
+                        $('#@id').val(data.file);
+                        $('#image_@id').attr('src', data.url);
+
+                    }
+                },
+                error: function (data, status, e) {
+                    alert(e);
+                }
+            }
+        )
+
+        return false;
+    });
+</script>
