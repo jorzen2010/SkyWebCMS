@@ -463,6 +463,10 @@
     <Content Include="Views\Image\Create.cshtml" />
     <Content Include="Views\Image\Index.cshtml" />
     <Content Include="Views\Image\Edit.cshtml" />
+    <Content Include="Views\User\UserInfo.cshtml" />
+    <Content Include="Views\User\PartialLogin.cshtml" />
+    <Content Include="Views\User\PartialForgot.cshtml" />
+    <Content Include="Views\User\PartialSignup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

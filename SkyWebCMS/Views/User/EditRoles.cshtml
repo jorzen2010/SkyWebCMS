@@ -62,7 +62,7 @@
             @foreach (RoleDto roleDto in ViewData["ListRoles"] as IEnumerable<RoleDto>)
      {
                 <label>
-                    <input class="ace" type="checkbox" id="UserRoles" name="UserRoles" value="@roleDto.RoleName" @(Model.UserRoles.Contains(@roleDto.RoleName.ToString()) == true ? "checked=\"checked\"" : "")>
+                    <input class="ace" type="checkbox" id="UserRoles" name="UserRoles" value="@roleDto.RoleId" @(Model.UserRoles.Contains(@roleDto.RoleId.ToString()) == true ? "checked=\"checked\"" : "")>
                     <span class="lbl"> @roleDto.RoleName</span>
                 </label>
 

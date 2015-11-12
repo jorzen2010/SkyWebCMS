@@ -36,7 +36,7 @@ namespace SkyWebCMS.Models
     }
     #endregion
 
-    #region 编辑模型
+    #region 编辑角色模型
     public class EditUserRolesViewModel
     {
         public int UserId { get; set; }
@@ -46,7 +46,7 @@ namespace SkyWebCMS.Models
         public string UserRoles { get; set; }
     }
     #endregion
-    #region 编辑模型
+    #region 修改密码模型
     public class EditPasswordViewModel
     {
         public int UserId { get; set; }
@@ -86,6 +86,57 @@ namespace SkyWebCMS.Models
         [Compare("UserPassword", ErrorMessage = "密码不同")]
         public string UserConfirmPassword { get; set; }
 
+    }
+    #endregion
+
+    #region 用户登录模型
+    public class UserLoginViewModel
+    {
+        
+        [Display(Name = "用户名")]
+        [Required(ErrorMessage = "请输入用户名")]
+        public string UserName { get; set; }
+        [Display(Name = "密码")]
+        [Required(ErrorMessage = "请输入密码")]
+        public string UserPassword { get; set; }
+    }
+    #endregion
+    #region 找回密码模型
+    public class UserForgotViewModel
+    {
+
+        [Display(Name = "用户名")]
+        [Required(ErrorMessage = "请输入用户名")]
+        public string UserName { get; set; }
+        [Display(Name = "邮箱")]
+        [Required(ErrorMessage = "请输入邮箱")]
+        public string UserEmail { get; set; }
+    }
+    #endregion
+    #region 用户注册模型
+    public class UserSignupViewModel
+    {
+
+        [Display(Name = "用户名")]
+        [StringLength(20, MinimumLength = 6, ErrorMessage = "用户名必须大于{2} 位且要小于{1}位")]
+        [RegularExpression("^[A-Za-z0-9]+$", ErrorMessage = "用户名必须由字母或数字组成")]
+        [Required(ErrorMessage = "请输入用户名")]
+        [System.Web.Mvc.Remote("ValidateUserName", "AjaxValidation", ErrorMessage = "用户名已经被占用")]
+        public string UserName { get; set; }
+
+        [Display(Name = "用户角色")]
+        public string UserRoles { get; set; }
+        [Display(Name = "密码")]
+        [DataType(DataType.Password)]
+        [Required(ErrorMessage = "请输入密码")]
+        [StringLength(25, MinimumLength = 6, ErrorMessage = "密码不是太短了就是太长了，你看着办吧")]
+        public string UserPassword { get; set; }
+
+        [Display(Name = "确认密码")]
+        [DataType(DataType.Password)]
+        [Required(ErrorMessage = "请输入确认密码")]
+        [Compare("UserPassword", ErrorMessage = "密码不同")]
+        public string UserConfirmPassword { get; set; }
     }
     #endregion
 

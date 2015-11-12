@@ -68,10 +68,9 @@
                                             <span class="lbl"></span>
                                         </label>
                                     </th>
-                                    <th>邮箱</th>
                                     <th>用户名</th>
-                                    <th class="hidden-480"><i class="icon-time bigger-110 hidden-480"></i>注册日期</th>
-
+                                    <th>邮箱</th>
+                                   <th class="hidden-480"><i class="icon-time bigger-110 hidden-480"></i>注册日期</th>
                                     <th>
                                         用户组
 
@@ -92,14 +91,12 @@
                                             <span class="lbl"></span>
                                         </label>
                                     </td>
-
-                                    <td>
-                                        @item.UserEmail
-                                    </td>
                                     <td>@item.UserName</td>
+                                    <td> @item.UserEmail</td>
+                                    
                                     <td class="hidden-480">@item.UserRegisterTime</td>
                                     <td>@item.UserRoles</td>
-
+                                    
                                     <td class="hidden-480">
                                         <a href="#" class="btn btn-xs btn-@(item.UserStatus ? "success" : "danger")" onclick="SetStatus('CMSUser','UserId=@item.UserId','UserStatus',@(item.UserStatus ? "false" : "true"))">@(item.UserStatus ? "启用" : "禁用")</a>
                                         </td>

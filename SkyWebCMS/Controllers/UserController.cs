@@ -34,6 +34,23 @@ namespace SkyWebCMS.Controllers
             foreach (DataRow dr in pager.EntityDataTable.Rows)
             {
                 UserDto dto = UserMapping.getDTO(dr);
+                string userRoles = "";
+                string roleName = "";
+                string s = dto.UserRoles;
+                string[] sArray = s.Split(',');
+                foreach (string i in sArray)
+                {
+                    DataTable dt=CMSService.SelectOne("Role", "CMSRole", "RoleId=" + int.Parse(i));
+                    foreach (DataRow dataRow in dt.Rows)
+                    {
+                        RoleDto roleDto = new RoleDto();
+                        roleDto = RoleMapping.getDTO(dataRow);
+                        roleName = roleDto.RoleName;
+                    }
+                    userRoles = userRoles+roleName+",";
+                
+                }
+                dto.UserRoles = userRoles;
                 list.Add(dto);
 
 
@@ -52,6 +69,131 @@ namespace SkyWebCMS.Controllers
         //
         // GET: /User/Details/5
         public ActionResult Details(int id)
+        {
+            return View();
+        }
+         [ChildActionOnly]
+        public ActionResult PartialLogin()
+        {
+            return View();
+        }
+        [HttpPost]
+         public ActionResult UserLogin(UserLoginViewModel model)
+         {
+            string strwhere="UserName='"+model.UserName+"' and UserPassword='"+CommonTools.ToMd5(model.UserPassword)+"'";
+            DataTable dt = CMSService.SelectOne("User", "CMSUser", strwhere);
+            if (dt.Rows.Count > 0)
+            {
+                 UserDto dto = new UserDto();
+                foreach (DataRow dr in dt.Rows)
+                {
+                   
+                    dto = UserMapping.getDTO(dr);
+
+                }
+                HttpCookie cookie = new HttpCookie("User");
+                cookie.Value = dto.UserName ;
+                System.Web.HttpContext.Current.Response.Cookies.Add(cookie);
+                System.Web.HttpContext.Current.Session["UserId"] = dto.UserId;
+
+                return Redirect("/Home/Index");
+            }
+            else
+            {
+                return RedirectToAction("Login", "User", new { ac = "LoginError" });
+            }
+             
+         }
+         public ActionResult Login(string ac)
+         {
+             string action = ac ?? "NoAction";
+             if (action == "NoAction")
+             {
+                 ViewBag.msg = "曲线社区欢迎您";
+             }
+             if (action == "SignupSuccess")
+             {
+                 ViewBag.msg = "注册成功了";
+             }
+             if (action == "LoginError")
+             {
+                 ViewBag.msg = "用户名或密码错误，登录失败";
+             }
+             if (action == "SendSuccess")
+             {
+                 ViewBag.msg = "密码发送成功，请用新密码登录";
+             }
+             if (action == "SendError")
+             {
+                 ViewBag.msg = "用户名与邮箱不匹配";
+             }
+             
+             
+             return View();
+         }
+        [HttpPost]
+         public ActionResult UserSignup(UserSignupViewModel model)
+         {
+            try{
+             
+                 UserDto dto = new UserDto();
+
+                 dto.UserEmail = "";
+                 dto.UserTelephone = "";
+                 dto.UserName = model.UserName;
+                 dto.UserPassword = CommonTools.ToMd5(model.UserPassword);
+                 dto.UserRegisterTime = System.DateTime.Now;
+                 dto.UserRoles = model.UserRoles;
+                 dto.UserStatus = true;
+
+
+                 string userJsonString = JsonHelper.JsonSerializerBySingleData(dto);
+                 Message msg = CMSService.Insert("User", userJsonString);
+                 
+                // return RedirectTo("/User/Login", msg.MessageInfo);
+                 return RedirectToAction("Login", "User", new { ac = "SignupSuccess" });
+             }
+           
+            catch
+            {
+                Message msg = new Message();
+                msg.MessageStatus = "Error";
+                msg.MessageInfo = "注册失败了";
+                ViewBag.Status = msg.MessageStatus;
+                ViewBag.msg = msg.MessageInfo;
+                return View("Login");
+            }
+            
+         }
+        [HttpPost]
+        public ActionResult SendPassword(UserForgotViewModel model)
+        {
+            string strwhere = "UserName='" + model.UserName + "' and UserEmail='" + model.UserEmail + "'";
+            DataTable dt = CMSService.SelectOne("User", "CMSUser", strwhere);
+            if (dt.Rows.Count > 0)
+            {
+                //TO DO Sendemail
+                return RedirectToAction("Login", "User", new { ac = "SendSuccess" });
+            }
+            else
+            {
+                return RedirectToAction("Login", "User", new { ac = "SendError" });
+            }
+
+        }
+        [ChildActionOnly]
+         public ActionResult PartialForgot()
+         {
+             return View();
+         }
+        [ChildActionOnly]
+         public ActionResult PartialSignup()
+         {
+             UserSignupViewModel model = new UserSignupViewModel();
+             model.UserRoles = "45";
+             return View(model);
+         }
+        public ActionResult UserInfo()
         {
             return View();
         }
@@ -189,10 +331,7 @@ namespace SkyWebCMS.Controllers
 
        
 
-        public ActionResult Login()
-        {
-            return View();
-        }
+      
         public ActionResult ResetPassword(int id)
         {
             ResetPasswordViewModel model = new ResetPasswordViewModel();
