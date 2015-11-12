@@ -187,6 +187,7 @@
     <Compile Include="Models\UserModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Content Include="EmailTemplate\EmailTemplate.html" />
     <Content Include="umeditor\net\Uploader.cs" />
   </ItemGroup>
   <ItemGroup>

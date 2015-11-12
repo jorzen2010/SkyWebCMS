@@ -9,11 +9,38 @@ using System.Web;
 using Microsoft.International.Converters.PinYinConverter;
 using System.Text.RegularExpressions;
 
-
 namespace Common
 {
     public class CommonTools
     {
+        public static string ReplaceText(string userName, string content, string myName)
+        {
+
+            string path = string.Empty;
+
+            path = System.Web.HttpContext.Current.Server.MapPath("\\EmailTemplate\\EmailTemplate.html");
+
+            if (path == string.Empty)
+            {
+
+                return string.Empty;
+
+            }
+
+
+            System.IO.StreamReader sr = new System.IO.StreamReader(path);
+
+            string str = string.Empty;
+
+            str = sr.ReadToEnd();
+
+            str = str.Replace("$USER_NAME$", userName);
+
+            str = str.Replace("$CONTENT$", content);
+            str = str.Replace("$MY_NAME$", myName);
+
+            return str;
+        }
         public static string ToUnixTime(DateTime datetime)
         {
             long time = datetime.ToUniversalTime().Ticks;
@@ -203,6 +230,7 @@ namespace Common
             }
             return result;
         }
+        
 
     }
 }

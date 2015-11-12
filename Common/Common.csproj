@@ -40,6 +40,8 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommonDal.cs" />
+    <Compile Include="CommonServices.cs" />
     <Compile Include="CommonTools.cs" />
     <Compile Include="DataConvertHelper.cs" />
     <Compile Include="JsonHepler.cs" />

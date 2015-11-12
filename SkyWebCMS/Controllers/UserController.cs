@@ -173,6 +173,12 @@ namespace SkyWebCMS.Controllers
             if (dt.Rows.Count > 0)
             {
                 //TO DO Sendemail
+                string toMail="277602146@qq.com"; 
+                string fromMail="277602146@qq.com";
+                string displayName="显示姓名";
+                string mailTitle="重置密码";
+                string mailContent = "密码设置为123456";
+                CommonServices.SendEmail( toMail,  fromMail,  displayName,  mailTitle, mailContent);
                 return RedirectToAction("Login", "User", new { ac = "SendSuccess" });
             }
             else
