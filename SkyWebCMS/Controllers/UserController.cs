@@ -177,8 +177,12 @@ namespace SkyWebCMS.Controllers
                 string fromMail="277602146@qq.com";
                 string displayName="显示姓名";
                 string mailTitle="重置密码";
-                string mailContent = "密码设置为123456";
-                CommonServices.SendEmail( toMail,  fromMail,  displayName,  mailTitle, mailContent);
+                string username = model.UserName;
+                string content = "密码重置为123456";
+                string myname = "曲线社区卫生服务中心";
+                string mailcontent = CommonTools.ReplaceText(username, content, myname);
+
+                CommonServices.SendEmail(toMail, fromMail, displayName, mailTitle, mailcontent);
                 return RedirectToAction("Login", "User", new { ac = "SendSuccess" });
             }
             else
