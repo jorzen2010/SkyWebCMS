@@ -1,0 +1,79 @@
+﻿@model SkyWebCMS.Models.UserViewModel
+@{
+    Layout = null;
+}
+<div id="info" class="tab-pane in active">
+    <div class="row">
+        <div class="col-xs-12 col-sm-3 center">
+            <span class="profile-picture">
+                <img class="editable img-responsive" alt="Alex's Avatar" id="avatar2" src="/assets/avatars/profile-pic.jpg" />
+            </span>
+
+            <div class="space space-4"></div>
+
+
+        </div><!-- /span -->
+
+        <div class="col-xs-12 col-sm-9">
+            <h4 class="blue">
+                <span class="middle">@Model.UserName</span>
+
+                <span class="label label-@(Model.UserStatus ? "pink" : "Grey") arrowed-in-right">
+                    <i class="icon-circle smaller-80 align-middle"></i>
+                    @(Model.UserStatus ? "启用" : "禁用")
+                </span>
+            </h4>
+
+            <div class="profile-user-info">
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> 用 户 名 </div>
+
+                    <div class="profile-info-value">
+                        <span>@Model.UserName</span>
+                    </div>
+                </div>
+
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> 角色权限 </div>
+
+                    <div class="profile-info-value">
+                        <i class="icon-map-marker light-orange bigger-110"></i>
+                        @Model.UserRoles
+                    </div>
+                </div>
+
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> 绑定手机 </div>
+
+                    <div class="profile-info-value">
+                        <span>@(Model.UserTelephone != "" ? Model.UserTelephone : "暂未绑定手机")</span>
+                    </div>
+                </div>
+
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> 绑定邮箱 </div>
+
+                    <div class="profile-info-value">
+                        <span>@(Model.UserEmail != "" ? Model.UserEmail : "暂未绑定邮箱")</span>
+                    </div>
+                </div>
+
+                <div class="profile-info-row">
+                    <div class="profile-info-name">注册时间 </div>
+
+                    <div class="profile-info-value">
+                        <span>@Model.UserRegisterTime</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hr hr-8 dotted"></div>
+
+
+        </div><!-- /span -->
+    </div><!-- /row-fluid -->
+
+    <div class="space-20"></div>
+
+
+</div>

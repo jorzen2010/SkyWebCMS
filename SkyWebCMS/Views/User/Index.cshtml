@@ -1,4 +1,5 @@
-﻿@{
+﻿@using Dto;
+@{
     ViewBag.Title = "用户管理";
     ViewBag.SmallTitle = "用户列表";
 }
@@ -51,7 +52,14 @@
     </div>
     
     <!-- /.page-header -->
+    <h4 class="lighter">
+        <a href="/User/Index?roleId=0" class="btn btn-sm btn-primary" name="BtnRoleId" title="0">全部：</a>
+@foreach (RoleDto role in ViewData["Roles"] as IEnumerable<RoleDto>)
+{
+    <a href="/User/Index?roleId=@role.RoleId" class="btn btn-sm" name="BtnRoleId" title="@role.RoleId">@role.RoleName</a>
+}
 
+    </h4>
     <div class="row">
         <div class="col-xs-12">
             <!-- PAGE CONTENT BEGINS -->
@@ -224,10 +232,70 @@
         });
 
         PageClick = function(no) {
-            window.location = "?p=" + no;
+           // window.location = "?p=" + no;
+            window.location = "?p=" + no +"&roleId="+getParamValue("roleId");
         }
        
         
+        function getUrlParams()
+        {
+            var search = window.location.search ;
+            // 写入数据字典
+            var tmparray = search.substr(1,search.length).split("&");
+            var paramsArray = new Array;
+            if( tmparray != null)
+            {
+                for(var i = 0;i<tmparray.length;i++)
+                {
+                    var reg = /[=|^==]/; // 用=进行拆分，但不包括==
+                    var set1 = tmparray[i].replace(reg,'&');
+                    var tmpStr2 = set1.split('&');
+                    var array = new Array ;
+                    array[tmpStr2[0]] = tmpStr2[1] ;
+                    paramsArray.push(array);
+                }
+            }
+            // 将参数数组进行返回
+            return paramsArray ;
+        }
+        // 根据参数名称获取参数值
+        function getParamValue(name)
+        {
+            var paramsArray = getUrlParams();
+            if(paramsArray != null)
+            {
+                for(var i = 0 ; i < paramsArray.length ; i ++ )
+                {
+                    for(var j in paramsArray[i] )
+                    {
+                        if( j == name )
+                        {
+                            return paramsArray[i][j] ;
+                        }
+                    }
+                }
+            }
+            return null ;
+        }
+       
+        var BtnRoleId = document.getElementsByName("BtnRoleId");
+
+        for(var i=0;i<BtnRoleId.length;i++){
+            var links = BtnRoleId[i].getAttribute("title");
+            if(getParamValue("roleId")==links)
+            {
+
+                $(BtnRoleId[i]).addClass('btn-primary');
+            }
+            else
+            {
+                $(BtnRoleId[i]).removeClass('btn-primary');
+            }
+
+        }
+
+
+
         $.widget("ui.dialog", $.extend({}, $.ui.dialog.prototype, {
             _title: function(title) {
                 var $title = this.options.title || '&nbsp;'

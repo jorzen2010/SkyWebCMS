@@ -1,0 +1,337 @@
+﻿<div class="page-content">
+    <div class="page-header">
+        <h1>
+            Form Wizard
+            <small>
+                <i class="icon-double-angle-right"></i>
+                and Validation
+            </small>
+        </h1>
+    </div><!-- /.page-header -->
+
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- PAGE CONTENT BEGINS -->
+
+            <h4 class="lighter">
+                <i class="icon-hand-right icon-animated-hand-pointer blue"></i>
+                <a href="#modal-wizard" data-toggle="modal" class="pink"> Wizard Inside a Modal Box </a>
+            </h4>
+
+            <div class="hr hr-18 hr-double dotted"></div>
+
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="widget-box">
+                        <div class="widget-header widget-header-blue widget-header-flat">
+                            <h4 class="lighter">New Item Wizard</h4>
+
+                            <div class="widget-toolbar">
+                                <label>
+                                    <small class="green">
+                                        <b>Validation</b>
+                                    </small>
+
+                                    <input id="skip-validation" type="checkbox" class="ace ace-switch ace-switch-4" />
+                                    <span class="lbl"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="widget-body">
+                            <div class="widget-main">
+                                <div id="fuelux-wizard" class="row-fluid" data-target="#step-container">
+                                    <ul class="wizard-steps">
+                                        <li data-target="#step1" class="active">
+                                            <span class="step">1</span>
+                                            <span class="title">阳虚质</span>
+                                        </li>
+
+                                        <li data-target="#step2">
+                                            <span class="step">2</span>
+                                            <span class="title">阴虚质</span>
+                                        </li>
+
+                                        <li data-target="#step3">
+                                            <span class="step">3</span>
+                                            <span class="title">气虚质</span>
+                                        </li>
+
+                                        <li data-target="#step4">
+                                            <span class="step">4</span>
+                                            <span class="title">痰湿质</span>
+                                        </li>
+
+                                        <li data-target="#step5">
+                                            <span class="step">5</span>
+                                            <span class="title">湿热质</span>
+                                        </li>
+
+                                        <li data-target="#step6">
+                                            <span class="step">6</span>
+                                            <span class="title">血瘀质</span>
+                                        </li>
+
+                                        <li data-target="#step7">
+                                            <span class="step">7</span>
+                                            <span class="title">气郁质</span>
+                                        </li>
+
+                                        <li data-target="#step8">
+                                            <span class="step">8</span>
+                                            <span class="title">特禀质</span>
+                                        </li>
+
+                                        <li data-target="#step9">
+                                            <span class="step">9</span>
+                                            <span class="title">平和质</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <hr />
+                                <div class="step-content row-fluid position-relative" id="step-container">
+                                    <div class="step-pane active" id="step1">
+                                        <h3 class="lighter block green">第一步</h3>
+
+                                       
+                                    </div>
+
+                                    <div class="step-pane" id="step2">
+                                        <div class="row-fluid">
+                                            第二部
+                                        </div>
+                                    </div>
+
+                                    <div class="step-pane" id="step3">
+                                        <div class="center">
+                                            <h3 class="blue lighter">This is step 3</h3>
+                                        </div>
+                                    </div>
+
+                                    <div class="step-pane" id="step4">
+                                        <div class="center">
+                                            <h3 class="green">Congrats!</h3>
+                                            This is step 4
+                                        </div>
+                                    </div>
+
+                                    <div class="step-pane" id="step5">
+                                        <div class="center">
+                                            <h3 class="green">Congrats!</h3>
+                                            This is step 5
+                                        </div>
+                                    </div>
+
+                                    <div class="step-pane" id="step6">
+                                        <div class="center">
+                                            <h3 class="green">Congrats!</h3>
+                                            This is step 6
+                                        </div>
+                                    </div>
+
+                                    <div class="step-pane" id="step7">
+                                        <div class="center">
+                                            <h3 class="green">Congrats!</h3>
+                                            This is step 7
+                                        </div>
+                                    </div>
+
+                                    <div class="step-pane" id="step8">
+                                        <div class="center">
+                                            <h3 class="green">Congrats!</h3>
+                                            This is step 8
+                                        </div>
+                                    </div>
+
+                                    <div class="step-pane" id="step9">
+                                        <div class="center">
+                                            <h3 class="green">Congrats!</h3>
+                                            This is step 9
+                                        </div>
+                                    </div>
+
+                                    
+                                </div>
+
+                                <hr />
+                                <div class="row-fluid wizard-actions">
+                                    <button class="btn btn-prev">
+                                        <i class="icon-arrow-left"></i>
+                                        Prev
+                                    </button>
+
+                                    <button class="btn btn-success btn-next" data-last="Finish ">
+                                        Next
+                                        <i class="icon-arrow-right icon-on-right"></i>
+                                    </button>
+                                </div>
+                            </div><!-- /widget-main -->
+                        </div><!-- /widget-body -->
+                    </div>
+                </div>
+            </div>
+
+            <div id="modal-wizard" class="modal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header" data-target="#modal-step-contents">
+                            <ul class="wizard-steps">
+                                <li data-target="#modal-step1" class="active">
+                                    <span class="step">1</span>
+                                    <span class="title">Validation states</span>
+                                </li>
+
+                                <li data-target="#modal-step2">
+                                    <span class="step">2</span>
+                                    <span class="title">Alerts</span>
+                                </li>
+
+                                <li data-target="#modal-step3">
+                                    <span class="step">3</span>
+                                    <span class="title">Payment Info</span>
+                                </li>
+
+                                <li data-target="#modal-step4">
+                                    <span class="step">4</span>
+                                    <span class="title">Other Info</span>
+                                </li>
+
+                                <li data-target="#modal-step5">
+                                    <span class="step">5</span>
+                                    <span class="title">Other Info</span>
+                                </li>
+
+                                <li data-target="#modal-step6">
+                                    <span class="step">6</span>
+                                    <span class="title">Other Info</span>
+                                </li>
+
+                                <li data-target="#modal-step7">
+                                    <span class="step">7</span>
+                                    <span class="title">Other Info</span>
+                                </li>
+
+                                <li data-target="#modal-step8">
+                                    <span class="step">8</span>
+                                    <span class="title">Other Info</span>
+                                </li>
+
+                                <li data-target="#modal-step9">
+                                    <span class="step">9</span>
+                                    <span class="title">Other Info</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="modal-body step-content" id="modal-step-contents">
+                            <div class="step-pane active" id="modal-step1">
+                                <div class="center">
+                                    <h4 class="blue">Step 1</h4>
+                                </div>
+                            </div>
+
+                            <div class="step-pane" id="modal-step2">
+                                <div class="center">
+                                    <h4 class="blue">Step 2</h4>
+                                </div>
+                            </div>
+
+                            <div class="step-pane" id="modal-step3">
+                                <div class="center">
+                                    <h4 class="blue">Step 3</h4>
+                                </div>
+                            </div>
+
+                            <div class="step-pane" id="modal-step4">
+                                <div class="center">
+                                    <h4 class="blue">Step 4</h4>
+                                </div>
+                            </div>
+
+                            <div class="step-pane" id="modal-step5">
+                                <div class="center">
+                                    <h4 class="blue">Step 5</h4>
+                                </div>
+                            </div>
+
+                            <div class="step-pane" id="modal-step6">
+                                <div class="center">
+                                    <h4 class="blue">Step 6</h4>
+                                </div>
+                            </div>
+
+                            <div class="step-pane" id="modal-step7">
+                                <div class="center">
+                                    <h4 class="blue">Step 7</h4>
+                                </div>
+                            </div>
+
+                            <div class="step-pane" id="modal-step8">
+                                <div class="center">
+                                    <h4 class="blue">Step 8</h4>
+                                </div>
+                            </div>
+
+                            <div class="step-pane" id="modal-step9">
+                                <div class="center">
+                                    <h4 class="blue">Step 9</h4>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="modal-footer wizard-actions">
+                            <button class="btn btn-sm btn-prev">
+                                <i class="icon-arrow-left"></i>
+                                Prev
+                            </button>
+
+                            <button class="btn btn-success btn-sm btn-next" data-last="Finish ">
+                                Next
+                                <i class="icon-arrow-right icon-on-right"></i>
+                            </button>
+
+                            <button class="btn btn-danger btn-sm pull-left" data-dismiss="modal">
+                                <i class="icon-remove"></i>
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- PAGE CONTENT ENDS -->
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+</div>
+@section BottomScripts {
+<script src="/assets/js/fuelux/fuelux.wizard.min.js"></script>
+<script src="/assets/js/select2.min.js"></script>
+<script type="text/javascript">
+    jQuery(function ($) {
+
+  
+
+        var $validation = false;
+        $('#fuelux-wizard').ace_wizard().on('change', function (e, info) {
+            if (info.step == 1 && $validation) {
+                if (!$('#validation-form').valid()) return false;
+            }
+        }).on('finished', function (e) {
+            bootbox.dialog({
+                message: "Thank you! Your information was successfully saved!",
+                buttons: {
+                    "success": {
+                        "label": "OK",
+                        "className": "btn-sm btn-primary"
+                    }
+                }
+            });
+        }).on('stepclick', function (e) {
+            //return false;//prevent clicking on steps
+        });
+
+
+    })
+</script>
+@Scripts.Render("~/bundles/jqueryval")
+}

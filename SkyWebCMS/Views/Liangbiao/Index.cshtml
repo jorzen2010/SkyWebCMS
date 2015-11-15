@@ -1,0 +1,95 @@
+﻿@{
+    ViewBag.Title = "用户管理";
+    ViewBag.SmallTitle = "用户添加";
+}
+  <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main" style="height:400px;width:600px"></div>
+<div id="tupian"></div>
+
+<form action="/Liangbiao/Test" method="post" >
+    <input id="tupianid" name="tupianid" />
+    <button id="btn" type="submit">导出图片</button>
+</form>
+
+<!-- ECharts单文件引入 -->
+@section BottomScripts {
+<script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+<script type="text/javascript">
+    // 路径配置
+    require.config({
+        paths: {
+            echarts: 'http://echarts.baidu.com/build/dist'
+        }
+    });
+
+    // 使用
+    require(
+        [
+            'echarts',
+            'echarts/chart/bar' // 使用柱状图就加载bar模块，按需加载
+        ],
+        function (ec) {
+            // 基于准备好的dom，初始化echarts图表
+            var myChart = ec.init(document.getElementById('main'));
+
+            var option = {
+                tooltip: {
+                    show: true
+                },
+                legend: {
+                    data: ['体质得分']
+                },
+                xAxis: [
+                    {
+                        type: 'category',
+                        data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子","裤子", "高跟鞋", "袜子"]
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value'
+                    }
+                ],
+                series: [
+                    {
+                        "name": "体质得分",
+                        "type": "bar",
+                        "data": [50, 90, 40, 79, 10, 20, 10, 10, 20]
+                    }
+                ]
+            };
+
+            // 为echarts对象加载数据
+            myChart.setOption(option);
+            //alert(encodeURIComponent(myChart.getDataURL("png")));
+            $("#tupian").text(myChart.getDataURL("png"));
+            $("#tupianid").val(myChart.getDataURL("png"));
+          //  setTimeout(exportImage, 2000);
+            
+        }
+    );
+    $("#btn").on('click',function(){
+       // alert($("#tupian").text());
+        window.location = "/Liangbiao/Test";
+       // exportImage();
+        
+    });
+    function exportImage() {
+        var data ="a="+ encodeURIComponent($("#tupian").text());
+        var xmlhttp;
+        if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else { // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.open("POST", "/Liangbiao/Test", true);
+        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                alert("保存成功");
+            }
+        }
+        xmlhttp.send(data);
+    }
+</script>
+}

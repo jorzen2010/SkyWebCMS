@@ -12,9 +12,11 @@ using Bll;
 using Mapping;
 using InterfaceMapping;
 using SkyWebCMS.Models;
+using SkyWebCMS.Attributes;
 
 namespace SkyWebCMS.Controllers
 {
+    [CMSAuth(Roles = "普通管理员")] 
     public class ImageController : BaseController
     {
         //
@@ -59,19 +61,8 @@ namespace SkyWebCMS.Controllers
         // GET: /Image/Create
         public ActionResult Create()
         {
-            DataTable dt = CMSService.SelectSome("Category", "CMSCategory", "CategoryParentId=6");
-            List<SelectListItem> items = new List<SelectListItem>();
-            //List<CategoryDto> list = new List<CategoryDto>();
-            foreach (DataRow dr in dt.Rows)
-            {
-                CategoryDto dto = CategoryMapping.getDTO(dr);
-                items.Add(new SelectListItem { Text = dto.CategoryName, Value = dto.CategoryId.ToString() });
 
-                // list.Add(dto);
-
-
-            }
-            ViewData["Category"] = items;
+            ViewData["Category"] = MyService.GetCategorySelectList("CategoryParentId=6");
 
             return View();
         }
@@ -138,14 +129,7 @@ namespace SkyWebCMS.Controllers
                 model.ImageDescription = dto.ImageDescription;
                 model.ImageCategory = dto.ImageCategory;
             }
-            DataTable categorydt = CMSService.SelectSome("Category", "CMSCategory", "CategoryParentId=6");
-            List<SelectListItem> items = new List<SelectListItem>();
-            foreach (DataRow dr in categorydt.Rows)
-            {
-                CategoryDto categoryDto = CategoryMapping.getDTO(dr);
-                items.Add(new SelectListItem { Text = categoryDto.CategoryName, Value = categoryDto.CategoryId.ToString() });
-            }
-            ViewData["Category"] = items;
+            ViewData["Category"] = MyService.GetCategorySelectList("CategoryParentId=6");
             return View(model);
         }
 

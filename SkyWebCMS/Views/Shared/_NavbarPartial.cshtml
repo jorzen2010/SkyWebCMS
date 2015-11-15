@@ -230,7 +230,7 @@
                         <img class="nav-user-photo" src="/assets/avatars/user.jpg" alt="Jason's Photo" />
                         <span class="user-info">
                             <small>欢迎光临,</small>
-                            Jason
+                            @System.Web.HttpContext.Current.Request.Cookies["User"].Value
                         </span>
 
                         <i class="icon-caret-down"></i>

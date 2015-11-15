@@ -12,9 +12,11 @@ using Bll;
 using Mapping;
 using InterfaceMapping;
 using SkyWebCMS.Models;
+using SkyWebCMS.Attributes;
 
 namespace SkyWebCMS.Controllers
 {
+    [CMSAuth(Roles = "普通管理员")] 
     public class RoleController : BaseController
     {
         //

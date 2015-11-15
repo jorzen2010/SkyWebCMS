@@ -8,6 +8,7 @@ using Bll;
 
 namespace SkyWebCMS.Controllers
 {
+    
     public class BaseController : Controller
     {
         

@@ -33,12 +33,16 @@
     <Reference Include="ChnCharInfo">
       <HintPath>..\packages\ChnCharInfo.dll</HintPath>
     </Reference>
+    <Reference Include="dotnetCHARTING">
+      <HintPath>..\packages\dotnetCHARTING.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.ApplicationBlocks.Data">
       <HintPath>..\packages\Microsoft.ApplicationBlocks.Data.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -53,6 +57,7 @@
     <Compile Include="CommonServices.cs" />
     <Compile Include="CommonTools.cs" />
     <Compile Include="DataConvertHelper.cs" />
+    <Compile Include="FileTools.cs" />
     <Compile Include="JsonHepler.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="Pager.cs" />
