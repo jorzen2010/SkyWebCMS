@@ -28,20 +28,14 @@ namespace SkyWebCMS.Controllers
 
         public ActionResult Test()
         {
-           string base64ImgString = Request.Form["tupianid"].ToString(); ;
-          // string[] u = base64ImgString.Split(',');
-          //  string imgstr = u[1];
+           string base64ImgString = Request["a"]; ;
+           string[] u = base64ImgString.Split(',');
+           string imgstr = u[1];
 
+         
+           FileTools.Base64StringToImage(imgstr, "/Mypic/test1.Png");
 
-          //  Bitmap bmp=FileTools.Base64StringToImage(imgstr);
-           
-
-            
-          //  bmp.Save("D:/001.png");
-
-
-            string ih = "<img src='" + base64ImgString + "'>";
-            return Content(ih);
+           return Content("成功了");
         }
 
         //

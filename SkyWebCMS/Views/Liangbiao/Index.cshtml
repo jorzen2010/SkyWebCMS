@@ -4,12 +4,10 @@
 }
   <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
 <div id="main" style="height:400px;width:600px"></div>
-<div id="tupian"></div>
 
-<form action="/Liangbiao/Test" method="post" >
-    <input id="tupianid" name="tupianid" />
-    <button id="btn" type="submit">导出图片</button>
-</form>
+
+
+
 
 <!-- ECharts单文件引入 -->
 @section BottomScripts {
@@ -54,28 +52,23 @@
                     {
                         "name": "体质得分",
                         "type": "bar",
-                        "data": [50, 90, 40, 79, 10, 20, 10, 10, 20]
+                        "data": [54, 560, 44, 74, 14, 24, 14, 14, 24]
                     }
                 ]
             };
 
             // 为echarts对象加载数据
             myChart.setOption(option);
-            //alert(encodeURIComponent(myChart.getDataURL("png")));
-            $("#tupian").text(myChart.getDataURL("png"));
-            $("#tupianid").val(myChart.getDataURL("png"));
-          //  setTimeout(exportImage, 2000);
+
+       
+            // 保存图片
+            setTimeout(exportImage(myChart.getDataURL("png")), 30000);
             
         }
     );
-    $("#btn").on('click',function(){
-       // alert($("#tupian").text());
-        window.location = "/Liangbiao/Test";
-       // exportImage();
-        
-    });
-    function exportImage() {
-        var data ="a="+ encodeURIComponent($("#tupian").text());
+
+    function exportImage(a) {
+      var data ="a="+ encodeURIComponent(a);
         var xmlhttp;
         if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
             xmlhttp = new XMLHttpRequest();
@@ -90,6 +83,8 @@
             }
         }
         xmlhttp.send(data);
+
+     
     }
 </script>
 }

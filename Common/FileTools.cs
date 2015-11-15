@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.IO;
+using System.Web;
 
 namespace Common
 {
@@ -44,18 +45,15 @@ namespace Common
         }
 
 
-        public static Bitmap Base64StringToImage(string inputStr)
+        public static Bitmap Base64StringToImage(string inputStr,string filePath)
         {
 
-          
+
             byte[] arr = Convert.FromBase64String(inputStr);
             MemoryStream ms = new MemoryStream(arr);
             Bitmap bmp = new Bitmap(ms);
 
-            //bmp.Save(txtFileName + ".jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
-            //bmp.Save(txtFileName + ".bmp", ImageFormat.Bmp);
-            //bmp.Save(txtFileName + ".gif", ImageFormat.Gif);
-            bmp.Save( "test.png", System.Drawing.Imaging.ImageFormat.Png);
+            bmp.Save(System.Web.HttpContext.Current.Server.MapPath(filePath), System.Drawing.Imaging.ImageFormat.Png);
             ms.Close();
             return bmp;
 
