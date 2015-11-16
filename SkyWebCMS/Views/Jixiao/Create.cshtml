@@ -1,0 +1,174 @@
+﻿@model SkyWebCMS.Models.JixiaoModel
+@{
+    ViewBag.Title = "绩效管理";
+    ViewBag.SmallTitle = "绩效添加";
+}
+
+<div class="breadcrumbs" id="breadcrumbs">
+    <script type="text/javascript">
+        try { ace.settings.check('breadcrumbs', 'fixed') } catch (e) { }
+    </script>
+
+    <ul class="breadcrumb">
+        <li>
+            <i class="icon-home home-icon"></i>
+            <a href="#">首页</a>
+        </li>
+
+        <li>
+            <a href="#">@ViewBag.Title</a>
+        </li>
+        <li class="active">@ViewBag.SmallTitle</li>
+    </ul><!-- .breadcrumb -->
+
+    <!-- #nav-search -->
+</div>
+
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            @ViewBag.Title
+            <small>
+                <i class="icon-double-angle-right"></i>
+                @ViewBag.SmallTitle
+            </small>
+        </h1>
+        
+    </div><!-- /.page-header -->
+
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- PAGE CONTENT BEGINS -->
+            @if (ViewBag.Status == "Error")
+            {
+
+                <div class="alert alert-warning">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <i class="icon-remove"></i>
+                    </button>
+                    <strong>提示：</strong>
+
+                    @ViewBag.msg
+                    <br />
+                </div>
+
+            }
+            <div class="row">
+                <div class="col-xs-12">
+                    
+@using (Html.BeginForm("Create", "Category", FormMethod.Post, new { @class="form-horizontal"}))
+                  {
+    <div class="form-group">
+                            @Html.LabelFor(model => model.JixiaoParentCategory, new { @class = "col-sm-3 control-label no-padding-right" })
+
+                            <div class="col-sm-9">
+                              
+                            @Html.DropDownListFor(model => model.JixiaoParentCategory, ViewData["ParentCategory"] as IEnumerable<SelectListItem>, new { @class = "col-xs-10 col-sm-5" })
+                            @Html.ValidationMessageFor(model => model.JixiaoParentCategory)
+                            </div>
+                        </div>
+
+					    <div class="form-group">
+										 @Html.LabelFor(model => model.JixiaoCategory, new { @class = "col-sm-3 control-label no-padding-right" })
+                                        
+										<div class="col-sm-9">
+                            @Html.DropDownListFor(model => model.JixiaoCategory, ViewData["Category"] as IEnumerable<SelectListItem>, new { @class = "col-xs-10 col-sm-5" })
+                            @Html.ValidationMessageFor(model => model.JixiaoCategory)
+										</div>
+						 </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.JixiaoRenwu, new { @class = "col-sm-3 control-label no-padding-right" })
+
+                            <div class="col-sm-9">
+
+                                @Html.TextBoxFor(model => model.JixiaoRenwu, new { @class = "col-xs-10 col-sm-5" })
+                                @Html.ValidationMessageFor(model => model.JixiaoRenwu)
+                            </div>
+                        </div>
+    
+     <div class="form-group">
+                            @Html.LabelFor(model => model.JixiaoForUser, new { @class = "col-sm-3 control-label no-padding-right" })
+
+                            <div class="col-sm-9">
+
+                                @Html.TextBoxFor(model => model.JixiaoForUser, new { @class = "col-xs-10 col-sm-5" })
+                                @Html.ValidationMessageFor(model => model.JixiaoForUser)
+                            </div>
+                        </div>
+    
+                        
+
+  
+    
+                        <div class="clearfix form-actions">
+										<div class="col-md-offset-3 col-md-9">
+											<button class="btn btn-info" type="submit">
+												<i class="icon-ok bigger-110"></i>
+												提交
+											</button>
+
+											&nbsp; &nbsp; &nbsp;
+											<button class="btn" type="reset">
+												<i class="icon-undo bigger-110"></i>
+												重置
+											</button>
+										</div>
+						</div>
+}
+									
+								<!-- /.table-responsive -->
+
+                </div>
+                
+    <!-- /span -->
+            </div>
+
+            <!-- PAGE CONTENT ENDS -->
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+</div><!-- /.page-content -->
+@section BottomScripts {
+    @Scripts.Render("~/bundles/jqueryval")
+<script language="javascript" type="text/javascript">
+
+
+        // JavaScript Document
+        $(function() {
+
+
+            $('#JixiaoCategory').attr('disabled', 'disabled');
+          
+
+            $('#JixiaoParentCategory').change(function() {
+
+               
+               
+
+                var JixiaoParentCategory = $(this).find(':selected').val();
+
+                $('#JixiaoCategory').attr('disabled', 'disabled');
+                $('#JixiaoCategory').empty();
+               // var gameid = $(this).find(':selected').val();
+
+                var url = '@Url.Action("GetCategoryJsonByAjax", "Category")?CategoryParentId=' + encodeURI(JixiaoParentCategory);
+                $.getJSON(url, function (data) {
+
+                    $.each(data, function (i, n) {
+                        var opt = '<option value="' + n.CategoryId + '">' + n.CategoryName + '</option>';
+                        $('#JixiaoCategory').append(opt);
+                    });
+                    $('#JixiaoCategory').removeAttr('disabled');
+
+                });
+
+
+            });
+         
+
+
+        })
+</script>
+}
+
+

@@ -192,6 +192,22 @@ namespace SkyWebCMS.Models
     }
     #endregion
 
+    #region 编辑用户信息模型
+    public class EditUserInfoViewModel
+    {
+        public int UserId { get; set; }
+        [Display(Name = "用户名")]
+        public string UserName { get; set; }
+        [Display(Name = "真实姓名")]
+        public string UserRealName { get; set; }
+        [Display(Name = "性别")]
+        public string UserSex { get; set; }
+        [Display(Name = "生日")]
+        public DateTime UserBirthday { get; set; }
+
+    }
+    #endregion
+
     #region 绑定邮箱模型
     public class UserEmailViewModel
     {

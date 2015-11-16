@@ -30,7 +30,7 @@ namespace Mapping
         }           
         public  SqlParameter[] JsonStringToSqlParameter(string jsonString)
         {
-            SqlParameter[] arParames = new SqlParameter[8];
+            SqlParameter[] arParames = new SqlParameter[12];
             UserDto userDto = JsonHelper.JsonDeserializeBySingleData<UserDto>(jsonString);
 
             arParames[0] = new SqlParameter("@UserId", SqlDbType.Int);
@@ -57,6 +57,18 @@ namespace Mapping
             arParames[7] = new SqlParameter("@UserStatus ", SqlDbType.Bit);
             arParames[7].Value = userDto.UserStatus;
 
+            arParames[8] = new SqlParameter("@UserRealName ", SqlDbType.VarChar, 50);
+            arParames[8].Value = userDto.UserRealName;
+
+            arParames[9] = new SqlParameter("@UserSex ", SqlDbType.VarChar, 50);
+            arParames[9].Value = userDto.UserSex;
+
+            arParames[10] = new SqlParameter("@UserImg ", SqlDbType.VarChar, 500);
+            arParames[10].Value = userDto.UserImg;
+
+            arParames[11] = new SqlParameter("@UserBirthday ", SqlDbType.DateTime);
+            arParames[11].Value = userDto.UserBirthday;
+
             return arParames;
         }
         public static UserDto getDTO(DataRow dr) 
@@ -72,6 +84,11 @@ namespace Mapping
                 userDto.UserTelephone = dr["UserTelephone"].ToString();
                 userDto.UserStatus = bool.Parse(dr["UserStatus"].ToString());
                 userDto.UserRegisterTime = DateTime.Parse(dr["UserRegisterTime"].ToString());
+                userDto.UserSex = dr["UserSex"].ToString();
+                userDto.UserRealName = dr["UserRealName"].ToString();
+                userDto.UserImg = dr["UserImg"].ToString();
+                userDto.UserBirthday = DateTime.Parse(dr["UserBirthday"].ToString());
+
 
                 return userDto;
         }

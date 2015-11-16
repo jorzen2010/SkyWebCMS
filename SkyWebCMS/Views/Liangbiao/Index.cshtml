@@ -54,7 +54,8 @@
                         "type": "bar",
                         "data": [54, 560, 44, 74, 14, 24, 14, 14, 24]
                     }
-                ]
+                ],
+                animation: false
             };
 
             // 为echarts对象加载数据
@@ -79,7 +80,7 @@
         xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xmlhttp.onreadystatechange = function () {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                alert("保存成功");
+               // alert("保存成功");
             }
         }
         xmlhttp.send(data);

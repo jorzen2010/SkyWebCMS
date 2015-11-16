@@ -1,0 +1,76 @@
+﻿@model SkyWebCMS.Models.EditUserInfoViewModel
+@{
+    Layout = null;
+}
+<script type="text/javascript">
+    function uploadevent(status) {
+        //alert(status);
+        status += '';
+        switch (status) {
+            case '1':
+                break;
+                break;
+            case '-1':
+                window.location.reload();
+                break;
+            default:
+                window.location.reload();
+        }
+    }
+</script>
+<script type="text/javascript">
+    function uploadevent(status, picUrl, callbackdata) {
+        //alert(picUrl); //后端存储图片
+        //	alert(callbackdata);
+        status += '';
+        switch (status) {
+            case '1':
+                var time = new Date().getTime();
+                var filename162 = picUrl + '_162.jpg';
+                var filename48 = picUrl + '_48.jpg';
+                var filename20 = picUrl + "_20.jpg";
+
+                document.getElementById('avatar_priview').innerHTML = "头像1 : <img src='" + filename162 + "?" + time + "'/> <br/> 头像2: <img src='" + filename48 + "?" + time + "'/><br/> 头像3: <img src='" + filename20 + "?" + time + "'/>";
+
+                break;
+            case '-1':
+                window.location.reload();
+                break;
+            default:
+                window.location.reload();
+        }
+    }
+</script>
+<div id="editimg" class="tab-pane">
+    <div class="profile-feed row-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+ 
+                <div id="altContent">
+
+
+                    <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+                            codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0"
+                            width="650" height="450" id="myMovieName">
+                        <param name=movie value="avatar.swf">
+                        <param name=quality value=high>
+                        <param name=bgcolor value=#FFFFFF>
+                        <param name="flashvars" value="imgUrl=/assets/avatar/default.jpg&uploadUrl=/UserImg/upfile.aspx?id=@ViewBag.userid&uploadSrc=false" />
+                        <embed src="/assets/avatar/avatar.swf" quality=high bgcolor=#FFFFFF width="650" height="450" wmode="transparent" flashvars="imgUrl=/assets/avatar/default.jpg&uploadUrl=/UserImg/upfile.aspx?id=@ViewBag.userid&uploadSrc=false"
+                               name="myMovieName" align="" type="application/x-shockwave-flash" allowscriptaccess="always"
+                               pluginspage="http://www.macromedia.com/go/getflashplayer">
+                        </EMBED>
+                    </object>
+
+
+                </div>
+
+
+                <!-- /.table-responsive -->
+
+            </div>
+
+            <!-- /span -->
+        </div>
+    </div><!-- /row -->
+</div>

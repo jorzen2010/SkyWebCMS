@@ -44,6 +44,7 @@
                     <i class="icon-double-angle-right"></i>
                     @ViewBag.SmallTitle (共 @ViewBag.RecordCount 条记录)
                 </small>
+                <small class="pull-right"><a href="@Url.Action("Create", "Category", new { CategoryParentId = ViewBag.CategoryParentId, CategoryParentName = ViewBag.CategoryParentName })" class="btn btn-xs btn-success"><i class="icon-plus"></i>新增 @ViewBag.CategoryParentName 分类</a></small>
             </h1>
        
        

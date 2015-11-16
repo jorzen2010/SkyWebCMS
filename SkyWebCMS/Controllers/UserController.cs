@@ -207,6 +207,26 @@ namespace SkyWebCMS.Controllers
                 return View("UserInfo");
             }
         }
+        // 修改用户信息
+        [ChildActionOnly]
+        public ActionResult PartialEditUserInfo(string id)
+        {
+            EditUserInfoViewModel model = new EditUserInfoViewModel();
+            model.UserId = int.Parse(id);
+            model.UserName = System.Web.HttpContext.Current.Request.Cookies["User"].Value;
+            return View(model);
+
+        }
+        // 修改用户头像
+        [ChildActionOnly]
+        public ActionResult PartialEditUserImg(string id)
+        {
+            ViewBag.userid = id;
+           
+            return View();
+
+        }
+      
         // 修改手机
         [ChildActionOnly]
         public ActionResult PartialTelephone(string id)
@@ -217,6 +237,7 @@ namespace SkyWebCMS.Controllers
             return View(model);
 
         }
+        
         // 修改手机动作
         [HttpPost]
         public ActionResult EditTelephone(UserTelephoneViewModel model)
@@ -366,6 +387,12 @@ namespace SkyWebCMS.Controllers
                 dto.UserRegisterTime = System.DateTime.Now;
                 dto.UserRoles = "45";
                 dto.UserStatus = true;
+                dto.UserBirthday = DateTime.Parse("1700-01-01");
+                dto.UserSex = "";
+                dto.UserRealName = "";
+                dto.UserImg = "";
+
+                
 
 
                 string userJsonString = JsonHelper.JsonSerializerBySingleData(dto);

@@ -33,9 +33,6 @@
     <Reference Include="ChnCharInfo">
       <HintPath>..\packages\ChnCharInfo.dll</HintPath>
     </Reference>
-    <Reference Include="dotnetCHARTING">
-      <HintPath>..\packages\dotnetCHARTING.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.ApplicationBlocks.Data">
       <HintPath>..\packages\Microsoft.ApplicationBlocks.Data.dll</HintPath>
     </Reference>

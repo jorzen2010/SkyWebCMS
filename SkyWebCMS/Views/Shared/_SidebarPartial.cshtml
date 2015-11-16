@@ -4,23 +4,7 @@
     </script>
 
     <div class="sidebar-shortcuts" id="sidebar-shortcuts">
-        <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
-            <button class="btn btn-success">
-               用户
-            </button>
-
-            <button class="btn btn-info">
-                权限
-            </button>
-
-            <button class="btn btn-warning">
-                分类
-            </button>
-
-            <button class="btn btn-danger">
-                文章
-            </button>
-        </div>
+        
 
         <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
             <span class="btn btn-success"></span>
@@ -40,7 +24,115 @@
                 <span class="menu-text"> 控制台 </span>
             </a>
         </li>
+        <li>
+            <a href="#" class="dropdown-toggle">
+                <i class="icon-th"></i>
+                <span class="menu-text"> 绩效管理 </span>
 
+                <b class="arrow icon-angle-down"></b>
+            </a>
+
+            <ul class="submenu">
+                <li>
+                    <a href="@Url.Action("Create", "Article")">
+                        <i class="icon-double-angle-right"></i>
+                        查看任务
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "Article")">
+                        <i class="icon-double-angle-right"></i>
+                        新增任务
+                    </a>
+                </li>
+                
+
+
+            </ul>
+        </li>
+
+        <li>
+            <a href="#" class="dropdown-toggle">
+                <i class="icon-th"></i>
+                <span class="menu-text"> 患者管理 </span>
+
+                <b class="arrow icon-angle-down"></b>
+            </a>
+
+            <ul class="submenu">
+                <li>
+                    <a href="@Url.Action("Index", "Article")">
+                        <i class="icon-double-angle-right"></i>
+                        待诊患者
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Create", "Article")">
+                        <i class="icon-double-angle-right"></i>
+                        所有患者
+                    </a>
+                </li>
+
+
+            </ul>
+        </li>
+
+        <li>
+            <a href="#" class="dropdown-toggle">
+                <i class="icon-th"></i>
+                <span class="menu-text"> 健康管理 </span>
+
+                <b class="arrow icon-angle-down"></b>
+            </a>
+
+            <ul class="submenu">
+                <li>
+                    <a href="@Url.Action("Create", "Article")">
+                        <i class="icon-double-angle-right"></i>
+                        中医体质管理
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "Article")">
+                        <i class="icon-double-angle-right"></i>
+                        血压管理
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Create", "Article")">
+                        <i class="icon-double-angle-right"></i>
+                        血糖添加
+                    </a>
+                </li>
+
+
+            </ul>
+        </li>
+        <li>
+            <a href="#" class="dropdown-toggle">
+                <i class="icon-th"></i>
+                <span class="menu-text"> 心理测评 </span>
+
+                <b class="arrow icon-angle-down"></b>
+            </a>
+
+            <ul class="submenu">
+                <li>
+                    <a href="@Url.Action("Index", "Article")">
+                        <i class="icon-double-angle-right"></i>
+                        文章管理
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Create", "Article")">
+                        <i class="icon-double-angle-right"></i>
+                        文章添加
+                    </a>
+                </li>
+
+
+            </ul>
+        </li>
         <li>
             <a href="#" class="dropdown-toggle">
                 <i class="icon-th"></i>
@@ -56,14 +148,14 @@
                         文章管理
                     </a>
                 </li>
-                 <li>
+                <li>
                     <a href="@Url.Action("Create", "Article")">
                         <i class="icon-double-angle-right"></i>
                         文章添加
                     </a>
                 </li>
 
-               
+
             </ul>
         </li>
 

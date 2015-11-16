@@ -47,6 +47,7 @@ namespace SkyWebCMS.Controllers
             ViewBag.RecordCount = pager.Amount;
             ViewBag.Message = pager.Amount;
             ViewBag.CategoryParentName = CategoryParentName;
+            ViewBag.CategoryParentId = id;
             return View(pager.Entity);
 
         }
@@ -180,5 +181,12 @@ namespace SkyWebCMS.Controllers
                 return View();
             }
         }
+
+        public JsonResult GetCategoryJsonByAjax(int CategoryParentId)
+        {
+            var CategoryList = MyService.GetCategoryList( "CategoryParentId=" + CategoryParentId);
+            var json = CategoryList.Select(o => new { o.CategoryName, o.CategoryId });
+            return Json(json, JsonRequestBehavior.AllowGet);
+        } 
     }
 }

@@ -16,6 +16,10 @@ namespace Dto
         public string UserRoles { get; set; }
         public DateTime UserRegisterTime { get; set; }
         public bool UserStatus { get; set; }
+        public string UserRealName { get; set; }
+        public string UserSex { get; set; }
+        public string UserImg { get; set; }
+        public DateTime UserBirthday { get; set; }
         
         
     }

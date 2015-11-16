@@ -1,52 +1,47 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data;
+using System.Collections;
+using System.Reflection;
+using Dto;
 using Common;
-using System.Drawing;
 using Bll;
-using System.IO;
+using Mapping;
+using InterfaceMapping;
+using SkyWebCMS.Models;
+using SkyWebCMS.Attributes;
 
 namespace SkyWebCMS.Controllers
 {
-    public class LiangbiaoController : Controller
+    public class JixiaoController : BaseController
     {
         //
-        // GET: /Liangbiao/
+        // GET: /Jixiao/
         public ActionResult Index()
         {
             return View();
         }
 
         //
-        // GET: /Liangbiao/Details/5
+        // GET: /Jixiao/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        public ActionResult Test()
-        {
-           string base64ImgString = Request["a"]; ;
-           string[] u = base64ImgString.Split(',');
-           string imgstr = u[1];
-
-           string filename = "/tizhiresult/" + CommonTools.ToUnixTime(System.DateTime.Now).ToString() + CommonTools.getRandomNumber() +".png";
-           FileTools.Base64StringToImage(imgstr, filename);
-
-           return Content("成功了");
-        }
-
         //
-        // GET: /Liangbiao/Create
+        // GET: /Jixiao/Create
         public ActionResult Create()
         {
+            ViewData["ParentCategory"] = MyService.GetCategorySelectList("CategoryParentId=11");
+            ViewData["Category"] = MyService.GetCategorySelectList("CategoryParentId=12");
             return View();
         }
 
         //
-        // POST: /Liangbiao/Create
+        // POST: /Jixiao/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -63,37 +58,38 @@ namespace SkyWebCMS.Controllers
         }
 
         //
-        // GET: /Liangbiao/Edit/5
+        // GET: /Jixiao/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
         //
-        // POST: /Liangbiao/Edit/5
+        // POST: /Jixiao/Edit/5
         [HttpPost]
-        public ActionResult Edit()
+        public ActionResult Edit(int id, FormCollection collection)
         {
-            if (Request.Files.Count > 0 && Request.Files[0] != null && !string.IsNullOrEmpty(Request.Files[0].FileName))
+            try
             {
-                string fileName = CMSService.Uploadfiles("fsf", Request.Files[0]);
-                return Content(fileName);
+                // TODO: Add update logic here
+
+                return RedirectToAction("Index");
             }
-            else
+            catch
             {
-                return Content("图片是空的");
+                return View();
             }
         }
 
         //
-        // GET: /Liangbiao/Delete/5
+        // GET: /Jixiao/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
         //
-        // POST: /Liangbiao/Delete/5
+        // POST: /Jixiao/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

@@ -61,5 +61,18 @@ namespace Bll
 
             return RolesList;
         }
+
+        public static List<CategoryDto> GetCategoryList(string strwhere)
+        {
+            List<CategoryDto> CategoryList = new List<CategoryDto>();
+            DataTable dt = CMSService.SelectSome("Category", "CMSCategory", strwhere);
+            foreach (DataRow dr in dt.Rows)
+            {
+                CategoryDto dto = CategoryMapping.getDTO(dr);
+                CategoryList.Add(dto);
+            }
+
+            return CategoryList;
+        }
     }
 }

@@ -41,9 +41,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="dotnetCHARTING">
-      <HintPath>..\packages\dotnetCHARTING.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.ApplicationBlocks.Data, Version=1.0.3603.21134, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.ApplicationBlocks.Data.dll</HintPath>
@@ -175,6 +172,7 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\ImageController.cs" />
+    <Compile Include="Controllers\JixiaoController.cs" />
     <Compile Include="Controllers\LiangbiaoController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
@@ -189,10 +187,18 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ImageModels.cs" />
     <Compile Include="Attributes\CMSAuthAttribute.cs" />
+    <Compile Include="Models\JixiaoModels.cs" />
     <Compile Include="Models\RoleModels.cs" />
     <Compile Include="Models\UserModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Content Include="assets\avatar\avatar.swf" />
+    <Content Include="assets\avatar\crossdomain.xml" />
+    <Content Include="assets\avatar\default.jpg" />
+    <Content Include="assets\css\labelauty.css" />
+    <Content Include="assets\images\input-checked.png" />
+    <Content Include="assets\images\input-unchecked.png" />
+    <Content Include="assets\js\labelauty.js" />
     <Content Include="EmailTemplate\EmailTemplate.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -401,6 +407,7 @@
     <Content Include="umeditor\umeditor.config.js" />
     <Content Include="umeditor\umeditor.js" />
     <Content Include="umeditor\umeditor.min.js" />
+    <Content Include="UserImg\upfile.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -484,11 +491,16 @@
       <SubType>
       </SubType>
     </Content>
+    <Content Include="Views\Jixiao\Create.cshtml" />
+    <Content Include="Views\User\PartialEditUserInfo.cshtml" />
+    <Content Include="Views\User\PartialEditUserImg.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="tizhiresult\" />
     <Folder Include="umeditor\net\upload\" />
     <Folder Include="umeditor\upload\" />
+    <Folder Include="UserImg\Img\" />
     <Folder Include="Views\AjaxValidation\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\File\" />

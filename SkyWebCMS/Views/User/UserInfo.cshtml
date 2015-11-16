@@ -65,7 +65,18 @@
                                 个人信息
                             </a>
                         </li>
-
+                        <li>
+                            <a data-toggle="tab" href="#editinfo">
+                                <i class="orange icon-unlock bigger-120"></i>
+                                信息修改
+                            </a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#editimg">
+                                <i class="orange icon-unlock bigger-120"></i>
+                                修改头像
+                            </a>
+                        </li>
                         <li>
                             <a data-toggle="tab" href="#password">
                                 <i class="orange icon-unlock bigger-120"></i>
@@ -90,6 +101,10 @@
 
                     <div class="tab-content no-border padding-24">
                          @{Html.RenderAction("PartialInfo", "User", new { username = System.Web.HttpContext.Current.Request.Cookies["User"].Value });}<!-- #Info -->
+                       
+                        @{Html.RenderAction("PartialEditUserInfo", "User", new { id = System.Web.HttpContext.Current.Request.Cookies["UserId"].Value });}<!-- /#EditUserInfo -->
+                      
+                          @{Html.RenderAction("PartialEditUserImg", "User", new { id = System.Web.HttpContext.Current.Request.Cookies["UserId"].Value });}<!-- /#EditUserInfo -->
 
                          @{Html.RenderAction("PartialPassword", "User", new { id = System.Web.HttpContext.Current.Request.Cookies["UserId"].Value });}<!-- /#Password -->
 
