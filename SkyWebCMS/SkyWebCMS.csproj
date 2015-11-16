@@ -199,6 +199,23 @@
     <Content Include="assets\images\input-checked.png" />
     <Content Include="assets\images\input-unchecked.png" />
     <Content Include="assets\js\labelauty.js" />
+    <Content Include="assets\js\laydate.dev.js" />
+    <Content Include="assets\js\laydate.js" />
+    <Content Include="assets\js\need\laydate.css" />
+    <Content Include="assets\js\skins\dahong\icon.png" />
+    <Content Include="assets\js\skins\dahong\laydate.css" />
+    <Content Include="assets\js\skins\danlan\icon.png" />
+    <Content Include="assets\js\skins\danlan\laydate.css" />
+    <Content Include="assets\js\skins\default\icon.png" />
+    <Content Include="assets\js\skins\default\laydate.css" />
+    <Content Include="assets\js\skins\molv\icon.png" />
+    <Content Include="assets\js\skins\molv\laydate.css" />
+    <Content Include="assets\js\skins\qianhuang\icon.png" />
+    <Content Include="assets\js\skins\qianhuang\laydate.css" />
+    <Content Include="assets\js\skins\yahui\icon.png" />
+    <Content Include="assets\js\skins\yahui\laydate.css" />
+    <Content Include="assets\js\skins\yalan\icon.png" />
+    <Content Include="assets\js\skins\yalan\laydate.css" />
     <Content Include="EmailTemplate\EmailTemplate.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

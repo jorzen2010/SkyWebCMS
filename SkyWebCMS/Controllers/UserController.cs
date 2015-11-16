@@ -212,10 +212,43 @@ namespace SkyWebCMS.Controllers
         public ActionResult PartialEditUserInfo(string id)
         {
             EditUserInfoViewModel model = new EditUserInfoViewModel();
-            model.UserId = int.Parse(id);
-            model.UserName = System.Web.HttpContext.Current.Request.Cookies["User"].Value;
+            DataTable dt = CMSService.SelectOne("User", "CMSUser", "UserId=" + id );
+            foreach (DataRow dr in dt.Rows)
+            {
+                UserDto dto = new UserDto();
+                dto = UserMapping.getDTO(dr);
+                model.UserId = dto.UserId;
+                model.UserName = dto.UserName;
+                model.UserRealName = dto.UserRealName;
+                model.UserSex = dto.UserSex;
+                model.UserBirthday = dto.UserBirthday;
+
+            }
+            
             return View(model);
 
+        }
+        [HttpPost]
+        public ActionResult EditUserInfo(EditUserInfoViewModel model)
+        {
+            
+                UserDto dto = new UserDto();
+                DataTable dt = CMSService.SelectOne("User", "CMSUser", "UserId=" + model.UserId);
+                foreach (DataRow dr in dt.Rows)
+                {
+
+                    dto = UserMapping.getDTO(dr);
+                  //  dto.UserRoles = Request.Form["UserRoles"];
+                    dto.UserBirthday = model.UserBirthday;
+                    dto.UserRealName = model.UserRealName;
+                    dto.UserSex = model.UserSex;
+                }
+                string JsonString = JsonHelper.JsonSerializerBySingleData(dto);
+                Message msg = CMSService.Update("User", JsonString);
+                // TODO: Add update logic here
+
+                return RedirectToAction("Index");
+           
         }
         // 修改用户头像
         [ChildActionOnly]

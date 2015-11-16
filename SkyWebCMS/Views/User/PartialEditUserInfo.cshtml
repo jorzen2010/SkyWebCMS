@@ -7,8 +7,9 @@
         <div class="row">
             <div class="col-xs-12">
 
-                @using (Html.BeginForm("EditEmail", "User", FormMethod.Post, new { @class = "form-horizontal" }))
+                @using (Html.BeginForm("EditUserInfo", "User", FormMethod.Post, new { @class = "form-horizontal" }))
                 {
+                    
                     @Html.HiddenFor(model => model.UserId)
                     <div class="form-group">
                         @Html.LabelFor(model => model.UserName, new { @class = "col-sm-3 control-label no-padding-right" })
@@ -78,3 +79,4 @@
         </div>
     </div><!-- /row -->
 </div>
+

@@ -8,7 +8,12 @@
 <link rel="stylesheet" href="/assets/css/jquery.gritter.css" />
 <link rel="stylesheet" href="/assets/css/select2.css" />
 <link rel="stylesheet" href="/assets/css/bootstrap-editable.css" />
-    }
+}
+@section HeadJs{
+<script type="text/javascript" src="/assets/js/laydate.js"></script>
+<script type="text/javascript" src="/assets/js/laydate.dev.js"></script>
+
+}
 <div class="breadcrumbs" id="breadcrumbs">
     <script type="text/javascript">
         try { ace.settings.check('breadcrumbs', 'fixed') } catch (e) { }
@@ -117,8 +122,18 @@
         </div>
         </div><!-- /.row -->
         </div><!-- /.page-content -->
-        @section BottomScripts {
+@section BottomScripts {
             @Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+
+   
+    laydate({
+        elem: '#UserBirthday'
+    });
+
+
+</script>
+
         }
 
 
