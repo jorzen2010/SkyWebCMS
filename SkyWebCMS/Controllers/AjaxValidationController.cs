@@ -9,6 +9,7 @@ using Microsoft.ApplicationBlocks.Data;
 using Dto;
 using Bll;
 using Mapping;
+using Common;
 
 namespace SkyWebCMS.Controllers
 {
@@ -45,6 +46,10 @@ namespace SkyWebCMS.Controllers
 
             return Json(result, JsonRequestBehavior.AllowGet);
 
+        }
+        public JsonResult ValidateIDCardNo(string CustomerNumber)
+        {
+            return Json(CommonTools.Verify(CustomerNumber), JsonRequestBehavior.AllowGet);
         }
 
        

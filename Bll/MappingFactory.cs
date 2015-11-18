@@ -33,6 +33,10 @@ namespace Bll
             {
                 Mapping = new ImageMapping();
             }
+            if (DtoName == "Customer")
+            {
+                Mapping = new CustomerMapping();
+            }
 
             return Mapping;
             

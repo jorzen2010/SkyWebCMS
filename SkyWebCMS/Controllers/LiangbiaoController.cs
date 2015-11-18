@@ -14,8 +14,10 @@ namespace SkyWebCMS.Controllers
     {
         //
         // GET: /Liangbiao/
-        public ActionResult Index()
+         [ValidateInput(false)]
+        public ActionResult Index(string id)
         {
+            ViewBag.id = id;
             return View();
         }
 
@@ -47,12 +49,18 @@ namespace SkyWebCMS.Controllers
 
         //
         // POST: /Liangbiao/Create
+        [ValidateInput(false)]
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
             try
             {
-                // TODO: Add insert logic here
+                string tizhi = collection["1"] + "," +
+                    collection["2"] + "," +
+                    collection["3"] + "," + 
+                    collection["4"] + "," + 
+                    collection["5"] + "," + 
+                    collection["6"];
 
                 return RedirectToAction("Index");
             }

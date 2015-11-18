@@ -35,8 +35,10 @@
                         @Html.LabelFor(model => model.UserSex, new { @class = "col-sm-3 control-label no-padding-right" })
 
                         <div class="col-sm-9">
+                            @Html.DropDownListFor(model => model.UserSex, ViewData["Sex"] as IEnumerable<SelectListItem>, new { @class = "col-xs-10 col-sm-5" })
 
-                            @Html.TextBoxFor(model => model.UserSex, new { @class = "col-xs-10 col-sm-5" })
+
+                           
                             @Html.ValidationMessageFor(model => model.UserSex)
 
                         </div>

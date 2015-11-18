@@ -1,0 +1,1057 @@
+﻿@{
+    ViewBag.Title = "中医体质辨识";
+    ViewBag.SmallTitle = "中医体质辨识";
+}
+@section HeadCss{
+   <link href="/assets/css/labelauty.css" rel="stylesheet" type="text/css" />
+}
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+           中医体质辨识测评
+            <small>
+                <i class="icon-double-angle-right"></i>
+                黑龙江省中医药科学院
+            </small>
+        </h1>
+    </div><!-- /.page-header -->
+
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- PAGE CONTENT BEGINS -->
+
+            
+
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="widget-box">
+                        <div class="widget-header widget-header-blue widget-header-flat">
+                            <h4 class="lighter">测评量表</h4>
+
+                            <input name="yangxu" id="yangxu"/>
+                            <input name="yinxu" id="yinxu" />
+                        </div>
+
+                        <div class="widget-body">
+                            <div class="widget-main">
+                                <div id="fuelux-wizard" class="row-fluid" data-target="#step-container">
+                                    <ul class="wizard-steps">
+                                        <li data-target="#step1" class="active">
+                                            <span class="step">1</span>
+                                            <span class="title">阳虚质</span>
+                                        </li>
+
+                                        <li data-target="#step2">
+                                            <span class="step">2</span>
+                                            <span class="title">阴虚质</span>
+                                        </li>
+
+                                        <li data-target="#step3">
+                                            <span class="step">3</span>
+                                            <span class="title">气虚质</span>
+                                        </li>
+
+                                        <li data-target="#step4">
+                                            <span class="step">4</span>
+                                            <span class="title">痰湿质</span>
+                                        </li>
+
+                                        <li data-target="#step5">
+                                            <span class="step">5</span>
+                                            <span class="title">湿热质</span>
+                                        </li>
+
+                                        <li data-target="#step6">
+                                            <span class="step">6</span>
+                                            <span class="title">血瘀质</span>
+                                        </li>
+
+                                        <li data-target="#step7">
+                                            <span class="step">7</span>
+                                            <span class="title">气郁质</span>
+                                        </li>
+
+                                        <li data-target="#step8">
+                                            <span class="step">8</span>
+                                            <span class="title">特禀质</span>
+                                        </li>
+
+                                        <li data-target="#step9">
+                                            <span class="step">9</span>
+                                            <span class="title">平和质</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <hr />
+                                <div class="step-content row-fluid position-relative" id="step-container">
+                                    
+                                    <div class="step-pane active" id="step1">
+                                        <h3 class="lighter block green">阳虚质测量</h3>
+
+                                        <form class="form-horizontal" id="sample-form">
+                                            <div class="form-group">
+                                                <label class="col-xs-12 col-sm-4 control-label no-padding-right h4">1、您手脚发凉吗?</label>
+
+                                                <div class="col-xs-12 col-sm-8">
+                                                    <div class="rdo">
+
+                                                        
+
+                                                        <input type="radio" name="yangxu1" class="rdolist" value="1" checked/>
+
+                                                        <label class="rdobox yangxu1">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">没有（根本不）</span>
+
+                                                        </label>
+
+                                                      
+
+                                                        <input type="radio" name="yangxu1" class="rdolist" value="2" />
+
+                                                        <label class="rdobox yangxu1">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">很少（有一点）</span>
+
+                                                        </label>
+                                                      
+
+                                                        <input type="radio" name="yangxu1" class="rdolist" value="3" />
+
+                                                        <label class="rdobox yangxu1">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">有时（有些）</span>
+
+                                                        </label>
+                                                      
+
+                                                        <input type="radio" name="yangxu1" class="rdolist" value="4" />
+
+                                                        <label class="rdobox yangxu1">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">经常（相当）</span>
+
+                                                        </label>
+                                                      
+
+                                                        <input type="radio" name="yangxu1" class="rdolist" value="5" />
+
+                                                        <label class="rdobox yangxu1">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">总是（非常）</span>
+
+                                                        </label>
+
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-xs-12 col-sm-4 control-label no-padding-right h4">2、您胃脘部、背部或腰膝部怕冷吗？</label>
+
+                                                <div class="col-xs-12 col-sm-8">
+                                                    <div class="rdo">
+
+
+
+                                                        <input type="radio" name="yangxu2" class="rdolist" value="1" checked />
+
+                                                        <label class="rdobox yangxu2">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">没有（根本不）</span>
+
+                                                        </label>
+
+
+
+                                                        <input type="radio" name="yangxu2" class="rdolist" value="2" />
+
+                                                        <label class="rdobox yangxu2">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">很少（有一点）</span>
+
+                                                        </label>
+
+
+                                                        <input type="radio" name="yangxu2" class="rdolist" value="3" />
+
+                                                        <label class="rdobox yangxu2">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">有时（有些）</span>
+
+                                                        </label>
+
+
+                                                        <input type="radio" name="yangxu2" class="rdolist" value="4" />
+
+                                                        <label class="rdobox yangxu2">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">经常（相当）</span>
+
+                                                        </label>
+
+
+                                                        <input type="radio" name="yangxu2" class="rdolist" value="5" />
+
+                                                        <label class="rdobox yangxu2">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">总是（非常）</span>
+
+                                                        </label>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-xs-12 col-sm-4 control-label no-padding-right h4">3、您感到怕冷、衣服比别人穿得多吗？</label>
+
+                                                <div class="col-xs-12 col-sm-8">
+                                                    <div class="rdo">
+
+
+
+                                                        <input type="radio" name="yangxu3" class="rdolist" value="1" checked />
+
+                                                        <label class="rdobox yangxu3">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">没有（根本不）</span>
+
+                                                        </label>
+
+
+
+                                                        <input type="radio" name="yangxu3" class="rdolist" value="2" />
+
+                                                        <label class="rdobox yangxu3">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">很少（有一点）</span>
+
+                                                        </label>
+
+
+                                                        <input type="radio" name="yangxu3" class="rdolist" value="3" />
+
+                                                        <label class="rdobox yangxu3">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">有时（有些）</span>
+
+                                                        </label>
+
+
+                                                        <input type="radio" name="yangxu3" class="rdolist" value="4" />
+
+                                                        <label class="rdobox yangxu3">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">经常（相当）</span>
+
+                                                        </label>
+
+
+                                                        <input type="radio" name="yangxu3" class="rdolist" value="5" />
+
+                                                        <label class="rdobox yangxu3">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">总是（非常）</span>
+
+                                                        </label>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-xs-12 col-sm-4 control-label no-padding-right h4">4、您比一般人耐受不了寒冷（冬天的寒冷，夏天的冷空调、电扇等）吗？</label>
+
+                                                <div class="col-xs-12 col-sm-8">
+                                                    <div class="rdo">
+
+
+
+                                                        <input type="radio" name="yangxu4" class="rdolist" value="1" checked />
+
+                                                        <label class="rdobox yangxu4">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">没有（根本不）</span>
+
+                                                        </label>
+
+
+
+                                                        <input type="radio" name="yangxu4" class="rdolist" value="2" />
+
+                                                        <label class="rdobox yangxu4">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">很少（有一点）</span>
+
+                                                        </label>
+
+
+                                                        <input type="radio" name="yangxu4" class="rdolist" value="3" />
+
+                                                        <label class="rdobox yangxu4">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">有时（有些）</span>
+
+                                                        </label>
+
+
+                                                        <input type="radio" name="yangxu4" class="rdolist" value="4" />
+
+                                                        <label class="rdobox yangxu4">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">经常（相当）</span>
+
+                                                        </label>
+
+
+                                                        <input type="radio" name="yangxu4" class="rdolist" value="5" />
+
+                                                        <label class="rdobox yangxu4">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">总是（非常）</span>
+
+                                                        </label>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-xs-12 col-sm-4 control-label no-padding-right h4">5、您比别人容易患感冒吗？</label>
+
+                                                <div class="col-xs-12 col-sm-8">
+                                                    <div class="rdo">
+
+
+
+                                                        <input type="radio" name="yangxu5" class="rdolist" value="1" checked />
+
+                                                        <label class="rdobox yangxu5">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">没有（根本不）</span>
+
+                                                        </label>
+
+
+
+                                                        <input type="radio" name="yangxu5" class="rdolist" value="2" />
+
+                                                        <label class="rdobox yangxu5">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">很少（有一点）</span>
+
+                                                        </label>
+
+
+                                                        <input type="radio" name="yangxu5" class="rdolist" value="3" />
+
+                                                        <label class="rdobox yangxu5">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">有时（有些）</span>
+
+                                                        </label>
+
+
+                                                        <input type="radio" name="yangxu5" class="rdolist" value="4" />
+
+                                                        <label class="rdobox yangxu5">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">经常（相当）</span>
+
+                                                        </label>
+
+
+                                                        <input type="radio" name="yangxu5" class="rdolist" value="5" />
+
+                                                        <label class="rdobox yangxu5">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">总是（非常）</span>
+
+                                                        </label>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-xs-12 col-sm-4 control-label no-padding-right h4">6、您吃(喝)凉的东西会感到不舒服或者怕吃(喝)凉东西吗？</label>
+
+                                                <div class="col-xs-12 col-sm-8">
+                                                    <div class="rdo">
+
+
+
+                                                        <input type="radio" name="yangxu6" class="rdolist" value="1" checked />
+
+                                                        <label class="rdobox yangxu6">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">没有（根本不）</span>
+
+                                                        </label>
+
+
+
+                                                        <input type="radio" name="yangxu6" class="rdolist" value="2" />
+
+                                                        <label class="rdobox yangxu6">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">很少（有一点）</span>
+
+                                                        </label>
+
+
+                                                        <input type="radio" name="yangxu6" class="rdolist" value="3" />
+
+                                                        <label class="rdobox yangxu6">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">有时（有些）</span>
+
+                                                        </label>
+
+
+                                                        <input type="radio" name="yangxu6" class="rdolist" value="4" />
+
+                                                        <label class="rdobox yangxu6">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">经常（相当）</span>
+
+                                                        </label>
+
+
+                                                        <input type="radio" name="yangxu6" class="rdolist" value="5" />
+
+                                                        <label class="rdobox yangxu6">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">总是（非常）</span>
+
+                                                        </label>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                           
+                                        </form>
+
+                                        
+                                    </div>
+                                    <div class="step-pane" id="step2">
+                                        <h3 class="lighter block green">阴虚质测量</h3>
+
+                                        <form class="form-horizontal" id="sample-form">
+                                            <div class="form-group">
+                                                <label class="col-xs-12 col-sm-4 control-label no-padding-right h4">
+                                                    1、您手脚发凉
+
+                                                    吗?
+                                                </label>
+
+                                                <div class="col-xs-12 col-sm-8">
+                                                    <div class="rdo">
+
+
+
+                                                        <input type="radio" name="yinxu1" class="rdolist" value="1" checked />
+
+                                                        <label class="rdobox yinxu1">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">没有（根本不）</span>
+
+                                                        </label>
+
+
+
+                                                        <input type="radio" name="yinxu1" class="rdolist" value="2" />
+
+                                                        <label class="rdobox yinxu1">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">很少（有一点）</span>
+
+                                                        </label>
+
+
+                                                        <input type="radio" name="yinxu1" class="rdolist" value="3" />
+
+                                                        <label class="rdobox yinxu1">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">有时（有些）</span>
+
+                                                        </label>
+
+
+                                                        <input type="radio" name="yinxu1" class="rdolist" value="4" />
+
+                                                        <label class="rdobox yinxu1">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">经常（相当）</span>
+
+                                                        </label>
+
+
+                                                        <input type="radio" name="yinxu1" class="rdolist" value="5" />
+
+                                                        <label class="rdobox yinxu1">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">总是（非常）</span>
+
+                                                        </label>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-xs-12 col-sm-4 control-label no-padding-right h4">
+                                                    2、您胃脘部、
+
+                                                    背部或腰膝部怕冷吗？
+                                                </label>
+
+                                                <div class="col-xs-12 col-sm-8">
+                                                    <div class="rdo">
+
+
+
+                                                        <input type="radio" name="yinxu2" class="rdolist" value="1" checked />
+
+                                                        <label class="rdobox yinxu2">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">没有（根本不）</span>
+
+                                                        </label>
+
+
+
+                                                        <input type="radio" name="yinxu2" class="rdolist" value="2" />
+
+                                                        <label class="rdobox yinxu2">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">很少（有一点）</span>
+
+                                                        </label>
+
+
+                                                        <input type="radio" name="yinxu2" class="rdolist" value="3" />
+
+                                                        <label class="rdobox yinxu2">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">有时（有些）</span>
+
+                                                        </label>
+
+
+                                                        <input type="radio" name="yinxu2" class="rdolist" value="4" />
+
+                                                        <label class="rdobox yinxu2">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">经常（相当）</span>
+
+                                                        </label>
+
+
+                                                        <input type="radio" name="yinxu2" class="rdolist" value="5" />
+
+                                                        <label class="rdobox yinxu2">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">总是（非常）</span>
+
+                                                        </label>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-xs-12 col-sm-4 control-label no-padding-right h4">
+                                                    3、您感到怕冷
+
+                                                    、衣服比别人穿得多吗？
+                                                </label>
+
+                                                <div class="col-xs-12 col-sm-8">
+                                                    <div class="rdo">
+
+
+
+                                                        <input type="radio" name="yinxu3" class="rdolist" value="1" checked />
+
+                                                        <label class="rdobox yinxu3">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">没有（根本不）</span>
+
+                                                        </label>
+
+
+
+                                                        <input type="radio" name="yinxu3" class="rdolist" value="2" />
+
+                                                        <label class="rdobox yinxu3">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">很少（有一点）</span>
+
+                                                        </label>
+
+
+                                                        <input type="radio" name="yinxu3" class="rdolist" value="3" />
+
+                                                        <label class="rdobox yinxu3">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">有时（有些）</span>
+
+                                                        </label>
+
+
+                                                        <input type="radio" name="yinxu3" class="rdolist" value="4" />
+
+                                                        <label class="rdobox yinxu3">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">经常（相当）</span>
+
+                                                        </label>
+
+
+                                                        <input type="radio" name="yinxu3" class="rdolist" value="5" />
+
+                                                        <label class="rdobox yinxu3">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">总是（非常）</span>
+
+                                                        </label>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-xs-12 col-sm-4 control-label no-padding-right h4">
+                                                    4、您比一般人
+
+                                                    耐受不了寒冷（冬天的寒冷，夏天的冷空调、电扇等）吗？
+                                                </label>
+
+                                                <div class="col-xs-12 col-sm-8">
+                                                    <div class="rdo">
+
+
+
+                                                        <input type="radio" name="yinxu4" class="rdolist" value="1" checked />
+
+                                                        <label class="rdobox yinxu4">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">没有（根本不）</span>
+
+                                                        </label>
+
+
+
+                                                        <input type="radio" name="yinxu4" class="rdolist" value="2" />
+
+                                                        <label class="rdobox yinxu4">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">很少（有一点）</span>
+
+                                                        </label>
+
+
+                                                        <input type="radio" name="yinxu4" class="rdolist" value="3" />
+
+                                                        <label class="rdobox yinxu4">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">有时（有些）</span>
+
+                                                        </label>
+
+
+                                                        <input type="radio" name="yinxu4" class="rdolist" value="4" />
+
+                                                        <label class="rdobox yinxu4">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">经常（相当）</span>
+
+                                                        </label>
+
+
+                                                        <input type="radio" name="yinxu4" class="rdolist" value="5" />
+
+                                                        <label class="rdobox yinxu4">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">总是（非常）</span>
+
+                                                        </label>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-xs-12 col-sm-4 control-label no-padding-right h4">
+                                                    5、您比别人容
+
+                                                    易患感冒吗？
+                                                </label>
+
+                                                <div class="col-xs-12 col-sm-8">
+                                                    <div class="rdo">
+
+
+
+                                                        <input type="radio" name="yinxu5" class="rdolist" value="1" checked />
+
+                                                        <label class="rdobox yinxu5">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">没有（根本不）</span>
+
+                                                        </label>
+
+
+
+                                                        <input type="radio" name="yinxu5" class="rdolist" value="2" />
+
+                                                        <label class="rdobox yinxu5">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">很少（有一点）</span>
+
+                                                        </label>
+
+
+                                                        <input type="radio" name="yinxu5" class="rdolist" value="3" />
+
+                                                        <label class="rdobox yinxu5">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">有时（有些）</span>
+
+                                                        </label>
+
+
+                                                        <input type="radio" name="yinxu5" class="rdolist" value="4" />
+
+                                                        <label class="rdobox yinxu5">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">经常（相当）</span>
+
+                                                        </label>
+
+
+                                                        <input type="radio" name="yinxu5" class="rdolist" value="5" />
+
+                                                        <label class="rdobox yinxu5">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">总是（非常）</span>
+
+                                                        </label>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-xs-12 col-sm-4 control-label no-padding-right h4">
+                                                    6、您吃(喝)凉
+
+                                                    的东西会感到不舒服或者怕吃(喝)凉东西吗？
+                                                </label>
+
+                                                <div class="col-xs-12 col-sm-8">
+                                                    <div class="rdo">
+
+
+
+                                                        <input type="radio" name="yinxu6" class="rdolist" value="1" checked />
+
+                                                        <label class="rdobox yinxu6">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">没有（根本不）</span>
+
+                                                        </label>
+
+
+
+                                                        <input type="radio" name="yinxu6" class="rdolist" value="2" />
+
+                                                        <label class="rdobox yinxu6">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">很少（有一点）</span>
+
+                                                        </label>
+
+
+                                                        <input type="radio" name="yinxu6" class="rdolist" value="3" />
+
+                                                        <label class="rdobox yinxu6">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">有时（有些）</span>
+
+                                                        </label>
+
+
+                                                        <input type="radio" name="yinxu6" class="rdolist" value="4" />
+
+                                                        <label class="rdobox yinxu6">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">经常（相当）</span>
+
+                                                        </label>
+
+
+                                                        <input type="radio" name="yinxu6" class="rdolist" value="5" />
+
+                                                        <label class="rdobox yinxu6">
+
+                                                            <span class="check-image"></span>
+
+                                                            <span class="radiobox-content">总是（非常）</span>
+
+                                                        </label>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
+                                        </form>
+
+                                    </div>
+
+                                    <div class="step-pane" id="step3">
+                                        <div class="center">
+                                            <h3 class="blue lighter">This is step 3</h3>
+                                        </div>
+                                    </div>
+
+                                    <div class="step-pane" id="step4">
+                                        <div class="center">
+                                            <h3 class="green">Congrats!</h3>
+                                            This is step 4
+                                        </div>
+                                    </div>
+
+                                    <div class="step-pane" id="step5">
+                                        <div class="center">
+                                            <h3 class="green">Congrats!</h3>
+                                            This is step 5
+                                        </div>
+                                    </div>
+
+                                    <div class="step-pane" id="step6">
+                                        <div class="center">
+                                            <h3 class="green">Congrats!</h3>
+                                            This is step 6
+                                        </div>
+                                    </div>
+
+                                    <div class="step-pane" id="step7">
+                                        <div class="center">
+                                            <h3 class="green">Congrats!</h3>
+                                            This is step 7
+                                        </div>
+                                    </div>
+
+                                    <div class="step-pane" id="step8">
+                                        <div class="center">
+                                            <h3 class="green">Congrats!</h3>
+                                            This is step 8
+                                        </div>
+                                    </div>
+
+                                    <div class="step-pane" id="step9">
+                                        <div class="center">
+                                            <h3 class="green">Congrats!</h3>
+                                            This is step 9
+                                        </div>
+                                    </div>
+
+                                    
+                                </div>
+
+                                <hr />
+                                <div class="row-fluid wizard-actions">
+                                    <button class="btn btn-prev">
+                                        <i class="icon-arrow-left"></i>
+                                        上一步
+                                    </button>
+
+                                    <button class="btn btn-success btn-next" data-last="完成 ">
+                                        下一步
+                                        <i class="icon-arrow-right icon-on-right"></i>
+                                    </button>
+                                </div>
+                            </div><!-- /widget-main -->
+                        </div><!-- /widget-body -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE CONTENT ENDS -->
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+</div>
+@section BottomScripts {
+<script src="/assets/js/fuelux/fuelux.wizard.min.js"></script>
+<script src="/assets/js/select2.min.js"></script>
+<script src="/assets/js/labelauty.js"></script>
+<script type="text/javascript">
+    jQuery(function ($) {
+        var $validation = false;
+        $('#fuelux-wizard').ace_wizard().on('change', function (e, info) {
+            if (info.step == 1 && $validation) {
+                if (!$('#validation-form').valid()) return false;
+            }
+        }).on('finished', function (e) {
+            window.location = "/Liangbiao/Index";
+        }).on('stepclick', function (e) {
+            //return false;//prevent clicking on steps
+            
+        });
+
+
+        $(document).ready(function () {
+            //参数{input类名，选择类型(单选or多选)}
+            $(".rdolist").labelauty("rdolist", "rdo");
+            $(".chklist").labelauty("chklist", "check");
+            $(".yangxu1,.yangxu2,.yangxu3,.yangxu4,.yangxu5,.yangxu6").on('click', function () {
+                var yangxu = $('input[name=yangxu1][type=radio]:checked').val() +','+
+                    $('input[name=yangxu2][type=radio]:checked').val() + ',' +
+                    $('input[name=yangxu3][type=radio]:checked').val() + ',' +
+                    $('input[name=yangxu4][type=radio]:checked').val() + ',' +
+                    $('input[name=yangxu5][type=radio]:checked').val() + ',' +
+                    $('input[name=yangxu6][type=radio]:checked').val()
+                $("#yangxu").val(yangxu);
+            });
+            $(".yinxu1,.yinxu2,.yinxu3,.yinxu4,.yinxu5,.yinxu6").on('click', function () {
+                var yinxu = $('input[name=yinxu1][type=radio]:checked').val() + ',' +
+                    $('input[name=yinxu2][type=radio]:checked').val() + ',' +
+                    $('input[name=yinxu3][type=radio]:checked').val() + ',' +
+                    $('input[name=yinxu4][type=radio]:checked').val() + ',' +
+                    $('input[name=yinxu5][type=radio]:checked').val() + ',' +
+                    $('input[name=yinxu6][type=radio]:checked').val()
+                $("#yinxu").val(yinxu);
+            });
+
+        });
+
+    })
+</script>
+@Scripts.Render("~/bundles/jqueryval")
+}

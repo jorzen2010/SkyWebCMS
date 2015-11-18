@@ -49,6 +49,18 @@ namespace Bll
             return items;
         
         }
+        
+        public static List<SelectListItem> GetSexSelectList()
+        {
+           
+            List<SelectListItem> items = new List<SelectListItem>();
+            items.Add(new SelectListItem { Text = "男", Value = "男" });
+            items.Add(new SelectListItem { Text = "女", Value = "女" });
+            items.Add(new SelectListItem { Text = "未知", Value = "未知" });
+
+            return items;
+
+        }
         public static List<RoleDto> GetRolesList(string strwhere)
         {
             List<RoleDto> RolesList = new List<RoleDto>();

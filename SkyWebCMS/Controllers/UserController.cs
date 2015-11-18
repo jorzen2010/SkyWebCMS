@@ -221,10 +221,10 @@ namespace SkyWebCMS.Controllers
                 model.UserName = dto.UserName;
                 model.UserRealName = dto.UserRealName;
                 model.UserSex = dto.UserSex;
-                model.UserBirthday = dto.UserBirthday;
+                model.UserBirthday = dto.UserBirthday.ToShortDateString();
 
             }
-            
+            ViewData["Sex"] = MyService.GetSexSelectList();
             return View(model);
 
         }
@@ -239,7 +239,7 @@ namespace SkyWebCMS.Controllers
 
                     dto = UserMapping.getDTO(dr);
                   //  dto.UserRoles = Request.Form["UserRoles"];
-                    dto.UserBirthday = model.UserBirthday;
+                    dto.UserBirthday = DateTime.Parse(model.UserBirthday);
                     dto.UserRealName = model.UserRealName;
                     dto.UserSex = model.UserSex;
                 }
@@ -247,7 +247,7 @@ namespace SkyWebCMS.Controllers
                 Message msg = CMSService.Update("User", JsonString);
                 // TODO: Add update logic here
 
-                return RedirectToAction("Index");
+                return RedirectToAction("UserInfo");
            
         }
         // 修改用户头像

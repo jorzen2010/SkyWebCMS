@@ -46,6 +46,7 @@
     <Compile Include="CategoryMapping.cs" />
     <Compile Include="ImageMapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CustomerMapping.cs" />
     <Compile Include="RoleMapping.cs" />
     <Compile Include="UserMapping.cs" />
   </ItemGroup>

@@ -230,6 +230,54 @@ namespace Common
             }
             return result;
         }
+
+        public static string GetSexByVerify(string identityCard)
+        {
+            string sexNum = "";
+            string Sex = "";
+            //处理18位的身份证号码从号码中得到生日和性别代码
+            if (identityCard.Length == 18)
+            {
+               // birthday = identityCard.Substring(6, 4) + "-" + identityCard.Substring(10, 2) + "-" + identityCard.Substring(12, 2);
+                sexNum = identityCard.Substring(14, 3);
+            }
+            //处理15位的身份证号码从号码中得到生日和性别代码
+            if (identityCard.Length == 15)
+            {
+              //  birthday = "19" + identityCard.Substring(6, 2) + "-" + identityCard.Substring(8, 2) + "-" + identityCard.Substring(10, 2);
+                sexNum = identityCard.Substring(12, 3);
+            }
+            if (int.Parse(sexNum) % 2 == 0)
+            {
+                Sex = "女";
+            }
+            else
+            {
+                Sex = "男";
+            }
+            return Sex;
+        
+        }
+        public static string GetBirthdyByVerify(string identityCard)
+        {
+           
+            string Birthday = "";
+            //处理18位的身份证号码从号码中得到生日和性别代码
+            if (identityCard.Length == 18)
+            {
+                Birthday = identityCard.Substring(6, 4) + "-" + identityCard.Substring(10, 2) + "-" + identityCard.Substring(12, 2);
+                
+            }
+            //处理15位的身份证号码从号码中得到生日和性别代码
+            if (identityCard.Length == 15)
+            {
+                Birthday = "19" + identityCard.Substring(6, 2) + "-" + identityCard.Substring(8, 2) + "-" + identityCard.Substring(10, 2);
+               
+            }
+
+            return Birthday;
+
+        }
         
 
     }

@@ -170,6 +170,7 @@
     <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\JixiaoController.cs" />
@@ -182,6 +183,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CustomerModels.cs" />
     <Compile Include="Models\ArticleModels.cs" />
     <Compile Include="Models\CategoryModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -196,6 +198,7 @@
     <Content Include="assets\avatar\crossdomain.xml" />
     <Content Include="assets\avatar\default.jpg" />
     <Content Include="assets\css\labelauty.css" />
+    <Content Include="assets\css\test.css" />
     <Content Include="assets\images\input-checked.png" />
     <Content Include="assets\images\input-unchecked.png" />
     <Content Include="assets\js\labelauty.js" />
@@ -511,6 +514,13 @@
     <Content Include="Views\Jixiao\Create.cshtml" />
     <Content Include="Views\User\PartialEditUserInfo.cshtml" />
     <Content Include="Views\User\PartialEditUserImg.cshtml" />
+    <Content Include="Views\Customer\Create.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\Shared\_SidebarPartial - 复制.cshtml" />
+    <Content Include="Views\Shared\_NavbarPartial - 复制.cshtml" />
+    <Content Include="Views\Customer\Search.cshtml" />
+    <Content Include="Views\Customer\Daizhen.cshtml" />
+    <Content Include="Views\Liangbiao\Create - 复制.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

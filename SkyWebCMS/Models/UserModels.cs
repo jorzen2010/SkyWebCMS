@@ -203,7 +203,7 @@ namespace SkyWebCMS.Models
         [Display(Name = "性别")]
         public string UserSex { get; set; }
         [Display(Name = "生日")]
-        public DateTime UserBirthday { get; set; }
+        public string UserBirthday { get; set; }
 
     }
     #endregion
