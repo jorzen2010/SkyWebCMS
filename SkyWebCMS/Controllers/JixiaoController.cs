@@ -43,18 +43,23 @@ namespace SkyWebCMS.Controllers
         //
         // POST: /Jixiao/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(JixiaoModel model)
         {
-            try
-            {
-                // TODO: Add insert logic here
+            JixiaoDto dto = new JixiaoDto();
+            
+            dto.JixiaoUser = model.JixiaoUser;
+            dto.JixiaoForUser = model.JixiaoForUser;
+            dto.JixiaoCategory = model.JixiaoCategory;
+            dto.JixiaoParentCategory = model.JixiaoParentCategory;
+            dto.JixiaoRenwu = model.JixiaoRenwu;
+            dto.JixiaoStatus = "待审核";
+            dto.JixiaoTime = System.DateTime.Now;
+            dto.JixiaoShenheTime = System.DateTime.Now;
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+
+            string JsonString = JsonHelper.JsonSerializerBySingleData(dto);
+            Message msg = CMSService.Insert("Jixiao", JsonString);
+            return RedirectTo("/Jixiao/Index", msg.MessageInfo); 
         }
 
         //

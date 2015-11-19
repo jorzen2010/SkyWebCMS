@@ -19,7 +19,7 @@
     <div class="row">
         <div class="col-xs-12 well center h3">
             <!-- PAGE CONTENT BEGINS -->
-            中 医 体 质 辨 识
+            中 医 体 质 辨 识（共67题）
 
             <!-- PAGE CONTENT ENDS -->
         </div><!-- /.col -->
@@ -31,28 +31,25 @@
         </div>
         <div class="col-xs-10 h4">
         <form id='id_form' action="/Liangbiao/Create" method="post">
-
-
-
-
-
-
-        <div class="test_contents" style="display: none">
-            <p class="descs fb">
-                1. 如果你想知道自己如何教孩子，人称为括号外；如果你想知道自己有怎样的父母，人称为括号内
+            @{int i = 1;}
+          @foreach (String question in ViewData["TizhiQuestion"] as IEnumerable<String>)
+     {
+                <div class="test_contents" style="display: none">
+            <p class="descs fb h3">
+               @i、 @question
             </p>
 
 
             <div class="sels_list">
                 <!--单选测试-->
-
-
-                <div class="items">
+                @if(i==67||i==66||i==64||i==63||i==62||i==61)
+                {
+                     <div class="items">
                     <p class="i_top"></p>
                     <p class="i_mid">
                         <span class="sels">
-                            <input type="radio" value="0" name="1" />
-                        </span>好，我明白
+                            <input type="radio" value="5" name="@i" />
+                        </span>没有（根本不）
                     </p>
                     <p class="i_bot"></p>
                 </div>
@@ -61,247 +58,108 @@
                     <p class="i_top"></p>
                     <p class="i_mid">
                         <span class="sels">
-                            <input type="radio" value="0" name="1" />
-                        </span>好，（俺）懂了
+                            <input type="radio" value="4" name="@i" />
+                        </span>很少（有一点）
                     </p>
                     <p class="i_bot"></p>
                 </div>
 
+                <div class="items">
+                    <p class="i_top"></p>
+                    <p class="i_mid">
+                        <span class="sels">
+                            <input type="radio" value="3" name="@i" />
+                        </span>有时（有些）
+                    </p>
+                    <p class="i_bot"></p>
+                </div>
+
+                <div class="items">
+                    <p class="i_top"></p>
+                    <p class="i_mid">
+                        <span class="sels">
+                            <input type="radio" value="2" name="@i" />
+                        </span>经常（相当）
+                    </p>
+                    <p class="i_bot"></p>
+                </div>
+
+                <div class="items">
+                    <p class="i_top"></p>
+                    <p class="i_mid">
+                        <span class="sels">
+                            <input type="radio" value="1" name="@i" />
+                        </span>总是（非常）
+                    </p>
+                    <p class="i_bot"></p>
+                </div>
+                    
+                }
+                else
+                {
+                     <div class="items">
+                    <p class="i_top"></p>
+                    <p class="i_mid">
+                        <span class="sels">
+                            <input type="radio" value="1" name="@i" />
+                        </span>没有（根本不）
+                    </p>
+                    <p class="i_bot"></p>
+                </div>
+
+                <div class="items">
+                    <p class="i_top"></p>
+                    <p class="i_mid">
+                        <span class="sels">
+                            <input type="radio" value="2" name="@i" />
+                        </span>很少（有一点）
+                    </p>
+                    <p class="i_bot"></p>
+                </div>
+
+                <div class="items">
+                    <p class="i_top"></p>
+                    <p class="i_mid">
+                        <span class="sels">
+                            <input type="radio" value="3" name="@i" />
+                        </span>有时（有些）
+                    </p>
+                    <p class="i_bot"></p>
+                </div>
+
+                <div class="items">
+                    <p class="i_top"></p>
+                    <p class="i_mid">
+                        <span class="sels">
+                            <input type="radio" value="4" name="@i" />
+                        </span>经常（相当）
+                    </p>
+                    <p class="i_bot"></p>
+                </div>
+
+                <div class="items">
+                    <p class="i_top"></p>
+                    <p class="i_mid">
+                        <span class="sels">
+                            <input type="radio" value="5" name="@i" />
+                        </span>总是（非常）
+                    </p>
+                    <p class="i_bot"></p>
+                </div>
+
+                }
+
+               
 
 
             </div>
         </div>
-
-        <div class="test_contents" style="display: none">
-            <p class="descs fb">
-                2. 你（父母）是否明确地对孩子（你）提出过行为要求，比如：“坐下来吃饭”？
-            </p>
+         i++;
+          }
 
 
-            <div class="sels_list">
-                <!--单选测试-->
 
-
-                <div class="items">
-                    <p class="i_top"></p>
-                    <p class="i_mid">
-                        <span class="sels">
-                            <input type="radio" value="1" name="2" />
-                        </span>是的
-                    </p>
-                    <p class="i_bot"></p>
-                </div>
-
-                <div class="items">
-                    <p class="i_top"></p>
-                    <p class="i_mid">
-                        <span class="sels">
-                            <input type="radio" value="0" name="2" />
-                        </span>不是
-                    </p>
-                    <p class="i_bot"></p>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="test_contents" style="display: none">
-            <p class="descs fb">
-                3. 你（父母）对孩子（你）的行为是否做出过限制，比如：“必须写完作业才能看电视”？
-            </p>
-
-
-            <div class="sels_list">
-                <!--单选测试-->
-
-
-                <div class="items">
-                    <p class="i_top"></p>
-                    <p class="i_mid">
-                        <span class="sels">
-                            <input type="radio" value="1" name="3" />
-                        </span>是的
-                    </p>
-                    <p class="i_bot"></p>
-                </div>
-
-                <div class="items">
-                    <p class="i_top"></p>
-                    <p class="i_mid">
-                        <span class="sels">
-                            <input type="radio" value="0" name="3" />
-                        </span>不是
-                    </p>
-                    <p class="i_bot"></p>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="test_contents" style="display: none">
-            <p class="descs fb">
-                4. 你（父母）对孩子（你）是否设立过行为目标，比如：“2岁要能自己解裤子坐便盆，3岁要能自己吃饭等等”？
-            </p>
-
-
-            <div class="sels_list">
-                <!--单选测试-->
-
-
-                <div class="items">
-                    <p class="i_top"></p>
-                    <p class="i_mid">
-                        <span class="sels">
-                            <input type="radio" value="1" name="4" />
-                        </span>是的
-                    </p>
-                    <p class="i_bot"></p>
-                </div>
-
-                <div class="items">
-                    <p class="i_top"></p>
-                    <p class="i_mid">
-                        <span class="sels">
-                            <input type="radio" value="0" name="4" />
-                        </span>不是
-                    </p>
-                    <p class="i_bot"></p>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="test_contents" style="display: none">
-            <p class="descs fb">
-                5. 你（父母）是否总是要求孩子（你）努力去达到这些目标？ 比如：“这次考试一定要上90分”
-            </p>
-
-
-            <div class="sels_list">
-                <!--单选测试-->
-
-
-                <div class="items">
-                    <p class="i_top"></p>
-                    <p class="i_mid">
-                        <span class="sels">
-                            <input type="radio" value="1" name="5" />
-                        </span>是的
-                    </p>
-                    <p class="i_bot"></p>
-                </div>
-
-                <div class="items">
-                    <p class="i_top"></p>
-                    <p class="i_mid">
-                        <span class="sels">
-                            <input type="radio" value="0" name="5" />
-                        </span>不是
-                    </p>
-                    <p class="i_bot"></p>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="test_contents" style="display: none">
-            <p class="descs fb">
-                6. 如果孩子（你）违反了合理的行为要求，你（父母）是否总是会做出限制性反应，比如：不理会他的无理要求？
-            </p>
-
-
-            <div class="sels_list">
-                <!--单选测试-->
-
-
-                <div class="items">
-                    <p class="i_top"></p>
-                    <p class="i_mid">
-                        <span class="sels">
-                            <input type="radio" value="1" name="6" />
-                        </span>是的
-                    </p>
-                    <p class="i_bot"></p>
-                </div>
-
-                <div class="items">
-                    <p class="i_top"></p>
-                    <p class="i_mid">
-                        <span class="sels">
-                            <input type="radio" value="0" name="6" />
-                        </span>不是
-                    </p>
-                    <p class="i_bot"></p>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="test_contents" style="display: none">
-            <p class="descs fb">
-                7. 你（父母）是否认同不加约束的自由生长？
-            </p>
-
-
-            <div class="sels_list">
-                <!--单选测试-->
-
-
-                <div class="items">
-                    <p class="i_top"></p>
-                    <p class="i_mid">
-                        <span class="sels">
-                            <input type="radio" value="1" name="7" />
-                        </span>是的
-                    </p>
-                    <p class="i_bot"></p>
-                </div>
-
-                <div class="items">
-                    <p class="i_top"></p>
-                    <p class="i_mid">
-                        <span class="sels">
-                            <input type="radio" value="0" name="7" />
-                        </span>不是
-                    </p>
-                    <p class="i_bot"></p>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="test_contents" style="display: none">
-            <p class="descs fb">
-                8. 当孩子（你）违反基本要求时，你（父母）是否能不顾家里其他人的护短而坚持给以“教训”？
-            </p>
-
-
-            <div class="sels_list">
-                <!--单选测试-->
-
-
-                <div class="items">
-                    <p class="i_top"></p>
-                    <p class="i_mid">
-                        <span class="sels">
-                            <input type="radio" value="1" name="8" />
-                        </span>是的
-                    </p>
-                    <p class="i_bot"></p>
-                </div>
-
-                <div class="items">
-                    <p class="i_top"></p>
-                    <p class="i_mid">
-                        <span class="sels">
-                            <input type="radio" value="0" name="8" />
-                        </span>不是
-                    </p>
-                    <p class="i_bot"></p>
-                </div>
-
-            </div>
-        </div>
+   
 
 
 
@@ -363,7 +221,7 @@
                 }
                 function do_next() {
                     $('#id_pre_link').show();
-                    if (index < 8 - 1) {
+                    if (index < 67 - 1) {
                         $(questions[index++]).hide();
                         $(questions[index]).show();
                         $('#id_cur_index').html(index + 1);
