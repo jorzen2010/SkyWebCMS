@@ -51,7 +51,7 @@
     
     <!-- /.page-header -->
 
-    </h4>
+    
     <div class="row">
         <div class="col-xs-12">
             <!-- PAGE CONTENT BEGINS -->
@@ -78,25 +78,17 @@
 @foreach (var item in Model)
     {
                                 <tr>
-                                    
-
-                                    
-                                    <td>@item.CustomerName</td>
+                                   <td>@item.CustomerName</td>
                                     <td>@item.CustomerNumber</td>
                                     <td>@item.CustomerSex</td>
                                     <td>@item.CustomerBirthday.ToShortDateString().ToString()</td>
-
-                                
-                                    <td>
+                             <td>
                                         <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
-                                            
-                                          
-
-                                            <a href="#" class="btn btn-xs btn-success">
-                                                <i class="icon-edit bigger-120"></i>编辑患者信息
-                                            </a>
-                                            <a href="/liangbiao/create" class="btn btn-xs btn-primary">
+                                            <a href="@Url.Action("Create", "Liangbiao", new {cid=item.CustomerId })" class="btn btn-xs btn-primary">
                                                 <i class="icon-edit bigger-120"></i>中医体质测评
+                                            </a>
+                                            <a href="#" class="btn btn-xs btn-success">
+                                                <i class="icon-edit bigger-120"></i>血压测量
                                             </a>
                                            
 

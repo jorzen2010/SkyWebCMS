@@ -71,13 +71,13 @@
                                 <tr>
                                    
                                     
-                                    <th>患者姓名</th>
-                                    <th>患者身份证</th>
-                                    <th>患者性别</th>
-                                    <th>患者生日</th>
+                                    <th class="col-xs-2">患者姓名</th>
+                                    <th class="col-xs-2">患者身份证</th>
+                                    <th class="col-xs-1">患者性别</th>
+                                    <th class="col-xs-2">患者生日</th>
 
                                    
-                                    <th>操作</th>
+                                    <th class="col-xs-5">操作</th>
                                 </tr>
                             </thead>
 
@@ -99,7 +99,7 @@
                                             
                                           
 
-                                            <a href="#" class="btn btn-xs btn-success">
+                                            <a href="@Url.Action("Edit", "Customer", new { id=@item.CustomerId})" class="btn btn-xs btn-success">
                                                 <i class="icon-edit bigger-120"></i>编辑患者信息
                                             </a>
                                             <a href="/Liangbiao/Index" class="btn btn-xs btn-warning">

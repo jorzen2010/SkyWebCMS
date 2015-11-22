@@ -94,6 +94,7 @@ namespace SkyWebCMS.Controllers
         }
         public ActionResult Create()
         {
+            
             return View();
         }
         [HttpPost]
@@ -138,6 +139,25 @@ namespace SkyWebCMS.Controllers
                 return View();
             }
 
+        }
+
+        public ActionResult Edit(int id)
+        {
+            CustomerEditViewModel model = new CustomerEditViewModel();
+            DataTable dt = CMSService.SelectSome("Customer", "CMSCustomer", "CustomerId=" + id);
+            
+            foreach (DataRow dr in dt.Rows)
+            {
+                CustomerDto dto = CustomerMapping.getDTO(dr);
+                model.CustomerName = dto.CustomerName;
+                model.CustomerNumber = dto.CustomerNumber;
+                model.CustomerBirthday = dto.CustomerBirthday.ToShortDateString();
+                model.CustomerSex = dto.CustomerSex;
+                model.CustomerId = dto.CustomerId;
+                
+                
+            }
+            return View(model);
         }
 	}
 }

@@ -1,0 +1,243 @@
+﻿@model SkyWebCMS.Models.CustomerEditViewModel
+@{
+    ViewBag.Title = "患者管理";
+    ViewBag.SmallTitle = "患者编辑";
+}
+
+<div class="breadcrumbs" id="breadcrumbs">
+    <script type="text/javascript">
+        try { ace.settings.check('breadcrumbs', 'fixed') } catch (e) { }
+    </script>
+
+    <ul class="breadcrumb">
+        <li>
+            <i class="icon-home home-icon"></i>
+            <a href="#">首页</a>
+        </li>
+
+        <li>
+            <a href="#">@ViewBag.Title</a>
+        </li>
+        <li class="active">@ViewBag.SmallTitle</li>
+    </ul><!-- .breadcrumb -->
+
+    <!-- #nav-search -->
+</div>
+
+<div class="page-content">
+   
+
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- PAGE CONTENT BEGINS -->
+            @if (ViewBag.Status == "Error")
+            {
+
+                <div class="alert alert-warning">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <i class="icon-remove"></i>
+                    </button>
+                    <strong>提示：</strong>
+
+                    @ViewBag.msg
+                    <br />
+                </div>
+
+            }
+            <div class="row">
+               
+                <div class="col-xs-12">
+                    <table class="table table-striped table-bordered  h4" border="1">
+                        <tr>
+                            <td colspan="2" class="h3 center"><input type="hidden" value="@Model.CustomerId" name="CustomerId" id="CustomerId"/> 患者个人信息登记表</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="col-xs-6">
+                                姓名：
+                                @Html.TextBoxFor(model => model.CustomerName, new { @readonly = true })
+                                
+                                
+                            </td>
+
+
+                            <td class="col-xs-6">身份证号：@Html.TextBoxFor(model => model.CustomerNumber, new { @readonly = true })</td>
+
+                        </tr>
+                        <tr>
+                            <td>生日：@Html.TextBoxFor(model => model.CustomerBirthday, new { @readonly = true })
+</td>
+
+
+                            <td>性别：@Html.TextBoxFor(model => model.CustomerSex, new { @readonly = true })</td>
+
+                        </tr>
+                        <tr>
+                            <td>电话：@Html.TextBoxFor(model => model.CustomerTelephone)</td>
+
+
+                            <td>邮箱：@Html.TextBoxFor(model => model.CustomerEmail)</td>
+
+                        </tr>
+                        <tr>
+                            <td>常住类型：</td>
+
+
+                            <td>民族：</td>
+
+                        </tr>
+                        <tr>
+                            <td>婚姻状况：</td>
+
+
+                            <td>文化程度：</td>
+
+                        </tr>
+                        <tr>
+                            <td>常住类型：</td>
+
+
+                            <td>职业：</td>
+
+                        </tr>
+                       
+                        <tr>
+                            <td>联系人姓名：</td>
+
+
+                            <td>联系人电话：</td>
+
+                        </tr>
+                        <tr>
+                            <td>现住址：</td>
+
+
+                            <td>户籍地址：</td>
+
+                        </tr>
+                        <tr>
+                            <td>乡镇（街道）名称：</td>
+
+
+                            <td>村（居）委会名称：</td>
+
+                        </tr>
+                        <tr>
+                            <td>所属社区（组织）：</td>
+
+
+                            <td>责任医生：</td>
+
+                        </tr>
+                        <tr>
+                            <td colspan="2">工作单位：</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">备注：</td>
+                        </tr>
+
+                 
+                    </table>
+                </div>
+                <div class="col-xs-1"></div>
+            </div>
+
+            <!-- PAGE CONTENT ENDS -->
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+</div><!-- /.page-content -->
+@section BottomScripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+
+<script type="text/javascript">
+    //获取当前点击的对象
+    $('input').click(
+        function () {
+            var oldval = $(this).val();
+            
+            var t1 = "&nbsp;&nbsp;<span class='"+$(this).attr('name')+" spanclass'>";
+            var t2 = "<button class=\"btn btn-xs btn-primary\" onclick=\"updateCusField('" + $(this).attr('name') + "','" + $(this).val() + "')\">修改</button>&nbsp;";
+            var t3 = "<button class=\"btn btn-xs btn-primary\" onclick=\"updateCusFieldCancel('" + $(this).attr('name') + "','" + $(this).val() + "')\">取消</button>&nbsp;";
+            var t4 = "</span>";
+          
+            
+            if ($("." + $(this).attr('name') + "").length > 0 || $(this).attr('name') == 'CustomerName' || $(this).attr('name') == 'CustomerNumber' || $(this).attr('name') == 'CustomerSex' || $(this).attr('name') == 'CustomerBirthday') {
+               // alert("已经有了");
+            }
+            else {
+                $(".spanclass").remove();
+                $(this).after(t1 + t2 + t3 + t4);
+            }
+           
+            
+
+        });
+
+    function updateCusField(id, oldval) {
+        var DtoName = "Customer";
+        var table = "CMSCustomer";
+        var strWhere = "CustomerId=" + $("#CustomerId").val();
+        var columnname = $("#" + id + "").attr('name');
+        var newval = $("#" + id + "").val();
+        if (oldval != "")
+        {
+            if (newval == "") {
+                alert("原值不为空时，新值不能为空");
+            }
+            if (newval == oldval) {
+                alert("数据未更新，和原来一样");
+            }
+            if (newval != oldval&&newval != "") {
+                
+                $.ajax({
+                    type: 'POST',
+                    url: "/Ajax/updateCusField",
+                    data: {
+                        DtoName: DtoName,
+                        table: table,
+                        strWhere: strWhere,
+                        columnname: columnname,
+                        columnvalue: newval,
+
+                      
+                    },
+                    dataType: "json",
+                    success: function (data)
+                    {
+                        alert("更新成功");
+                        $("." + id + "").remove();
+                    },
+                });
+                
+            }
+
+        }
+        else
+        {
+            if (newval == "") {
+                alert("原值就为空，新值也为空，那就空");
+            }
+            if (newval != oldval) {
+                alert("更新操作");
+            }
+
+        }
+        
+        
+        //alert(id);
+        //alert($("#"+id+"").val());
+    }
+    function updateCusFieldCancel(id,oldval) {
+       // alert(id + "=" + oldval);
+        
+        $("#" + id + "").val(oldval);
+        $("." + id + "").remove();
+
+       
+    }
+</script> 
+}
+
+

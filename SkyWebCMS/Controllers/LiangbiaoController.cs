@@ -7,16 +7,27 @@ using Common;
 using System.Drawing;
 using Bll;
 using System.IO;
+using System.Data;
+using System.Data.SqlClient;
+using Microsoft.ApplicationBlocks.Data;
+using SkyWebCMS.Attributes;
+using Dto;
 
 namespace SkyWebCMS.Controllers
 {
+    [CMSAuth(Roles = "普通管理员")] 
     public class LiangbiaoController : Controller
     {
         //
         // GET: /Liangbiao/
          [ValidateInput(false)]
-        public ActionResult Index(string id)
+        public ActionResult Index(string id,string cid)
         {
+            DataTable dt = CMSService.SelectOne("Customer", "CMSCustomer", "CustomerId=" + cid);
+            foreach (DataRow dr in dt.Rows)
+            {
+                
+            }
             string result = id;
             string[] tizhi = result.Split(',');
              int i=0;
@@ -60,6 +71,7 @@ namespace SkyWebCMS.Controllers
 
              }
              //如果是男的减去36项，如果是女的减去37项
+             shirezhi = shirezhi - int.Parse(tizhi[36]);
              int shirezhiresult = ((shirezhi - 6) * 100) / (6 * 4);
 
              int xueyuzhi = 0;
@@ -106,6 +118,7 @@ namespace SkyWebCMS.Controllers
              ViewBag.qiyuzhiresult = qiyuzhiresult;
              ViewBag.tebingzhiresult = tebingzhiresult;
              ViewBag.pinghezhiresult = pinghezhiresult;
+             ViewBag.userId = cid;
             return View();
         }
 
@@ -118,7 +131,7 @@ namespace SkyWebCMS.Controllers
 
         public ActionResult Test()
         {
-           string base64ImgString = Request["a"]; ;
+           string base64ImgString = Request["a"]; 
            string[] u = base64ImgString.Split(',');
            string imgstr = u[1];
 
@@ -130,8 +143,9 @@ namespace SkyWebCMS.Controllers
 
         //
         // GET: /Liangbiao/Create
-        public ActionResult Create()
+        public ActionResult Create(string cid)
         {
+            ViewBag.cid = cid;
             ViewData["TizhiQuestion"] = LiangbiaoService.GetTizhiQuestionList();
             return View();
         }
@@ -198,7 +212,9 @@ namespace SkyWebCMS.Controllers
                     reslut = reslut + collection[i.ToString()] + ",";
                 }
 
-                return RedirectToAction("Index", "Liangbiao", new { id = reslut });
+                string userid=collection["CustomerId"];
+
+                return RedirectToAction("Index", "Liangbiao", new { id = reslut, cid = userid });
             }
             catch
             {

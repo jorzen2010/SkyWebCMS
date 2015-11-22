@@ -31,6 +31,7 @@
         </div>
         <div class="col-xs-10 h4">
         <form id='id_form' action="/Liangbiao/Create" method="post">
+            <input type="hidden" value="@ViewBag.cid" name="CustomerId" id="CustomerId" />
             @{int i = 1;}
           @foreach (String question in ViewData["TizhiQuestion"] as IEnumerable<String>)
      {

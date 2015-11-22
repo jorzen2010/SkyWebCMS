@@ -53,6 +53,7 @@
     <Compile Include="CommonDal.cs" />
     <Compile Include="CommonServices.cs" />
     <Compile Include="CommonTools.cs" />
+    <Compile Include="CommonValidate.cs" />
     <Compile Include="DataConvertHelper.cs" />
     <Compile Include="FileTools.cs" />
     <Compile Include="JsonHepler.cs" />
