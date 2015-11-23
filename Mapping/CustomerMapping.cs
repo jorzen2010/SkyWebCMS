@@ -62,6 +62,8 @@ namespace Mapping
             CustomerDto.CustomerNumber = dr["CustomerNumber"].ToString();
             CustomerDto.CustomerSex = dr["CustomerSex"].ToString();
             CustomerDto.CustomerBirthday = DateTime.Parse(dr["CustomerBirthday"].ToString());
+            CustomerDto.CustomerTelephone = dr["CustomerTelephone"].ToString();
+            CustomerDto.CustomerEmail = dr["CustomerEmail"].ToString();
            
 
             return CustomerDto;

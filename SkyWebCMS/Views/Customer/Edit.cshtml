@@ -47,7 +47,7 @@
             <div class="row">
                
                 <div class="col-xs-12">
-                    <table class="table table-striped table-bordered  h4" border="1">
+                    <table class="table table-striped table-bordered  h5" border="1">
                         <tr>
                             <td colspan="2" class="h3 center"><input type="hidden" value="@Model.CustomerId" name="CustomerId" id="CustomerId"/> 患者个人信息登记表</td>
                         </tr>
@@ -80,14 +80,19 @@
 
                         </tr>
                         <tr>
-                            <td>常住类型：</td>
+                            <td>常住类型：
+                                @Html.DropDownListFor(model => model.CustomerChangzhu, ViewData["CChangzhu"] as IEnumerable<SelectListItem>)
 
 
-                            <td>民族：</td>
+                            </td>
+
+
+                            <td>民族：
+                                @Html.DropDownListFor(model => model.CustomerMinzu, ViewData["CMinzu"] as IEnumerable<SelectListItem>)</td>
 
                         </tr>
                         <tr>
-                            <td>婚姻状况：</td>
+                            <td>婚姻状况：@Html.DropDownListFor(model => model.CustomerHunyin, ViewData["CHunyin"] as IEnumerable<SelectListItem>)</td>
 
 
                             <td>文化程度：</td>
@@ -174,7 +179,12 @@
             
 
         });
-
+    $('select').change(
+        function () {
+            alert("改变了");
+        }
+        );
+       
     function updateCusField(id, oldval) {
         var DtoName = "Customer";
         var table = "CMSCustomer";
@@ -199,14 +209,19 @@
                         table: table,
                         strWhere: strWhere,
                         columnname: columnname,
-                        columnvalue: newval,
-
-                      
+                        columnvalue: newval,                     
                     },
                     dataType: "json",
                     success: function (data)
                     {
-                        alert("更新成功");
+                        if (data=='true') {
+                            alert("更新成功");
+                        }
+                        else {
+                            alert("数据格式不太对");
+
+                        }
+                        
                         $("." + id + "").remove();
                     },
                 });
@@ -220,7 +235,29 @@
                 alert("原值就为空，新值也为空，那就空");
             }
             if (newval != oldval) {
-                alert("更新操作");
+                
+                $.ajax({
+                    type: 'POST',
+                    url: "/Ajax/updateCusField",
+                    data: {
+                        DtoName: DtoName,
+                        table: table,
+                        strWhere: strWhere,
+                        columnname: columnname,
+                        columnvalue: newval,
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data=='true') {
+                            alert("更新成功");
+                        }
+                        else {
+                            alert("数据格式不太对");
+                        }
+
+                        $("." + id + "").remove();
+                    },
+                });
             }
 
         }

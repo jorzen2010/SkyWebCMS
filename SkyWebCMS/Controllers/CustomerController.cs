@@ -154,9 +154,15 @@ namespace SkyWebCMS.Controllers
                 model.CustomerBirthday = dto.CustomerBirthday.ToShortDateString();
                 model.CustomerSex = dto.CustomerSex;
                 model.CustomerId = dto.CustomerId;
+                model.CustomerTelephone = dto.CustomerTelephone;
+                model.CustomerEmail = dto.CustomerEmail;
                 
                 
             }
+            ViewData["CChangzhu"] = CustomerService.GetChangzhuSelectList();
+            ViewData["CHunyin"] = CustomerService.GetHunyinSelectList();
+            ViewData["CMinzu"] = CustomerService.GetMinzuSelectList();
+           // ViewData["CChangzhu"] = CustomerService.GetChangzhuSelectList();
             return View(model);
         }
 	}

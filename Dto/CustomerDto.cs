@@ -13,5 +13,8 @@ namespace Dto
         public string CustomerNumber{get;set;}
         public string CustomerSex { get; set; }
         public DateTime CustomerBirthday{get;set;}
+
+        public string CustomerTelephone { get; set; }
+        public string CustomerEmail { get; set; }
     }
 }

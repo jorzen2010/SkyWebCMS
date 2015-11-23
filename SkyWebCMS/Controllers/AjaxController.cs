@@ -31,6 +31,7 @@ namespace SkyWebCMS.Controllers
                if (CommonValidate.IsTelephone(columnvalue))
                {
                    msg = CMSService.UpdateFieldOneByOne(DtoName, table, strWhere, columnname, columnvalue);
+                   msg.MessageStatus = "true";
                }
                else
                {
@@ -46,7 +47,7 @@ namespace SkyWebCMS.Controllers
            }
            
            var result = msg.MessageStatus;
-            //var  result = id;
+           
            return Json(result, JsonRequestBehavior.AllowGet);
         }
 	}

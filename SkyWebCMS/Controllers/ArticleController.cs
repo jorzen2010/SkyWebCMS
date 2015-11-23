@@ -131,8 +131,6 @@ namespace SkyWebCMS.Controllers
                 model.ArticleTop = dto.ArticleTop;
                 model.ArticleHot = dto.ArticleHot;
                 model.ArticleTime = dto.ArticleTime;
-
-
             }
 
             ViewData["Category"] = MyService.GetCategorySelectList("CategoryParentId=1");

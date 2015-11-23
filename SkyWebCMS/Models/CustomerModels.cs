@@ -48,6 +48,12 @@ namespace SkyWebCMS.Models
         public string CustomerEmail { get; set; }
         [Display(Name = "手机")]
         public string CustomerTelephone { get; set; }
+        [Display(Name = "常住类型")]
+        public string CustomerChangzhu { get; set; }
+        [Display(Name = "民族")]
+        public string CustomerMinzu { get; set; }
+        [Display(Name = "婚姻状况")]
+        public string CustomerHunyin { get; set; }
 
 
     }
