@@ -65,6 +65,20 @@ namespace SkyWebCMS.Controllers
                     cookieid.Value = dto.UserId.ToString();
                     System.Web.HttpContext.Current.Response.Cookies.Add(cookieid);
 
+                    HttpCookie cookieImg = new HttpCookie("UserImg");
+                    string urlImg = "";
+                    if (String.IsNullOrEmpty(dto.UserImg))
+                    {
+                        urlImg = "/UserImg/Img/default_48.jpg";
+                    }
+                    else
+                    {
+                        urlImg = dto.UserImg.ToString() + "_48.jpg";
+                    
+                    }
+                    cookieImg.Value = urlImg;
+                    System.Web.HttpContext.Current.Response.Cookies.Add(cookieImg);
+
                     System.Web.HttpContext.Current.Session["UserId"] = dto.UserId;
                     FormsAuthentication.SetAuthCookie(dto.UserName, false);
 
@@ -118,14 +132,11 @@ namespace SkyWebCMS.Controllers
         {
             try
             {
+                AddUserDto dto = new AddUserDto();
 
-                UserDto dto = new UserDto();
 
-                dto.UserEmail = "";
-                dto.UserTelephone = "";
                 dto.UserName = model.UserName;
                 dto.UserPassword = CommonTools.ToMd5(model.UserPassword);
-                dto.UserRegisterTime = System.DateTime.Now;
                 dto.UserRoles = model.UserRoles;
                 dto.UserStatus = true;
 

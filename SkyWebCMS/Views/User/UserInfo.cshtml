@@ -70,12 +70,7 @@
                                 个人信息
                             </a>
                         </li>
-                        <li>
-                            <a data-toggle="tab" href="#editinfo">
-                                <i class="orange icon-unlock bigger-120"></i>
-                                信息修改
-                            </a>
-                        </li>
+                       
                         <li>
                             <a data-toggle="tab" href="#editimg">
                                 <i class="orange icon-unlock bigger-120"></i>
@@ -89,34 +84,20 @@
                             </a>
                         </li>
 
-                        <li>
-                            <a data-toggle="tab" href="#telephone">
-                                <i class="blue icon-phone bigger-120"></i>
-                                绑定手机
-                            </a>
-                        </li>
+                       
 
-                        <li>
-                            <a data-toggle="tab" href="#email">
-                                <i class="pink icon-envelope  bigger-120"></i>
-                                绑定邮箱
-                            </a>
-                        </li>
+                      
                     </ul>
 
                     <div class="tab-content no-border padding-24">
-                         @{Html.RenderAction("PartialInfo", "User", new { username = System.Web.HttpContext.Current.Request.Cookies["User"].Value });}<!-- #Info -->
+                          @{Html.RenderAction("PartialInfo", "User", new { username = System.Web.HttpContext.Current.Request.Cookies["User"].Value });}<!-- #Info -->
                        
-                        @{Html.RenderAction("PartialEditUserInfo", "User", new { id = System.Web.HttpContext.Current.Request.Cookies["UserId"].Value });}<!-- /#EditUserInfo -->
                       
                           @{Html.RenderAction("PartialEditUserImg", "User", new { id = System.Web.HttpContext.Current.Request.Cookies["UserId"].Value });}<!-- /#EditUserInfo -->
 
-                         @{Html.RenderAction("PartialPassword", "User", new { id = System.Web.HttpContext.Current.Request.Cookies["UserId"].Value });}<!-- /#Password -->
+                          @{Html.RenderAction("PartialPassword", "User", new { id = System.Web.HttpContext.Current.Request.Cookies["UserId"].Value });}<!-- /#Password -->
 
-                         @{Html.RenderAction("PartialTelephone", "User", new { id = System.Web.HttpContext.Current.Request.Cookies["UserId"].Value });}<!-- /#Telephone -->
-
-                        @{Html.RenderAction("PartialEmail", "User", new { id = System.Web.HttpContext.Current.Request.Cookies["UserId"].Value });}<!-- /#Email -->
-                    </div>
+                       </div>
                 </div>
             </div>
         </div>
@@ -133,6 +114,157 @@
 
 
 </script>
+
+<script type="text/javascript">
+    //获取当前点击的对象
+    $('.profile-user-info input').click(
+        function () {
+            var oldval = $(this).val();
+
+            var t1 = "&nbsp;&nbsp;<span class='" + $(this).attr('name') + " spanclass'>";
+            var t2 = "<button class=\"btn btn-xs btn-primary\" onclick=\"updateUserField('" + $(this).attr('name') + "','" + $(this).val() + "')\">修改</button>&nbsp;";
+            var t3 = "<button class=\"btn btn-xs btn-primary\" onclick=\"updateUserFieldCancel('" + $(this).attr('name') + "','" + $(this).val() + "')\">取消</button>&nbsp;";
+            var t4 = "</span>";
+
+
+            if ($("." + $(this).attr('name') + "").length > 0) {
+                // alert("已经有了");
+            }
+            else {
+                $(".spanclass").remove();
+                $(this).after(t1 + t2 + t3 + t4);
+            }
+
+
+
+        });
+    $('select').change(
+        function () {
+            //alert($(this).val());
+            var DtoName = "User";
+            var table = "CMSUser";
+            var strWhere = "UserId=" + $("#UserId").val();
+            var columnname = $(this).attr('name');
+            var newval = $(this).val();
+            $.ajax({
+                type: 'POST',
+                url: "/Ajax/updateUserField",
+                data: {
+                    DtoName: DtoName,
+                    table: table,
+                    strWhere: strWhere,
+                    columnname: columnname,
+                    columnvalue: newval,
+                },
+                dataType: "json",
+                success: function (data) {
+                    if (data.MessageStatus == 'true') {
+                        alert("更新成功");
+                    }
+                    else {
+                        alert("数据格式不太对");
+
+                    }
+
+                    $("." + id + "").remove();
+                },
+            });
+        }
+        );
+
+    function updateUserField(id, oldval) {
+        var DtoName = "User";
+        var table = "CMSUser";
+        var strWhere = "UserId=" + $("#UserId").val();
+        var columnname = $("#" + id + "").attr('name');
+        var newval = $("#" + id + "").val();
+        if (oldval != "") {
+            if (newval == "") {
+                alert("原值不为空时，新值不能为空");
+            }
+            if (newval == oldval) {
+                alert("数据未更新，和原来一样");
+            }
+            if (newval != oldval && newval != "") {
+
+                $.ajax({
+                    type: 'POST',
+                    url: "/Ajax/updateUserField",
+                    data: {
+                        DtoName: DtoName,
+                        table: table,
+                        strWhere: strWhere,
+                        columnname: columnname,
+                        columnvalue: newval,
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.MessageStatus == 'true') {
+                            alert("更新成功");
+                        }
+                        else {
+                            $("#" + id + "").val(oldval);
+                            //   alert("数据格式不太对");
+                            alert(data.MessageInfo);
+
+                        }
+
+                        $("." + id + "").remove();
+                    },
+                });
+
+            }
+
+        }
+        else {
+            if (newval == "") {
+                alert("原值就为空，新值也为空，那就空");
+            }
+            if (newval != oldval) {
+
+                $.ajax({
+                    type: 'POST',
+                    url: "/Ajax/updateUserField",
+                    data: {
+                        DtoName: DtoName,
+                        table: table,
+                        strWhere: strWhere,
+                        columnname: columnname,
+                        columnvalue: newval,
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.MessageStatus == 'true') {
+                            alert("更新成功");
+                        }
+                        else {
+                            $("#" + id + "").val(oldval);
+
+                            alert(data.MessageInfo);
+                        }
+
+                        $("." + id + "").remove();
+                    },
+                });
+            }
+
+        }
+
+
+        //alert(id);
+        //alert($("#"+id+"").val());
+    }
+    function updateUserFieldCancel(id, oldval) {
+        // alert(id + "=" + oldval);
+
+        $("#" + id + "").val(oldval);
+        $("." + id + "").remove();
+
+
+    }
+</script>
+
+
 
         }
 

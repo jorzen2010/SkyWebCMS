@@ -11,6 +11,8 @@ using System.Data;
 using System.Data.SqlClient;
 using Microsoft.ApplicationBlocks.Data;
 using SkyWebCMS.Attributes;
+using InterfaceMapping;
+using Mapping;
 using Dto;
 
 namespace SkyWebCMS.Controllers
@@ -23,10 +25,20 @@ namespace SkyWebCMS.Controllers
          [ValidateInput(false)]
         public ActionResult Index(string id,string cid)
         {
+            
+            string CustomerName = "";
+            string CustomerSex = "";
+            string CustomerBirthday = "";
             DataTable dt = CMSService.SelectOne("Customer", "CMSCustomer", "CustomerId=" + cid);
             foreach (DataRow dr in dt.Rows)
             {
-                
+                CustomerDto dto = new CustomerDto();
+                dto = CustomerMapping.getDTO(dr);
+                CustomerName = dto.CustomerName;
+                CustomerSex = dto.CustomerSex;
+                CustomerBirthday = dto.CustomerBirthday.ToShortDateString();
+
+
             }
             string result = id;
             string[] tizhi = result.Split(',');
@@ -38,7 +50,7 @@ namespace SkyWebCMS.Controllers
              
              }
              int yangxuzhiresult = ((yangxuzhi-7)*100)/(7*4);
-
+            
              int yinxuzhi = 0;
              for (i = 7; i < 15; i++)
              {
@@ -46,7 +58,7 @@ namespace SkyWebCMS.Controllers
 
              }
              int yinxuzhiresult = ((yinxuzhi - 8) * 100) / (8 * 4);
-
+         
              int qixuzhi = 0;
              for (i = 15; i < 23; i++)
              {
@@ -54,7 +66,7 @@ namespace SkyWebCMS.Controllers
 
              }
              int qixuzhiresult = ((yinxuzhi - 8) * 100) / (8 * 4);
-
+            
              int tanshizhi = 0;
              for (i = 23; i < 31; i++)
              {
@@ -70,8 +82,13 @@ namespace SkyWebCMS.Controllers
                  
 
              }
+             if (CustomerSex == "男")
+             { shirezhi = shirezhi - int.Parse(tizhi[36]); }
+             if (CustomerSex == "女")
+             { shirezhi = shirezhi - int.Parse(tizhi[37]); }
+
              //如果是男的减去36项，如果是女的减去37项
-             shirezhi = shirezhi - int.Parse(tizhi[36]);
+             
              int shirezhiresult = ((shirezhi - 6) * 100) / (6 * 4);
 
              int xueyuzhi = 0;
@@ -108,18 +125,90 @@ namespace SkyWebCMS.Controllers
              }
              int pinghezhiresult = ((pinghezhi - 7) * 100) / (7 * 4);
 
+             string Customertizhi = "";
+             if (yangxuzhiresult < 30 && yinxuzhiresult < 30 && qixuzhiresult < 30 && tanshizhiresult < 30 && shirezhiresult < 30 && xueyuzhiresult < 30 && qiyuzhiresult < 30 && tebingzhiresult < 30 && pinghezhiresult > 60)
+             {
+                 Customertizhi = "平和质";
+             }
+             else
+             { 
+             if (yangxuzhiresult >= 40)
+             {  Customertizhi += "阳虚质,";}
+             if (yinxuzhiresult >= 40)
+             { Customertizhi += "阴虚质,"; }
+             if (qixuzhiresult >= 40)
+             { Customertizhi += "气虚质,"; }
+             if (tanshizhiresult >= 40)
+             { Customertizhi += "痰湿质,"; }
+             if (shirezhiresult >= 40)
+             { Customertizhi += "湿热质,"; }
+             if (xueyuzhiresult >= 40)
+             { Customertizhi += "血瘀质,"; }
+             if (qiyuzhiresult >= 40)
+             { Customertizhi += "气淤质,"; }
+             if (tebingzhiresult >= 40)
+             { Customertizhi += "特禀质,"; }
+             }
+             if (!String.IsNullOrEmpty(Customertizhi))
+             { Customertizhi = Customertizhi.Substring(0, Customertizhi.Length - 1); }
 
-             ViewBag.yangxuzhiresult = yangxuzhiresult;
-             ViewBag.yinxuzhiresult = yinxuzhiresult;
-             ViewBag.qixuzhiresult = qixuzhiresult;
-             ViewBag.tanshizhiresult = tanshizhiresult;
-             ViewBag.shirezhiresult = shirezhiresult;
-             ViewBag.xueyuzhiresult = xueyuzhiresult;
-             ViewBag.qiyuzhiresult = qiyuzhiresult;
-             ViewBag.tebingzhiresult = tebingzhiresult;
-             ViewBag.pinghezhiresult = pinghezhiresult;
-             ViewBag.userId = cid;
-            return View();
+             string Customerqinxiangtizhi = "";
+             if (yangxuzhiresult > 30 && yangxuzhiresult<40)
+             { Customerqinxiangtizhi += "阳虚质,"; }
+             if (yinxuzhiresult > 30&&yinxuzhiresult<40)
+             { Customerqinxiangtizhi += "阴虚质,"; }
+             if (qixuzhiresult > 30 && qixuzhiresult < 40)
+             { Customerqinxiangtizhi += "气虚质,"; }
+             if (tanshizhiresult > 30 && tanshizhiresult < 40)
+             { Customerqinxiangtizhi += "痰湿质,"; }
+             if (shirezhiresult > 30 && shirezhiresult < 40)
+             { Customerqinxiangtizhi += "湿热质,"; }
+             if (xueyuzhiresult > 30 && xueyuzhiresult < 40)
+             { Customerqinxiangtizhi += "血瘀质,"; }
+             if (qiyuzhiresult > 30 && qiyuzhiresult < 40)
+             { Customerqinxiangtizhi += "气淤质,"; }
+             if (tebingzhiresult > 30 && tebingzhiresult < 40)
+             { Customerqinxiangtizhi += "特禀质,"; }
+             if (!String.IsNullOrEmpty(Customerqinxiangtizhi))
+             { Customerqinxiangtizhi = Customerqinxiangtizhi.Substring(0, Customerqinxiangtizhi.Length - 1); }
+
+             string Danganhao = System.DateTime.Now.ToString("yyyyMMddhhmmss") + CommonTools.getRandomNumber();
+             TizhiDto tizhiDto = new TizhiDto();
+             tizhiDto.TizhiYangxu = yangxuzhiresult.ToString();
+             tizhiDto.TizhiYinxu = yinxuzhiresult.ToString();
+             tizhiDto.TizhiQixu = qixuzhiresult.ToString();
+             tizhiDto.TizhiTanshi = tanshizhiresult.ToString();
+             tizhiDto.TizhiShire = shirezhiresult.ToString();
+             tizhiDto.TizhiQiyu = qiyuzhiresult.ToString();
+             tizhiDto.TizhiXueyu = xueyuzhiresult.ToString();
+             tizhiDto.TizhiTebing = tebingzhiresult.ToString();
+             tizhiDto.TizhiPinghe = pinghezhiresult.ToString();
+             tizhiDto.TizhiResult = Customertizhi;
+             tizhiDto.TizhiCustomerId = int.Parse(cid);
+             tizhiDto.TizhiTime = System.DateTime.Now;
+             tizhiDto.TizhiNumber = Danganhao;
+             tizhiDto.TizhiImg = "\\tizhiresult\\" + Danganhao + ".png";
+
+             //ViewBag.yangxuzhiresult = yangxuzhiresult;
+             //ViewBag.yinxuzhiresult = yinxuzhiresult;
+             //ViewBag.qixuzhiresult = qixuzhiresult;
+             //ViewBag.tanshizhiresult = tanshizhiresult;
+             //ViewBag.shirezhiresult = shirezhiresult;
+             //ViewBag.xueyuzhiresult = xueyuzhiresult;
+             //ViewBag.qiyuzhiresult = qiyuzhiresult;
+             //ViewBag.tebingzhiresult = tebingzhiresult;
+             //ViewBag.pinghezhiresult = pinghezhiresult;
+             string JsonString = JsonHelper.JsonSerializerBySingleData(tizhiDto);
+             Message msg = CMSService.Insert("Tizhi", JsonString);
+
+             ViewBag.CustomerBirthday = CustomerBirthday;
+             ViewBag.CustomerName=CustomerName;
+             ViewBag.CustomerSex = CustomerSex;
+             ViewBag.Customerqinxiangtizhi = Customerqinxiangtizhi;
+             ViewBag.Customertizhi = Customertizhi;
+             ViewBag.Danganhao = Danganhao;
+             //ViewBag.userId = cid;
+             return View(tizhiDto);
         }
 
         //
@@ -128,24 +217,28 @@ namespace SkyWebCMS.Controllers
         {
             return View();
         }
-
-        public ActionResult Test()
+        [HttpPost]
+        public ActionResult CreateImg()
         {
-           string base64ImgString = Request["a"]; 
-           string[] u = base64ImgString.Split(',');
-           string imgstr = u[1];
 
-           string filename = "/tizhiresult/" + CommonTools.ToUnixTime(System.DateTime.Now).ToString() + CommonTools.getRandomNumber() +".png";
+            string base64ImgString = Request.Params["a"];
+            string customerNumber = Request["b"]; 
+          string[] u = base64ImgString.Split(',');
+          string imgstr = u[1];
+          string filename = "/tizhiresult/" + customerNumber + ".png";
+    
+          // string filename = "/tizhiresult/" + CommonTools.ToUnixTime(System.DateTime.Now).ToString() + CommonTools.getRandomNumber() +".png";
            FileTools.Base64StringToImage(imgstr, filename);
+        //   CMSService.UpdateFieldOneByOne("Tizhi", "CMSTizhi", "TizhiNumber='" + customerNumber + "'", "TizhiImg", filename);
 
            return Content("成功了");
         }
 
         //
         // GET: /Liangbiao/Create
-        public ActionResult Create(string cid)
+        public ActionResult Create(string id)
         {
-            ViewBag.cid = cid;
+            ViewBag.cid = id;
             ViewData["TizhiQuestion"] = LiangbiaoService.GetTizhiQuestionList();
             return View();
         }
@@ -212,9 +305,9 @@ namespace SkyWebCMS.Controllers
                     reslut = reslut + collection[i.ToString()] + ",";
                 }
 
-                string userid=collection["CustomerId"];
+                string CustomerId = collection["CustomerId"];
 
-                return RedirectToAction("Index", "Liangbiao", new { id = reslut, cid = userid });
+                return RedirectToAction("Index", "Liangbiao", new { id = reslut, cid = CustomerId });
             }
             catch
             {

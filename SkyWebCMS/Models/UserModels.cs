@@ -155,6 +155,17 @@ namespace SkyWebCMS.Models
         [Display(Name = "用户角色")]
         public string UserRoles { get; set; }
 
+        [Display(Name = "姓名")]
+        public string UserRealName { get; set; }
+        [Display(Name = "头像")]
+        public string UserImg { get; set; }
+
+        [Display(Name = "性别")]
+        public string UserSex { get; set; }
+
+        [Display(Name = "生日")]
+        public string UserBirthday { get; set; }
+
         [Display(Name = "绑定手机")]
         public string UserTelephone { get; set; }
 

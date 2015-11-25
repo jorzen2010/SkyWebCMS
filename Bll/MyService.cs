@@ -54,9 +54,10 @@ namespace Bll
         {
            
             List<SelectListItem> items = new List<SelectListItem>();
+            items.Add(new SelectListItem { Text = "未知", Value = "未知" });
             items.Add(new SelectListItem { Text = "男", Value = "男" });
             items.Add(new SelectListItem { Text = "女", Value = "女" });
-            items.Add(new SelectListItem { Text = "未知", Value = "未知" });
+
 
             return items;
 
@@ -85,6 +86,40 @@ namespace Bll
             }
 
             return CategoryList;
+        }
+        public static List<UserDto> GetUserList(string strwhere)
+        {
+            List<UserDto> UserList = new List<UserDto>();
+            DataTable dt = CMSService.SelectSome("User", "CMSUser", strwhere);
+            foreach (DataRow dr in dt.Rows)
+            {
+                UserDto dto = UserMapping.getDTO(dr);
+                UserList.Add(dto);
+            }
+            return UserList;
+        
+        }
+
+        public static List<SelectListItem> GetUserSelectList(string strwhere)
+        {
+            DataTable dt = CMSService.SelectSome("User", "CMSUser", strwhere);
+            List<SelectListItem> items = new List<SelectListItem>();
+            foreach (DataRow dr in dt.Rows)
+            {
+                UserDto dto = UserMapping.getDTO(dr);
+                string username = "";
+                if (String.IsNullOrEmpty(dto.UserRealName))
+                {
+                    username = dto.UserName;
+                }
+                else
+                {
+                    username = dto.UserRealName;
+                }
+                items.Add(new SelectListItem { Text = username, Value = dto.UserId.ToString() });
+            }
+            return items;
+
         }
     }
 }

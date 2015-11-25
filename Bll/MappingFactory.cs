@@ -37,6 +37,10 @@ namespace Bll
             {
                 Mapping = new CustomerMapping();
             }
+            if (DtoName == "Tizhi")
+            {
+                Mapping = new TizhiMapping();
+            }
 
             return Mapping;
             

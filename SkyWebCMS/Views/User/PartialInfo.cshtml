@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-xs-12 col-sm-3 center">
             <span class="profile-picture">
-                <img class="editable img-responsive" alt="Alex's Avatar" id="avatar2" src="/assets/avatars/profile-pic.jpg" />
+                <img class="editable img-responsive" width="180" height="200" alt="Alex's Avatar" id="avatar2" src="@Model.UserImg" />
             </span>
 
             <div class="space space-4"></div>
@@ -32,6 +32,48 @@
                         <span>@Model.UserName</span>
                     </div>
                 </div>
+                
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> 姓名 </div>
+
+                    <div class="profile-info-value">
+                        <span>@Html.TextBoxFor(model => model.UserRealName)
+                        
+                      </span>
+                    </div>
+                </div>
+
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> 性别 </div>
+
+                    <div class="profile-info-value">
+                        <span>@Html.DropDownListFor(model => model.UserSex, ViewData["Sex"] as IEnumerable<SelectListItem>)</span>
+                    </div>
+                </div>
+
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> 生&nbsp;&nbsp;&nbsp;&nbsp;日 </div>
+
+                    <div class="profile-info-value">
+                        <span>@Html.TextBoxFor(model => model.UserBirthday)</span>
+                    </div>
+                </div>
+
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> 绑定手机 </div>
+
+                    <div class="profile-info-value">
+                        <span>@Html.TextBoxFor(model => model.UserTelephone)</span>
+                    </div>
+                </div>
+
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> 绑定邮箱 </div>
+
+                    <div class="profile-info-value">
+                        <span>@Html.TextBoxFor(model => model.UserEmail)</span>
+                    </div>
+                </div>
 
                 <div class="profile-info-row">
                     <div class="profile-info-name"> 角色权限 </div>
@@ -43,28 +85,14 @@
                 </div>
 
                 <div class="profile-info-row">
-                    <div class="profile-info-name"> 绑定手机 </div>
-
-                    <div class="profile-info-value">
-                        <span>@(Model.UserTelephone != "" ? Model.UserTelephone : "暂未绑定手机")</span>
-                    </div>
-                </div>
-
-                <div class="profile-info-row">
-                    <div class="profile-info-name"> 绑定邮箱 </div>
-
-                    <div class="profile-info-value">
-                        <span>@(Model.UserEmail != "" ? Model.UserEmail : "暂未绑定邮箱")</span>
-                    </div>
-                </div>
-
-                <div class="profile-info-row">
                     <div class="profile-info-name">注册时间 </div>
 
                     <div class="profile-info-value">
                         <span>@Model.UserRegisterTime</span>
                     </div>
                 </div>
+
+                
             </div>
 
             <div class="hr hr-8 dotted"></div>

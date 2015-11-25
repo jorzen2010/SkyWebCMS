@@ -23,4 +23,16 @@ namespace Dto
         
         
     }
+
+    public class AddUserDto
+    {
+        public int UserId { get; set; }
+        public string UserName { get; set; }
+        public string UserPassword { get; set; }
+        public string UserRoles { get; set; }
+        public bool UserStatus { get; set; }
+
+
+
+    }
 }

@@ -55,8 +55,8 @@
                         <param name=movie value="avatar.swf">
                         <param name=quality value=high>
                         <param name=bgcolor value=#FFFFFF>
-                        <param name="flashvars" value="imgUrl=/assets/avatar/default.jpg&uploadUrl=/UserImg/upfile.aspx?id=@ViewBag.userid&uploadSrc=false" />
-                        <embed src="/assets/avatar/avatar.swf" quality=high bgcolor=#FFFFFF width="650" height="450" wmode="transparent" flashvars="imgUrl=/assets/avatar/default.jpg&uploadUrl=/UserImg/upfile.aspx?id=@ViewBag.userid&uploadSrc=false"
+                        <param name="flashvars" value="imgUrl=@ViewBag.userImg&uploadUrl=/UserImg/upfile.aspx?id=@ViewBag.userid&uploadSrc=false" />
+                        <embed src="/assets/avatar/avatar.swf" quality=high bgcolor=#FFFFFF width="650" height="450" wmode="transparent" flashvars="imgUrl=@ViewBag.userImg&uploadUrl=/UserImg/upfile.aspx?id=@ViewBag.userid&uploadSrc=false"
                                name="myMovieName" align="" type="application/x-shockwave-flash" allowscriptaccess="always"
                                pluginspage="http://www.macromedia.com/go/getflashplayer">
                         </EMBED>

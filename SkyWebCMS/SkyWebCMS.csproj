@@ -505,8 +505,6 @@
     <Content Include="Views\Login\PartialSignup.cshtml" />
     <Content Include="Views\User\PartialInfo.cshtml" />
     <Content Include="Views\User\PartialPassword.cshtml" />
-    <Content Include="Views\User\PartialTelephone.cshtml" />
-    <Content Include="Views\User\PartialEmail.cshtml" />
     <Content Include="Views\Liangbiao\Create.cshtml" />
     <Content Include="Views\Liangbiao\Index.cshtml">
       <SubType>
@@ -524,6 +522,7 @@
     <Content Include="Views\Liangbiao\Create - 复制.cshtml" />
     <Content Include="Views\Customer\Edit.cshtml" />
     <Content Include="Views\Customer\Edit - 复制.cshtml" />
+    <Content Include="Views\Customer\Guidang.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

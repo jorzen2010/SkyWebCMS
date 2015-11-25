@@ -64,6 +64,25 @@ namespace Mapping
             CustomerDto.CustomerBirthday = DateTime.Parse(dr["CustomerBirthday"].ToString());
             CustomerDto.CustomerTelephone = dr["CustomerTelephone"].ToString();
             CustomerDto.CustomerEmail = dr["CustomerEmail"].ToString();
+            CustomerDto.CustomerMinzu = dr["CustomerMinzu"].ToString();
+            CustomerDto.CustomerHunyin = dr["CustomerHunyin"].ToString();
+            CustomerDto.CustomerChangzhu = dr["CustomerChangzhu"].ToString();
+            CustomerDto.CustomerWenhua = dr["CustomerWenhua"].ToString();
+            CustomerDto.CustomerZhiye = dr["CustomerZhiye"].ToString();
+            CustomerDto.CustomerAddress = dr["CustomerAddress"].ToString();
+            CustomerDto.CustomerHujiAddress = dr["CustomerHujiAddress"].ToString();
+            CustomerDto.CustomerLianxiren = dr["CustomerLianxiren"].ToString();
+            CustomerDto.CustomerLianxirenTel = dr["CustomerLianxirenTel"].ToString();
+            CustomerDto.CustomerJuweihui = dr["CustomerJuweihui"].ToString();
+            CustomerDto.CustomerXiangzhen = dr["CustomerXiangzhen"].ToString();
+            CustomerDto.CustomerDanwei = dr["CustomerDanwei"].ToString();
+            CustomerDto.CustomerYongyao = dr["CustomerYongyao"].ToString();
+            CustomerDto.CustomerBeizhu = dr["CustomerBeizhu"].ToString();
+            CustomerDto.CustomerGuidang = dr["CustomerGuidang"].ToString();
+            CustomerDto.CustomerDoctor = dr["CustomerDoctor"].ToString();
+            CustomerDto.CustomerShequ = dr["CustomerShequ"].ToString();
+            
+
            
 
             return CustomerDto;

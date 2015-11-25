@@ -92,10 +92,43 @@ namespace SkyWebCMS.Controllers
             return View(pager.Entity);
 
         }
-        public ActionResult Create()
+      
+        public ActionResult Guidang(int id)
         {
-            
-            return View();
+            CustomerGuidangViewModel model = new CustomerGuidangViewModel();
+            DataTable dt = CMSService.SelectOne("Customer", "CMSCustomer", "CustomerId=" + id);
+            foreach (DataRow dr in dt.Rows)
+            {
+                CustomerDto dto = new CustomerDto();
+                dto = CustomerMapping.getDTO(dr);
+                model.CustomerId = dto.CustomerId;
+                model.CustomerName = dto.CustomerName;
+                model.CustomerGuidang = dto.CustomerGuidang;
+
+            }
+            ViewData["ListGuidang"] = MyService.GetCategoryList("CategoryParentId=30");
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult Guidang(CustomerGuidangViewModel model)
+        {
+            Message msg = new Message();
+            string CustomerGuidang = Request.Form["CustomerGuidang"];
+            try
+            {
+                msg = CMSService.UpdateFieldOneByOne("Customer", "CMSCustomer", "CustomerId=" + model.CustomerId, "CustomerGuidang", CustomerGuidang);
+                return RedirectToAction("Index");
+            }
+
+            catch
+            {
+
+                msg.MessageStatus = "Error";
+                msg.MessageInfo = "操作出错了";
+                ViewBag.Status = msg.MessageStatus;
+                ViewBag.msg = msg.MessageInfo;
+                return View();
+            }
         }
         [HttpPost]
         public ActionResult Search()
@@ -110,6 +143,11 @@ namespace SkyWebCMS.Controllers
             }
             ViewData["Category"] = MyService.GetCategoryList("CategoryParentId=20");
             return View(list);
+        }
+        public ActionResult Create()
+        {
+
+            return View();
         }
         [HttpPost]
         public ActionResult Create(CustomerAddViewModel model)
@@ -156,13 +194,32 @@ namespace SkyWebCMS.Controllers
                 model.CustomerId = dto.CustomerId;
                 model.CustomerTelephone = dto.CustomerTelephone;
                 model.CustomerEmail = dto.CustomerEmail;
+                model.CustomerMinzu = dto.CustomerMinzu;
+                model.CustomerChangzhu = dto.CustomerChangzhu;
+                model.CustomerWenhua = dto.CustomerWenhua;
+                model.CustomerHunyin = dto.CustomerHunyin;
+                model.CustomerZhiye = dto.CustomerZhiye;
+                model.CustomerAddress = dto.CustomerAddress;
+                model.CustomerHujiAddress = dto.CustomerHujiAddress;
+                model.CustomerXiangzhen = dto.CustomerXiangzhen;
+                model.CustomerJuweihui = dto.CustomerJuweihui;
+                model.CustomerLianxiren = dto.CustomerLianxiren;
+                model.CustomerLianxirenTel = dto.CustomerLianxirenTel;
+                model.CustomerBeizhu = dto.CustomerBeizhu;
+                model.CustomerYongyao = dto.CustomerYongyao;
+                model.CustomerShequ = dto.CustomerShequ;
+                model.CustomerDoctor = dto.CustomerDoctor;
+                
                 
                 
             }
             ViewData["CChangzhu"] = CustomerService.GetChangzhuSelectList();
             ViewData["CHunyin"] = CustomerService.GetHunyinSelectList();
             ViewData["CMinzu"] = CustomerService.GetMinzuSelectList();
-           // ViewData["CChangzhu"] = CustomerService.GetChangzhuSelectList();
+            ViewData["CZhiye"] = CustomerService.GetZhiyeSelectList();
+            ViewData["CWenhua"] = CustomerService.GetWenhuaSelectList();
+            ViewData["Category"] = MyService.GetCategorySelectList("CategoryParentId=36");
+            ViewData["Doctor"] = MyService.GetUserSelectList("charindex('47',UserRoles)>0");
             return View(model);
         }
 	}

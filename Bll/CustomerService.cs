@@ -70,5 +70,19 @@ namespace Bll
             return items;
 
         }
+
+        public static List<SelectListItem> GetWenhuaSelectList()
+        {
+
+            List<SelectListItem> items = new List<SelectListItem>();
+            items.Add(new SelectListItem { Text = "未知", Value = "未知" });
+            items.Add(new SelectListItem { Text = "文盲及半文盲", Value = "文盲及半文盲" });
+            items.Add(new SelectListItem { Text = "小学", Value = "小学" });
+            items.Add(new SelectListItem { Text = "初中", Value = "初中" });
+            items.Add(new SelectListItem { Text = "高中/技校/中专", Value = "中/技校/中专" });
+            items.Add(new SelectListItem { Text = "大专及以上", Value = "大专及以上" });
+            return items;
+
+        }
     }
 }

@@ -1,8 +1,8 @@
 ﻿@using Dto;
-@model SkyWebCMS.Models.EditUserRolesViewModel
+@model SkyWebCMS.Models.CustomerGuidangViewModel
 @{
-    ViewBag.Title = "用户管理";
-    ViewBag.SmallTitle = "用户角色权限编辑";
+    ViewBag.Title = "患者归档";
+    ViewBag.SmallTitle = "患者归档";
 }
 
 <div class="breadcrumbs" id="breadcrumbs">
@@ -43,26 +43,26 @@
             <div class="row">
                 <div class="col-xs-12">
 
-                    @using (Html.BeginForm("EditRoles", "User", FormMethod.Post, new { @class = "form-horizontal" }))
+                    @using (Html.BeginForm("Guidang", "Customer", FormMethod.Post, new { @class = "form-horizontal" }))
                     {
-                        @Html.HiddenFor(model => model.UserId)
+                        @Html.HiddenFor(model => model.CustomerId)
                         <div class="form-group">
-                            @Html.LabelFor(model => model.UserName, new { @class = "col-sm-3 control-label no-padding-right" })
+                            @Html.LabelFor(model => model.CustomerName, new { @class = "col-sm-3 control-label no-padding-right" })
 
                             <div class="col-sm-9">
 
-                                @Html.TextBoxFor(model => model.UserName, new { @class = "col-xs-10 col-sm-5", @readonly = true })
-                                @Html.ValidationMessageFor(model => model.UserName)
+                                @Html.TextBoxFor(model => model.CustomerName, new { @class = "col-xs-10 col-sm-5", @readonly = true })
+                                @Html.ValidationMessageFor(model => model.CustomerName)
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(model => model.UserRoles, new { @class = "col-sm-3 control-label no-padding-right" })
+                            @Html.LabelFor(model => model.CustomerGuidang, new { @class = "col-sm-3 control-label no-padding-right" })
                             <div class="col-sm-9">
-                                @foreach (RoleDto roleDto in ViewData["ListRoles"] as IEnumerable<RoleDto>)
+                                @foreach (CategoryDto dto in ViewData["ListGuidang"] as IEnumerable<CategoryDto>)
                                 {
                                     <label>
-                                        <input class="ace" type="checkbox" id="UserRoles" name="UserRoles" value="@roleDto.RoleId" @(Model.UserRoles.Contains(@roleDto.RoleId.ToString()) == true ? "checked=\"checked\"" : "")>
-                                        <span class="lbl"> @roleDto.RoleName</span>
+                                        <input class="ace" type="checkbox" id="CustomerGuidang" name="CustomerGuidang" value="@dto.CategoryId"  @(Model.CustomerGuidang.Contains(@dto.CategoryId.ToString()) == true ? "checked=\"checked\"" : "")>
+                                        <span class="lbl"> @dto.CategoryName</span>
                                     </label>
 
 

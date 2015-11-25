@@ -17,13 +17,13 @@ using SkyWebCMS.Attributes;
 
 namespace SkyWebCMS.Controllers
 {
-    [CMSAuth(Roles = "普通管理员")] 
+    [CMSAuth(Roles = "普通管理员")]
     public class UserController : BaseController
     {
-        
+
         // 显示用户列表页
-        
-        public ActionResult Index(int?p,int?roleId)
+
+        public ActionResult Index(int? p, int? roleId)
         {
             int RoleId = roleId ?? 0;
             Pager pager = new Pager();
@@ -41,7 +41,7 @@ namespace SkyWebCMS.Controllers
             }
 
             pager = CMSService.SelectAll("User", pager);
-           
+
 
             List<UserDto> list = new List<UserDto>();
             foreach (DataRow dr in pager.EntityDataTable.Rows)
@@ -61,7 +61,7 @@ namespace SkyWebCMS.Controllers
             ViewData["Roles"] = MyService.GetRolesList("1=1");
 
             return View(pager.Entity);
-            
+
         }
 
 
@@ -78,10 +78,10 @@ namespace SkyWebCMS.Controllers
 
                 CMSService.UpdateFieldOneByOne("User", "CMSUser", "UserName='" + model.UserName + "'", "UserPassword", CommonTools.ToMd5(newpassword));
                 //TO DO Sendemail
-                string toMail = model.UserEmail; 
-                string fromMail="277602146@qq.com";
+                string toMail = model.UserEmail;
+                string fromMail = "277602146@qq.com";
                 string displayName = model.UserName;
-                string mailTitle="重置密码";
+                string mailTitle = "重置密码";
                 string username = model.UserName;
                 string content = "密码重置为:" + newpassword + "。请尽快登录修改密码！";
                 //string myname = "曲线社区卫生服务中心";
@@ -107,7 +107,7 @@ namespace SkyWebCMS.Controllers
 
 
             return View(model);
-        
+
         }
         // 修改密码操作
         [HttpPost]
@@ -129,13 +129,9 @@ namespace SkyWebCMS.Controllers
                 }
                 else
                 {
-                    foreach (DataRow dr in dt.Rows)
-                    {
-                        dto = UserMapping.getDTO(dr);
-                        dto.UserPassword = CommonTools.ToMd5(model.UserPassword);
-                    }
-                    string JsonString = JsonHelper.JsonSerializerBySingleData(dto);
-                    msg = CMSService.Update("User", JsonString);
+                    
+                    msg = CMSService.UpdateFieldOneByOne("User", "CMSUser", "UserPassword='" + CommonTools.ToMd5(model.OldPassword) + "' and UserId=" + model.UserId, "UserPassword",  CommonTools.ToMd5(model.UserPassword));
+                   
                     msg.MessageStatus = "Success";
                     msg.MessageInfo = "密码修改成功了";
                     ViewBag.Status = msg.MessageStatus;
@@ -155,7 +151,7 @@ namespace SkyWebCMS.Controllers
                 return View("UserInfo");
             }
         }
-       
+
         // 修改邮件
         [ChildActionOnly]
         public ActionResult PartialEmail(string id)
@@ -174,7 +170,7 @@ namespace SkyWebCMS.Controllers
             {
                 UserDto dto = new UserDto();
                 Message msg = new Message();
-                DataTable dt = CMSService.SelectOne("User", "CMSUser", "UserName!='" + model.UserName + "' and UserEmail='" + model.UserEmail+"'");
+                DataTable dt = CMSService.SelectOne("User", "CMSUser", "UserName!='" + model.UserName + "' and UserEmail='" + model.UserEmail + "'");
                 if (dt.Rows.Count > 0)
                 {
 
@@ -187,7 +183,7 @@ namespace SkyWebCMS.Controllers
                 else
                 {
 
-                    msg = CMSService.UpdateFieldOneByOne("User", "CMSUser", "UserName='" + model.UserName + "'", "UserEmail",model.UserEmail);
+                    msg = CMSService.UpdateFieldOneByOne("User", "CMSUser", "UserName='" + model.UserName + "'", "UserEmail", model.UserEmail);
                     msg.MessageStatus = "Success";
                     msg.MessageInfo = "邮箱更改成功";
                     ViewBag.Status = msg.MessageStatus;
@@ -212,7 +208,7 @@ namespace SkyWebCMS.Controllers
         public ActionResult PartialEditUserInfo(string id)
         {
             EditUserInfoViewModel model = new EditUserInfoViewModel();
-            DataTable dt = CMSService.SelectOne("User", "CMSUser", "UserId=" + id );
+            DataTable dt = CMSService.SelectOne("User", "CMSUser", "UserId=" + id);
             foreach (DataRow dr in dt.Rows)
             {
                 UserDto dto = new UserDto();
@@ -231,35 +227,52 @@ namespace SkyWebCMS.Controllers
         [HttpPost]
         public ActionResult EditUserInfo(EditUserInfoViewModel model)
         {
-            
-                UserDto dto = new UserDto();
-                DataTable dt = CMSService.SelectOne("User", "CMSUser", "UserId=" + model.UserId);
-                foreach (DataRow dr in dt.Rows)
-                {
 
-                    dto = UserMapping.getDTO(dr);
-                  //  dto.UserRoles = Request.Form["UserRoles"];
-                    dto.UserBirthday = DateTime.Parse(model.UserBirthday);
-                    dto.UserRealName = model.UserRealName;
-                    dto.UserSex = model.UserSex;
-                }
-                string JsonString = JsonHelper.JsonSerializerBySingleData(dto);
-                Message msg = CMSService.Update("User", JsonString);
-                // TODO: Add update logic here
+            UserDto dto = new UserDto();
+            DataTable dt = CMSService.SelectOne("User", "CMSUser", "UserId=" + model.UserId);
+            foreach (DataRow dr in dt.Rows)
+            {
 
-                return RedirectToAction("UserInfo");
-           
+                dto = UserMapping.getDTO(dr);
+                //  dto.UserRoles = Request.Form["UserRoles"];
+                dto.UserBirthday = DateTime.Parse(model.UserBirthday);
+                dto.UserRealName = model.UserRealName;
+                dto.UserSex = model.UserSex;
+            }
+            string JsonString = JsonHelper.JsonSerializerBySingleData(dto);
+            Message msg = CMSService.Update("User", JsonString);
+            // TODO: Add update logic here
+
+            return RedirectToAction("UserInfo");
+
         }
         // 修改用户头像
         [ChildActionOnly]
         public ActionResult PartialEditUserImg(string id)
         {
+            string imgurl = "";
+            UserDto dto = new UserDto();
+            DataTable dt = CMSService.SelectOne("User", "CMSUser", "UserId=" + id);
+            foreach (DataRow dr in dt.Rows)
+            {
+
+                dto = UserMapping.getDTO(dr);
+
+            }
+            if (string.IsNullOrEmpty(dto.UserImg))
+            {
+                imgurl = "/UserImg/Img/default";
+            }
+            else {
+                imgurl = dto.UserImg;
+            }
+            ViewBag.userImg =imgurl + "_48.jpg";
             ViewBag.userid = id;
-           
+
             return View();
 
         }
-      
+
         // 修改手机
         [ChildActionOnly]
         public ActionResult PartialTelephone(string id)
@@ -270,7 +283,7 @@ namespace SkyWebCMS.Controllers
             return View(model);
 
         }
-        
+
         // 修改手机动作
         [HttpPost]
         public ActionResult EditTelephone(UserTelephoneViewModel model)
@@ -329,9 +342,22 @@ namespace SkyWebCMS.Controllers
                 model.UserTelephone = dto.UserTelephone;
                 model.UserStatus = dto.UserStatus;
                 model.UserRegisterTime = dto.UserRegisterTime;
+                model.UserRealName = dto.UserRealName;
+                model.UserSex = dto.UserSex;
+                model.UserBirthday = dto.UserBirthday.ToShortDateString();
+                if (String.IsNullOrEmpty(dto.UserImg))
+                {
+                    model.UserImg = "/UserImg/Img/default_48.jpg";
+                }
+                else 
+                {
+                    model.UserImg = dto.UserImg+"_48.jpg";
+                }
+                
 
 
             }
+            ViewData["Sex"] = MyService.GetSexSelectList();
             return View(model);
 
         }
@@ -352,10 +378,10 @@ namespace SkyWebCMS.Controllers
                 model.UserId = dto.UserId;
                 model.UserName = dto.UserName;
                 model.UserRoles = dto.UserRoles;
-                
+
             }
             DataTable RoleDt = CMSService.SelectSome("Role", "CMSRole", "1=1");
-            List<RoleDto> ListRoles= new List<RoleDto>();
+            List<RoleDto> ListRoles = new List<RoleDto>();
             foreach (DataRow dr in RoleDt.Rows)
             {
                 RoleDto roleDto = RoleMapping.getDTO(dr);
@@ -370,34 +396,25 @@ namespace SkyWebCMS.Controllers
         [HttpPost]
         public ActionResult EditRoles(EditUserRolesViewModel model)
         {
-            try
+            Message msg = new Message();
+            string userRoles = Request.Form["UserRoles"];
+             try
             {
-                UserDto dto = new UserDto();
-                DataTable dt = CMSService.SelectOne("User", "CMSUser", "UserId=" + model.UserId);
-                foreach (DataRow dr in dt.Rows)
-                {
-
-                    dto = UserMapping.getDTO(dr);
-                    dto.UserRoles = Request.Form["UserRoles"];
-                }
-                string JsonString = JsonHelper.JsonSerializerBySingleData(dto);
-                Message msg = CMSService.Update("User", JsonString);
-                // TODO: Add update logic here
-
+                msg = CMSService.UpdateFieldOneByOne("User", "CMSUser", "UserId=" + model.UserId, "UserRoles", userRoles);
                 return RedirectToAction("Index");
             }
-           
+
             catch
             {
-                Message msg = new Message();
+                
                 msg.MessageStatus = "Error";
                 msg.MessageInfo = "操作出错了";
                 ViewBag.Status = msg.MessageStatus;
                 ViewBag.msg = msg.MessageInfo;
                 return View();
             }
-           
-        
+
+
         }
         // 新增用户
         public ActionResult Create()
@@ -411,28 +428,18 @@ namespace SkyWebCMS.Controllers
         {
             try
             {
-                UserDto dto = new UserDto();
+                AddUserDto dto = new AddUserDto();
 
-                dto.UserEmail = model.UserEmail;
-                dto.UserTelephone = "";
+
                 dto.UserName = model.UserName;
                 dto.UserPassword = CommonTools.ToMd5(model.UserPassword);
-                dto.UserRegisterTime = System.DateTime.Now;
                 dto.UserRoles = "45";
                 dto.UserStatus = true;
-                dto.UserBirthday = DateTime.Parse("1700-01-01");
-                dto.UserSex = "";
-                dto.UserRealName = "";
-                dto.UserImg = "";
-
-                
-
-
                 string userJsonString = JsonHelper.JsonSerializerBySingleData(dto);
                 Message msg = CMSService.Insert("User", userJsonString);
-                return RedirectTo("/User/Index", msg.MessageInfo); 
+                return RedirectTo("/User/Index", msg.MessageInfo);
             }
-            
+
             catch
             {
                 Message msg = new Message();
@@ -466,25 +473,25 @@ namespace SkyWebCMS.Controllers
                 UserDto dto = new UserDto();
                 Message msg = new Message();
                 DataTable dt = CMSService.SelectOne("User", "CMSUser", "UserId=" + model.UserId);
-               
-                    foreach (DataRow dr in dt.Rows)
-                    {
-                        dto = UserMapping.getDTO(dr);
-                        dto.UserPassword = CommonTools.ToMd5(model.UserPassword);
-                    }
-                    string JsonString = JsonHelper.JsonSerializerBySingleData(dto);
-                    msg = CMSService.Update("User", JsonString);
-                    msg.MessageStatus = "Success";
-                    msg.MessageInfo = "密码修改成功了";
-                    ViewBag.Status = msg.MessageStatus;
-                    // TODO: Add delete logic here
 
-                    return RedirectTo("/User/Index", msg.MessageInfo);
-                
+                foreach (DataRow dr in dt.Rows)
+                {
+                    dto = UserMapping.getDTO(dr);
+                    dto.UserPassword = CommonTools.ToMd5(model.UserPassword);
+                }
+                string JsonString = JsonHelper.JsonSerializerBySingleData(dto);
+                msg = CMSService.Update("User", JsonString);
+                msg.MessageStatus = "Success";
+                msg.MessageInfo = "密码修改成功了";
+                ViewBag.Status = msg.MessageStatus;
+                // TODO: Add delete logic here
+
+                return RedirectTo("/User/Index", msg.MessageInfo);
+
 
 
             }
-             
+
             catch
             {
                 Message msg = new Message();
@@ -495,7 +502,7 @@ namespace SkyWebCMS.Controllers
                 return View();
             }
         }
-        
-       
+
+
     }
 }
