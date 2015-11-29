@@ -45,9 +45,12 @@
     <Compile Include="ArticleMapping.cs" />
     <Compile Include="CategoryMapping.cs" />
     <Compile Include="ImageMapping.cs" />
+    <Compile Include="ChufangMapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CustomerMapping.cs" />
     <Compile Include="RoleMapping.cs" />
+    <Compile Include="JianyanMapping.cs" />
+    <Compile Include="XueyaMapping.cs" />
     <Compile Include="TizhiMapping.cs" />
     <Compile Include="UserMapping.cs" />
   </ItemGroup>

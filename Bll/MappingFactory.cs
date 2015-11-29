@@ -41,6 +41,18 @@ namespace Bll
             {
                 Mapping = new TizhiMapping();
             }
+            if (DtoName == "Xueya")
+            {
+                Mapping = new XueyaMapping();
+            }
+            if (DtoName == "Jianyan")
+            {
+                Mapping = new JianyanMapping();
+            }
+            if (DtoName == "Chufang")
+            {
+                Mapping = new ChufangMapping();
+            }
 
             return Mapping;
             

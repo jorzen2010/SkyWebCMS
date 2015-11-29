@@ -62,6 +62,20 @@ namespace Bll
             return items;
 
         }
+
+        public static List<SelectListItem> GetXueyaWeizhiSelectList()
+        {
+
+            List<SelectListItem> items = new List<SelectListItem>();
+            items.Add(new SelectListItem { Text = "未知", Value = "未知" });
+            items.Add(new SelectListItem { Text = "右上肢", Value = "右上肢" });
+            items.Add(new SelectListItem { Text = "左上肢", Value = "左上肢" });
+
+
+            return items;
+
+        }
+
         public static List<RoleDto> GetRolesList(string strwhere)
         {
             List<RoleDto> RolesList = new List<RoleDto>();
@@ -87,6 +101,7 @@ namespace Bll
 
             return CategoryList;
         }
+
         public static List<UserDto> GetUserList(string strwhere)
         {
             List<UserDto> UserList = new List<UserDto>();

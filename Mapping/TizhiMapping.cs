@@ -89,7 +89,7 @@ namespace Mapping
 
                 TizhiDto tizhiDto = new TizhiDto();
 
-                tizhiDto.TizhiId = int.Parse(dr["UserId"].ToString());
+                tizhiDto.TizhiId = int.Parse(dr["TizhiId"].ToString());
                 tizhiDto.TizhiYangxu = dr["TizhiYangxu"].ToString();
                 tizhiDto.TizhiYinxu = dr["TizhiYinxu"].ToString();
                 tizhiDto.TizhiQixu = dr["TizhiQixu"].ToString();
@@ -101,7 +101,7 @@ namespace Mapping
                 tizhiDto.TizhiPinghe = dr["TizhiPinghe"].ToString();
                 tizhiDto.TizhiResult = dr["TizhiResult"].ToString();
                 tizhiDto.TizhiTime = DateTime.Parse(dr["TizhiTime"].ToString());
-                tizhiDto.TizhiCustomerId = int.Parse(dr["UserSex"].ToString());
+                tizhiDto.TizhiCustomerId = int.Parse(dr["TizhiCustomerId"].ToString());
                 tizhiDto.TizhiNumber = dr["TizhiNumber"].ToString();
                 tizhiDto.TizhiImg = dr["TizhiImg"].ToString();
                 return tizhiDto;

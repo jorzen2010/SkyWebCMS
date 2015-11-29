@@ -18,7 +18,7 @@ using Dto;
 namespace SkyWebCMS.Controllers
 {
     [CMSAuth(Roles = "普通管理员")] 
-    public class LiangbiaoController : Controller
+    public class TizhiController : Controller
     {
         //
         // GET: /Liangbiao/
@@ -172,7 +172,7 @@ namespace SkyWebCMS.Controllers
              if (!String.IsNullOrEmpty(Customerqinxiangtizhi))
              { Customerqinxiangtizhi = Customerqinxiangtizhi.Substring(0, Customerqinxiangtizhi.Length - 1); }
 
-             string Danganhao = System.DateTime.Now.ToString("yyyyMMddhhmmss") + CommonTools.getRandomNumber();
+             string Danganhao = System.DateTime.Now.ToString("yyyyMMddhhmmss");
              TizhiDto tizhiDto = new TizhiDto();
              tizhiDto.TizhiYangxu = yangxuzhiresult.ToString();
              tizhiDto.TizhiYinxu = yinxuzhiresult.ToString();
@@ -187,7 +187,7 @@ namespace SkyWebCMS.Controllers
              tizhiDto.TizhiCustomerId = int.Parse(cid);
              tizhiDto.TizhiTime = System.DateTime.Now;
              tizhiDto.TizhiNumber = Danganhao;
-             tizhiDto.TizhiImg = "\\tizhiresult\\" + Danganhao + ".png";
+             tizhiDto.TizhiImg = "/tizhiresult/" + Danganhao + ".png";
 
              //ViewBag.yangxuzhiresult = yangxuzhiresult;
              //ViewBag.yinxuzhiresult = yinxuzhiresult;
@@ -213,16 +213,64 @@ namespace SkyWebCMS.Controllers
 
         //
         // GET: /Liangbiao/Details/5
+        public ActionResult List(int?p,int id)
+        {
+            Pager pager = new Pager();
+            pager.table = "CMSTizhi";
+            pager.strwhere = "TizhiCustomerId="+id;
+            pager.PageSize = 10;
+            pager.PageNo = p ?? 1;
+            pager.FieldKey = "TizhiId";
+            pager.FiledOrder = "TizhiId Desc";
+            pager = CMSService.SelectAll("Tizhi", pager);
+
+            List<TizhiDto> list = new List<TizhiDto>();
+            foreach (DataRow dr in pager.EntityDataTable.Rows)
+            {
+                TizhiDto dto = TizhiMapping.getDTO(dr);
+                list.Add(dto);
+
+
+            }
+            pager.Entity = list.AsQueryable();
+
+            ViewBag.PageNo = p ?? 1;
+            ViewBag.PageCount = pager.PageCount;
+            ViewBag.RecordCount = pager.Amount;
+            ViewBag.Message = pager.Amount;
+
+            return View(pager.Entity);
+        }
+
         public ActionResult Details(int id)
         {
-            return View();
+            TizhiDto dto = new TizhiDto();
+            DataTable dt = CMSService.SelectOne("Tizhi", "CMSTizhi", "TizhiId=" + id);
+            foreach (DataRow dr in dt.Rows)
+            {               
+                dto = TizhiMapping.getDTO(dr);
+
+            }
+             CustomerDto cDto = new CustomerDto();
+            DataTable CustomerDt = CMSService.SelectOne("Customer", "CMSCustomer", "CustomerId=" + dto.TizhiCustomerId);
+            foreach (DataRow cdr in CustomerDt.Rows)
+            {
+               
+                cDto = CustomerMapping.getDTO(cdr);
+
+            }
+            ViewBag.CustomerName = cDto.CustomerName;
+            ViewBag.CustomerSex = cDto.CustomerSex;
+            ViewBag.CustomerBirthday = cDto.CustomerBirthday.ToShortDateString(); ;
+            return View(dto);
+        
         }
         [HttpPost]
         public ActionResult CreateImg()
         {
 
-            string base64ImgString = Request.Params["a"];
-            string customerNumber = Request["b"]; 
+          string base64ImgString = Request.Params["a"];
+          string customerNumber = System.Web.HttpUtility.HtmlDecode(Request.Form["b"]); 
           string[] u = base64ImgString.Split(',');
           string imgstr = u[1];
           string filename = "/tizhiresult/" + customerNumber + ".png";
@@ -307,7 +355,7 @@ namespace SkyWebCMS.Controllers
 
                 string CustomerId = collection["CustomerId"];
 
-                return RedirectToAction("Index", "Liangbiao", new { id = reslut, cid = CustomerId });
+                return RedirectToAction("Index", "Tizhi", new { id = reslut, cid = CustomerId });
             }
             catch
             {

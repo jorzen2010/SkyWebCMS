@@ -100,27 +100,27 @@
 
 
 
-                                                
+
                                                 <a href="@Url.Action("Guidang", "Customer", new { id=@item.CustomerId})" class="btn btn-xs btn-success">
                                                     <i class="icon-edit bigger-120"></i>患者归档
                                                 </a>
-                                                <a href="@Url.Action("Create", "Liangbiao", new { id=@item.CustomerId})" class="btn btn-xs btn-info">
+                                                <a href="@Url.Action("Create", "Tizhi", new { id=@item.CustomerId})" class="btn btn-xs btn-info">
                                                     <i class="icon-edit bigger-120"></i>体质测试
                                                 </a>
-                                                <a href="/Liangbiao/Index" class="btn btn-xs btn-danger">
+                                                <a href="@Url.Action("Create", "Xueya", new { id=@item.CustomerId})" class="btn btn-xs btn-danger">
                                                     <i class="icon-edit bigger-120"></i>测量血压
                                                 </a>
                                                 <a href="/Liangbiao/Index" class="btn btn-xs btn-primary">
                                                     <i class="icon-edit bigger-120"></i>新建档案
                                                 </a>
-                                        
 
-                                                
+
+
 
 
                                             </div>
 
-                                            
+
                                         </td>
                                         <td>
                                             <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
@@ -128,17 +128,17 @@
 
 
 
-                                               
-                                                <a href="/Liangbiao/Index" class="btn btn-xs btn-warning">
+
+                                                <a href="@Url.Action("List", "Tizhi", new { id=@item.CustomerId})"  class="btn btn-xs btn-warning">
                                                     <i class="icon-edit bigger-120"></i>中医体质报告
                                                 </a>
-                                                <a href="/Liangbiao/Index" class="btn btn-xs btn-warning">
+                                                <a href="@Url.Action("Index", "Xueya", new { id=@item.CustomerId})" class="btn btn-xs btn-warning">
                                                     <i class="icon-edit bigger-120"></i>血压报告
                                                 </a>
-                                                <a href="/Liangbiao/Index" class="btn btn-xs btn-warning">
+                                                <a href="@Url.Action("Index", "Chufang", new { id=@item.CustomerId})" class="btn btn-xs btn-warning">
                                                     <i class="icon-edit bigger-120"></i>处方记录
                                                 </a>
-                                                <a href="/Liangbiao/Index" class="btn btn-xs btn-warning">
+                                                <a href="@Url.Action("Index", "Jianyan", new { id=@item.CustomerId})" class="btn btn-xs btn-warning">
                                                     <i class="icon-edit bigger-120"></i>检验记录
                                                 </a>
 
