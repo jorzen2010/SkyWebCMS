@@ -56,8 +56,9 @@
             <div class="row">
                 <div class="col-xs-12">
                     
-@using (Html.BeginForm("Create", "Category", FormMethod.Post, new { @class="form-horizontal"}))
+@using (Html.BeginForm("Create", "Jixiao", FormMethod.Post, new { @class="form-horizontal"}))
                   {
+    @Html.HiddenFor(model=>model.JixiaoUser)
     <div class="form-group">
                             @Html.LabelFor(model => model.JixiaoParentCategory, new { @class = "col-sm-3 control-label no-padding-right" })
 

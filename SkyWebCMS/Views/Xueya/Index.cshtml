@@ -1,4 +1,5 @@
-﻿@{
+﻿@using Bll;
+@{
     ViewBag.Title = "血压管理";
     ViewBag.SmallTitle = "血压列表";
 }
@@ -39,11 +40,13 @@
 
 
         <h1>
-            @ViewBag.Title
+            @ViewBag.CustomerName  @ViewBag.Title
             <small>
                 <i class="icon-double-angle-right"></i>
                 @ViewBag.SmallTitle (共 @ViewBag.RecordCount 条记录)
             </small>
+            <small class="pull-right"><a href="@Url.Action("Create", "Xueya", new { id = ViewBag.CustomerId })" class="btn btn-success"><i class="icon-plus"></i>新增血压记录</a></small>
+
         </h1>
 
 
@@ -62,13 +65,13 @@
                             <thead>
                                 <tr>
 
-                                    <th class="col-xs-1">序号</th>
-                                    <th class="col-xs-1">姓名</th>
+                                    <th class="col-xs-2">测量时间</th>
+                                    
                                     <th class="col-xs-2">测量位置</th>
                                     <th class="col-xs-2">舒张压（mmHg）</th>
                                     <th class="col-xs-2">收缩压（mmHg）</th>
                                     <th class="col-xs-2">脉搏（次/每分钟）</th>
-                                    <th class="col-xs-2">测量时间</th>
+                                    
 
 
 
@@ -81,10 +84,8 @@
                                     <tr>
 
 
-                                        <td>
-                                            @item.XueyaId
-                                        </td>
-                                        <td>姓名 </td>
+                                        <td>@item.XueyaTime</td>
+                                       
                                         <td>@item.XueyaWeizhi </td>
                                         <td>
                                             <h4>
@@ -133,7 +134,7 @@
                                         </td>
 
                                         <td>@item.XueyaMaibo  </td>
-                                        <td>@item.XueyaTime</td>
+                                        
 
 
 

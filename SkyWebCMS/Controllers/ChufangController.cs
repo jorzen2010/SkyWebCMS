@@ -47,7 +47,7 @@ namespace SkyWebCMS.Controllers
             ViewBag.RecordCount = pager.Amount;
             ViewBag.Message = pager.Amount;
             ViewBag.CustomerId = id;
-
+            ViewBag.CustomerName = MyService.CustomerIdToName("CustomerId=" + id);
             return View(pager.Entity);
         }
 

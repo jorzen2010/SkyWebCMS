@@ -35,9 +35,11 @@ namespace SkyWebCMS.Controllers
         // GET: /Jixiao/Create
         public ActionResult Create()
         {
+            JixiaoModel model = new JixiaoModel();
+            model.JixiaoUser = "zheshi";
             ViewData["ParentCategory"] = MyService.GetCategorySelectList("CategoryParentId=11");
             ViewData["Category"] = MyService.GetCategorySelectList("CategoryParentId=12");
-            return View();
+            return View(model);
         }
 
         //
@@ -54,6 +56,7 @@ namespace SkyWebCMS.Controllers
             dto.JixiaoRenwu = model.JixiaoRenwu;
             dto.JixiaoStatus = "待审核";
             dto.JixiaoTime = System.DateTime.Now;
+          //  dto.JixiaoFenshu = 5.65;
             dto.JixiaoShenheTime = System.DateTime.Now;
 
 

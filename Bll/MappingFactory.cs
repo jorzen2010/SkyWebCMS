@@ -53,11 +53,15 @@ namespace Bll
             {
                 Mapping = new ChufangMapping();
             }
+            if (DtoName == "Jixiao")
+            {
+                Mapping = new JixiaoMapping();
+            }
 
             return Mapping;
-            
- 
-        
+
+
+
         }
     }
 }

@@ -50,6 +50,7 @@
     <Compile Include="CustomerMapping.cs" />
     <Compile Include="RoleMapping.cs" />
     <Compile Include="JianyanMapping.cs" />
+    <Compile Include="JixiaoMapping.cs" />
     <Compile Include="XueyaMapping.cs" />
     <Compile Include="TizhiMapping.cs" />
     <Compile Include="UserMapping.cs" />

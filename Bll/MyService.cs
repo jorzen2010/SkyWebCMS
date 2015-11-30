@@ -15,6 +15,7 @@ namespace Bll
 {
     public class MyService
     {
+        //多个用户角色，从ID转化成名字
         public static string RolesIdToRolesName(string RoesId)
         {
             string userRoles = "";
@@ -36,7 +37,7 @@ namespace Bll
             userRoles = userRoles.Substring(0, userRoles.Length - 1);
             return userRoles;
         }
-
+        //分类的下拉列表显示
         public static List<SelectListItem> GetCategorySelectList(string strwhere)
         {
             DataTable dt = CMSService.SelectSome("Category", "CMSCategory", strwhere);
@@ -49,7 +50,7 @@ namespace Bll
             return items;
         
         }
-        
+        //性别下拉列表
         public static List<SelectListItem> GetSexSelectList()
         {
            
@@ -62,7 +63,7 @@ namespace Bll
             return items;
 
         }
-
+        //血压位置下拉列表
         public static List<SelectListItem> GetXueyaWeizhiSelectList()
         {
 
@@ -75,7 +76,7 @@ namespace Bll
             return items;
 
         }
-
+        //用户角色列表
         public static List<RoleDto> GetRolesList(string strwhere)
         {
             List<RoleDto> RolesList = new List<RoleDto>();
@@ -88,7 +89,7 @@ namespace Bll
 
             return RolesList;
         }
-
+        //分类列表
         public static List<CategoryDto> GetCategoryList(string strwhere)
         {
             List<CategoryDto> CategoryList = new List<CategoryDto>();
@@ -114,7 +115,19 @@ namespace Bll
             return UserList;
         
         }
-
+        public static string CustomerIdToName(string strWhere)
+        {
+             CustomerDto dto =new CustomerDto();
+            DataTable dt=CMSService.SelectOne("Customer","CMSCustomer",strWhere);
+            foreach (DataRow dr in dt.Rows)
+            {
+                dto = CustomerMapping.getDTO(dr);
+            
+            }
+            return dto.CustomerName;
+        
+        }
+        //用户列表
         public static List<SelectListItem> GetUserSelectList(string strwhere)
         {
             DataTable dt = CMSService.SelectSome("User", "CMSUser", strwhere);
