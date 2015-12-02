@@ -39,7 +39,7 @@
 
 
         <h1>
-            @ViewBag.CustomerName   @ViewBag.Title
+           " @ViewBag.CustomerName "   @ViewBag.Title
             <small>
                 <i class="icon-double-angle-right"></i>
                 @ViewBag.SmallTitle (共 @ViewBag.RecordCount 条记录)
@@ -65,7 +65,7 @@
                                 <tr>
 
                                     <th class="col-xs-2">诊断时间</th>
-                                    <th class="col-xs-1">患者姓名</th>
+                                   
                                     <th class="col-xs-3">诊断</th>
                                     <th class="col-xs-3">处置</th>
                                     <th class="col-xs-3">用药</th>
@@ -86,7 +86,7 @@
                                         <td>
                                             @item.ChufangTime
                                         </td>
-                                        <td>姓名 </td>
+                                       
                                         <td>@item.ChufangZhenduan </td>
                                         <td>@item.ChufangChuzhi </td>
                                         <td>@item.ChufangYongyao </td>

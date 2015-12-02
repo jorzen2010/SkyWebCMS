@@ -64,6 +64,7 @@ namespace SkyWebCMS.Controllers
         {
             ChufangAddViewModel model = new ChufangAddViewModel();
             model.ChufangCustomerId = id;
+            ViewBag.CustomerName = MyService.CustomerIdToName("CustomerId=" + id);
             return View(model);
         }
 

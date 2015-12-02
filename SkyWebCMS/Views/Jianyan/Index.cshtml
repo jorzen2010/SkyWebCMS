@@ -1,4 +1,5 @@
-﻿@{
+﻿@using Bll;
+@{
     ViewBag.Title = "检验管理";
     ViewBag.SmallTitle = "检验列表";
 }
@@ -39,7 +40,7 @@
 
 
         <h1>
-            @ViewBag.Title
+            " @ViewBag.CustomerName "   @ViewBag.Title
             <small>
                 <i class="icon-double-angle-right"></i>
                 @ViewBag.SmallTitle (共 @ViewBag.RecordCount 条记录)
@@ -65,7 +66,7 @@
                                 <tr>
 
                                     <th class="col-xs-2">检验时间</th>
-                                    <th class="col-xs-1">患者姓名</th>
+                                  
                                     <th class="col-xs-3">检验类型</th>
                                     <th class="col-xs-3">检验结果</th>
                                     <th class="col-xs-3">查看检验单</th>
@@ -86,8 +87,9 @@
                                         <td>
                                             @item.JianyanTime
                                         </td>
-                                        <td>姓名 </td>
-                                        <td>@item.JianyanCategory </td>
+                                      
+                                        <td>@MyService.CategoryIdToName("CategoryId=" + item.JianyanCategory)
+                                        </td>
                                         <td>@item.JianyanDescription </td>
                                         <td><a href="@item.JianyanImg" class="btn btn-link" target="_blank" >查看详细报告</a> </td>
                                     

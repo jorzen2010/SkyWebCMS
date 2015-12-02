@@ -152,6 +152,8 @@ namespace SkyWebCMS.Controllers
              if (!String.IsNullOrEmpty(Customertizhi))
              { Customertizhi = Customertizhi.Substring(0, Customertizhi.Length - 1); }
 
+             
+
              string Customerqinxiangtizhi = "";
              if (yangxuzhiresult > 30 && yangxuzhiresult<40)
              { Customerqinxiangtizhi += "阳虚质,"; }
@@ -200,7 +202,7 @@ namespace SkyWebCMS.Controllers
              //ViewBag.pinghezhiresult = pinghezhiresult;
              string JsonString = JsonHelper.JsonSerializerBySingleData(tizhiDto);
              Message msg = CMSService.Insert("Tizhi", JsonString);
-
+             msg=CMSService.UpdateFieldOneByOne("Customer", "CMSCustomer", "CustomerId=" + cid, "CustomerTizhi", Customertizhi);
              ViewBag.CustomerBirthday = CustomerBirthday;
              ViewBag.CustomerName=CustomerName;
              ViewBag.CustomerSex = CustomerSex;
@@ -238,6 +240,8 @@ namespace SkyWebCMS.Controllers
             ViewBag.PageCount = pager.PageCount;
             ViewBag.RecordCount = pager.Amount;
             ViewBag.Message = pager.Amount;
+            ViewBag.CustomerId = id;
+            ViewBag.CustomerName = MyService.CustomerIdToName("CustomerId=" + id);
 
             return View(pager.Entity);
         }
@@ -261,7 +265,9 @@ namespace SkyWebCMS.Controllers
             }
             ViewBag.CustomerName = cDto.CustomerName;
             ViewBag.CustomerSex = cDto.CustomerSex;
-            ViewBag.CustomerBirthday = cDto.CustomerBirthday.ToShortDateString(); ;
+            ViewBag.CustomerBirthday = cDto.CustomerBirthday.ToShortDateString();
+           
+            
             return View(dto);
         
         }
@@ -288,6 +294,7 @@ namespace SkyWebCMS.Controllers
         {
             ViewBag.cid = id;
             ViewData["TizhiQuestion"] = LiangbiaoService.GetTizhiQuestionList();
+            ViewBag.CustomerName = MyService.CustomerIdToName("CustomerId=" + id);
             return View();
         }
 

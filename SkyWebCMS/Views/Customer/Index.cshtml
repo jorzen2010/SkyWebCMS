@@ -45,6 +45,8 @@
                 <i class="icon-double-angle-right"></i>
                 @ViewBag.SmallTitle (共 @ViewBag.RecordCount 条记录)
             </small>
+            <small class="pull-right"><a href="@Url.Action("Create", "Customer")" class="btn btn-success"><i class="icon-plus"></i>新增患者</a></small>
+
         </h1>
 
 
@@ -52,11 +54,19 @@
 
     <!-- /.page-header -->
     <h4 class="lighter">
-        <a href="/Customer/Index?categoryId=0" class="btn btn-sm btn-primary" name="BtnCategoryId" title="0">全部：</a>
+        <a href="/Customer/Index?category=全部&guidang=@Request["guidang"]" class="btn btn-sm btn-primary" name="BtnCategoryId" title="全部">全部体质：</a>
         @foreach (CategoryDto category in ViewData["Category"] as IEnumerable<CategoryDto>)
         {
-            <a href="/Customer/Index?categoryId=@category.CategoryId" class="btn btn-sm btn-link" name="BtnCategoryId" title="@category.CategoryId">@category.CategoryName</a>
+            <a href="/Customer/Index?category=@category.CategoryName&guidang=@Request["guidang"]" class="btn btn-sm btn-link" name="BtnCategoryId" title="@category.CategoryName">@category.CategoryName</a>
         }
+
+    </h4>
+    <h4 class="lighter">
+        <a href="/Customer/Index?category=@Request["category"]&guidang=0" class="btn btn-sm btn-primary" name="BtnGuidangId" title="0">全部患者：</a>
+        @foreach (CategoryDto category in ViewData["Guidang"] as IEnumerable<CategoryDto>)
+{
+    <a href="/Customer/Index?category=@Request["category"]&guidang=@category.CategoryId" class="btn btn-sm btn-link" name="BtnGuidangId" title="@category.CategoryId">@category.CategoryName</a>
+}
 
     </h4>
     <div class="row">
@@ -75,10 +85,10 @@
                                     <th class="col-xs-1">患者身份证</th>
                                     <th class="col-xs-1">患者性别</th>
                                     <th class="col-xs-1">患者生日</th>
+                                    <th class="col-xs-1 center">归档</th>
 
-
-                                    <th class="col-xs-4">操作</th>
-                                    <th class="col-xs-4">报告</th>
+                                    <th class="col-xs-3 center">操作</th>
+                                    <th class="col-xs-4 center">报告</th>
                                 </tr>
                             </thead>
 
@@ -97,57 +107,36 @@
 
                                         <td>
                                             <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
-
-
-
-
                                                 <a href="@Url.Action("Guidang", "Customer", new { id=@item.CustomerId})" class="btn btn-xs btn-success">
-                                                    <i class="icon-edit bigger-120"></i>患者归档
+                                                    <i class="icon-group bigger-120"></i>患者归档
                                                 </a>
-                                                <a href="@Url.Action("Create", "Tizhi", new { id=@item.CustomerId})" class="btn btn-xs btn-info">
-                                                    <i class="icon-edit bigger-120"></i>体质测试
-                                                </a>
-                                                <a href="@Url.Action("Create", "Xueya", new { id=@item.CustomerId})" class="btn btn-xs btn-danger">
-                                                    <i class="icon-edit bigger-120"></i>测量血压
-                                                </a>
-                                                <a href="/Liangbiao/Index" class="btn btn-xs btn-primary">
-                                                    <i class="icon-edit bigger-120"></i>新建档案
-                                                </a>
-
-
-
-
-
                                             </div>
-
-
                                         </td>
                                         <td>
                                             <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
-
-
-
-
-
-                                                <a href="@Url.Action("List", "Tizhi", new { id=@item.CustomerId})"  class="btn btn-xs btn-warning">
-                                                    <i class="icon-edit bigger-120"></i>中医体质报告
+                                                <a href="@Url.Action("Create", "Tizhi", new { id=@item.CustomerId})" class="btn btn-xs btn-danger">
+                                                    <i class="icon-file bigger-120"></i>体质测试
                                                 </a>
-                                                <a href="@Url.Action("Index", "Xueya", new { id=@item.CustomerId})" class="btn btn-xs btn-warning">
-                                                    <i class="icon-edit bigger-120"></i>血压报告
+                                                <a href="@Url.Action("Create", "Xueya", new { id=@item.CustomerId})" class="btn btn-xs btn-danger">
+                                                    <i class="icon-heart bigger-120"></i>测量血压
                                                 </a>
-                                                <a href="@Url.Action("Index", "Chufang", new { id=@item.CustomerId})" class="btn btn-xs btn-warning">
-                                                    <i class="icon-edit bigger-120"></i>处方记录
-                                                </a>
-                                                <a href="@Url.Action("Index", "Jianyan", new { id=@item.CustomerId})" class="btn btn-xs btn-warning">
-                                                    <i class="icon-edit bigger-120"></i>检验记录
-                                                </a>
-
-
-
-
                                             </div>
-
-
+                                        </td>
+                                        <td>
+                                            <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+                                                <a href="@Url.Action("List", "Tizhi", new { id=@item.CustomerId})" class="btn btn-xs btn-info">
+                                                    <i class="icon-file bigger-120"></i>中医体质报告&nbsp;&nbsp;
+                                                </a>
+                                                <a href="@Url.Action("Index", "Xueya", new { id=@item.CustomerId})" class="btn btn-xs btn-info">
+                                                    <i class="icon-heart bigger-120"></i>血压报告&nbsp;&nbsp;
+                                                </a>
+                                                <a href="@Url.Action("Index", "Chufang", new { id=@item.CustomerId})" class="btn btn-xs btn-info">
+                                                    <i class="icon-book bigger-120"></i>处方记录 &nbsp;&nbsp;
+                                                </a>
+                                                <a href="@Url.Action("Index", "Jianyan", new { id=@item.CustomerId})" class="btn btn-xs btn-info">
+                                                    <i class="icon-suitcase bigger-120"></i>检验记录
+                                                </a>
+                                            </div>
                                         </td>
                                     </tr>
                                 }
@@ -156,9 +145,6 @@
                         </table>
                     </div><!-- /.table-responsive -->
                     <div class="hr hr-18 dotted hr-double"></div>
-
-
-
                     <div class="center">
 
                         <!-- Pagging -->
@@ -250,11 +236,14 @@
             return null ;
         }
 
+        BtnGuidangId
+
         var BtnCategoryId = document.getElementsByName("BtnCategoryId");
+        var BtnGuidangId = document.getElementsByName("BtnGuidangId");
 
         for(var i=0;i<BtnCategoryId.length;i++){
             var links = BtnCategoryId[i].getAttribute("title");
-            if(getParamValue("categoryId")==links)
+            if(decodeURI(getParamValue("category"))==links)
             {
                 $(BtnCategoryId[i]).removeClass('btn-link');
                 $(BtnCategoryId[i]).addClass('btn-primary');
@@ -263,6 +252,21 @@
             {
                 $(BtnCategoryId[i]).removeClass('btn-primary');
                 $(BtnCategoryId[i]).addClass('btn-link');
+            }
+
+        }
+
+        for(var i=0;i<BtnGuidangId.length;i++){
+            var links = BtnGuidangId[i].getAttribute("title");
+            if(getParamValue("guidang")==links)
+            {
+                $(BtnGuidangId[i]).removeClass('btn-link');
+                $(BtnGuidangId[i]).addClass('btn-primary');
+            }
+            else
+            {
+                $(BtnGuidangId[i]).removeClass('btn-primary');
+                $(BtnGuidangId[i]).addClass('btn-link');
             }
 
         }

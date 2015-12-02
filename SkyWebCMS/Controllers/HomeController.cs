@@ -21,9 +21,9 @@ namespace SkyWebCMS.Controllers
        
         public ActionResult Index()
         {
-            
 
-            return View();
+
+            return RedirectToAction("Index","Customer", new { category = "全部", guidang = "0" });
         }
         
     }

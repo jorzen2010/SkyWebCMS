@@ -65,6 +65,7 @@ namespace SkyWebCMS.Controllers
             XueyaAddViewModel model = new XueyaAddViewModel();
             model.CustomerId = id;
             ViewData["Weizhi"] = MyService.GetXueyaWeizhiSelectList();
+            ViewBag.CustomerName = MyService.CustomerIdToName("CustomerId=" + id);
             return View(model);
         }
 
@@ -86,7 +87,8 @@ namespace SkyWebCMS.Controllers
                 dto.XueyaWeizhi = model.XueyaWeizhi;
                 string JsonString = JsonHelper.JsonSerializerBySingleData(dto);
                 Message msg = CMSService.Insert("Xueya", JsonString);
-                return RedirectTo("/Customer/Index", msg.MessageInfo);
+               // return RedirectTo("/Customer/Index", msg.MessageInfo);
+                return RedirectTo("/Xueya/Index/" + dto.CustomerId, msg.MessageInfo); 
 
            
         }

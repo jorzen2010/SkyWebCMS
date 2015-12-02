@@ -21,9 +21,10 @@ namespace SkyWebCMS.Controllers
     {
         //
         // GET: /Customer/
-        public ActionResult Index(int? p, int? categoryId)
+        public ActionResult Index(int? p, string  category,string guidang)
         {
-            int CategoryId = categoryId ?? 0;
+            string Category = category ?? "全部";
+            string Guidang = guidang ?? "0";
             Pager pager = new Pager();
             pager.table = "CMSCustomer";
             pager.strwhere = "1=1";
@@ -31,11 +32,17 @@ namespace SkyWebCMS.Controllers
             pager.PageNo = p ?? 1;
             pager.FieldKey = "CustomerId";
             pager.FiledOrder = "CustomerId Desc";
-            
-            if (CategoryId > 0)
+
+            if (Category !="全部")
             {
 
-                pager.strwhere = pager.strwhere + " and charindex('" + CategoryId + "',CustomerTizhi)>0";
+                pager.strwhere = pager.strwhere + " and charindex('" + Category + "',CustomerTizhi)>0";
+
+            }
+            if (Guidang != "0")
+            {
+
+                pager.strwhere = pager.strwhere + " and charindex('" + Guidang + "',CustomerGuidang)>0";
 
             }
             pager = CMSService.SelectAll("Customer", pager);
@@ -54,6 +61,7 @@ namespace SkyWebCMS.Controllers
             ViewBag.RecordCount = pager.Amount;
             ViewBag.Message = pager.Amount;
             ViewData["Category"] = MyService.GetCategoryList("CategoryParentId=20");
+            ViewData["Guidang"] = MyService.GetCategoryList("CategoryParentId=30");
 
             return View(pager.Entity);
 
@@ -117,7 +125,8 @@ namespace SkyWebCMS.Controllers
             try
             {
                 msg = CMSService.UpdateFieldOneByOne("Customer", "CMSCustomer", "CustomerId=" + model.CustomerId, "CustomerGuidang", CustomerGuidang);
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { category="全部",guidang="0"});
+               // return RedirectTo("/Customer/Index?category=全部&guidang=0", msg.MessageInfo);
             }
 
             catch
@@ -165,7 +174,7 @@ namespace SkyWebCMS.Controllers
 
                 string JsonString = JsonHelper.JsonSerializerBySingleData(dto);
                 Message msg = CMSService.Insert("Customer", JsonString);
-                return RedirectTo("/Customer/Index", msg.MessageInfo);
+                return RedirectTo("/Customer/Index?category=全部&guidang=0", msg.MessageInfo);
             }
             catch
             {

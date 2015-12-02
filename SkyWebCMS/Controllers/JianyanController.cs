@@ -47,6 +47,7 @@ namespace SkyWebCMS.Controllers
             ViewBag.RecordCount = pager.Amount;
             ViewBag.Message = pager.Amount;
             ViewBag.CustomerId = id;
+            ViewBag.CustomerName = MyService.CustomerIdToName("CustomerId=" + id);
 
             return View(pager.Entity);
         }
@@ -65,6 +66,7 @@ namespace SkyWebCMS.Controllers
             ViewData["Category"] = MyService.GetCategorySelectList("CategoryParentId=40");
             JianyanAddViewModel model = new JianyanAddViewModel();
             model.JianyanCustomerId = id;
+            ViewBag.CustomerName = MyService.CustomerIdToName("CustomerId=" + id);
             return View(model);
         }
 
@@ -88,7 +90,10 @@ namespace SkyWebCMS.Controllers
             }
             catch
             {
-                return View();
+                Message msg = new Message();
+                msg.MessageInfo = "好像没上传图片，请点击上传按钮后在提交";
+
+                return RedirectTo("/Jianyan/Create/" + model.JianyanCustomerId, msg.MessageInfo); 
             }
         }
 

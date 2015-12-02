@@ -37,6 +37,26 @@ namespace SkyWebCMS.Controllers
         {
             return View();
         }
+        public ActionResult Logout()
+        {
+            HttpCookie cookie = new HttpCookie("User");
+            cookie.Value = "";
+            System.Web.HttpContext.Current.Response.Cookies.Add(cookie);
+            cookie.Expires = DateTime.Now.AddDays(-1);
+
+            HttpCookie cookieid = new HttpCookie("UserId");
+            cookieid.Value = "";
+            System.Web.HttpContext.Current.Response.Cookies.Add(cookieid);
+            cookieid.Expires = DateTime.Now.AddDays(-1);
+
+            HttpCookie UserImg = new HttpCookie("UserImg");
+            UserImg.Value = "";
+            System.Web.HttpContext.Current.Response.Cookies.Add(UserImg);
+            UserImg.Expires = DateTime.Now.AddDays(-1);
+
+            return Redirect("Login");
+        }
+
         [HttpPost]
         public ActionResult UserLogin(UserLoginViewModel model)
         {

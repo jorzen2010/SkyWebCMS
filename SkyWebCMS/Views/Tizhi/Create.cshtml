@@ -1,6 +1,6 @@
 ﻿@{
     ViewBag.Title = "中医体质辨识";
-    ViewBag.SmallTitle = "中医体质辨识";
+    ViewBag.SmallTitle = "黑龙江省中医药科学院";
 }
 @section HeadCss{
     <link href="/assets/css/test.css" rel="stylesheet" type="text/css" />
@@ -8,10 +8,10 @@
 <div class="page-content">
     <div class="page-header">
         <h1>
-            中医体质辨识测评
+            “ @ViewBag.CustomerName ”  @ViewBag.Title
             <small>
                 <i class="icon-double-angle-right"></i>
-                黑龙江省中医药科学院
+                @ViewBag.SmallTitle
             </small>
         </h1>
     </div><!-- /.page-header -->

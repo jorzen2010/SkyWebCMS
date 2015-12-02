@@ -127,6 +127,18 @@ namespace Bll
             return dto.CustomerName;
         
         }
+        public static string CategoryIdToName(string strWhere)
+        {
+            CategoryDto dto = new CategoryDto();
+            DataTable dt = CMSService.SelectOne("Category", "CMSCategory", strWhere);
+            foreach (DataRow dr in dt.Rows)
+            {
+                dto = CategoryMapping.getDTO(dr);
+
+            }
+            return dto.CategoryName;
+        
+        }
         //用户列表
         public static List<SelectListItem> GetUserSelectList(string strwhere)
         {

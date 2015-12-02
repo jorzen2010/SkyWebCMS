@@ -39,11 +39,13 @@
 
 
         <h1>
-            @ViewBag.Title
+            " @ViewBag.CustomerName " @ViewBag.Title
             <small>
                 <i class="icon-double-angle-right"></i>
                 @ViewBag.SmallTitle (共 @ViewBag.RecordCount 条记录)
             </small>
+            <small class="pull-right"><a href="@Url.Action("Create", "Tizhi", new { id = ViewBag.CustomerId })" class="btn btn-success"><i class="icon-plus"></i>新增体质测试</a></small>
+
         </h1>
 
 
@@ -62,9 +64,9 @@
                             <thead>
                                 <tr>
 
-                                    <th>序号</th>
-                                    <th>档案号</th>
                                     <th>测试时间</th>
+                                    <th>档案号</th>
+                                   
                                     <th>测试结果</th>
 
 
@@ -78,12 +80,10 @@
                                     <tr>
 
 
-                                        <td>
-                                            @item.TizhiId
-                                        </td>
-
-                                        <td>@item.TizhiNumber</td>
+                                       
                                         <td>@item.TizhiTime</td>
+                                        <td>@item.TizhiNumber</td>
+                                        
                                         <td>@item.TizhiResult</td>
 
 
