@@ -9,6 +9,7 @@ namespace Dto
     public class ChufangDto
     {
         public int ChufangId { get; set; }
+        public string ChufangImg { get; set; }
         public string ChufangZhenduan { get; set; }
         public string ChufangChuzhi { get; set; }
         public string ChufangYongyao { get; set; }

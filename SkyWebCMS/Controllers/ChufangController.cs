@@ -81,6 +81,15 @@ namespace SkyWebCMS.Controllers
                 dto.ChufangYongyao=model.ChufangYongyao;
                 dto.ChufangCustomerId = model.ChufangCustomerId;
                 dto.ChufangTime = System.DateTime.Now;
+                if (string.IsNullOrEmpty(model.ChufangImg))
+                {
+                    dto.ChufangImg = "";
+                }
+                else
+                { 
+                dto.ChufangImg = model.ChufangImg;
+                }
+                
 
                 string JsonString = JsonHelper.JsonSerializerBySingleData(dto);
                 Message msg = CMSService.Insert("Chufang", JsonString);
@@ -89,7 +98,10 @@ namespace SkyWebCMS.Controllers
             }
             catch
             {
-                return View();
+                Message msg = new Message();
+                msg.MessageInfo = "上传图片好像出错了";
+
+                return RedirectTo("/Chufang/Create/" + model.ChufangCustomerId, msg.MessageInfo); 
             }
         }
 

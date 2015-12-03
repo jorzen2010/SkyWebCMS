@@ -173,6 +173,7 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ChufangController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\FankuiController.cs" />
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\JianyanController.cs" />
@@ -204,6 +205,7 @@
     <Content Include="assets\avatar\avatar.swf" />
     <Content Include="assets\avatar\crossdomain.xml" />
     <Content Include="assets\avatar\default.jpg" />
+    <Content Include="assets\css\diaocha.css" />
     <Content Include="assets\css\labelauty.css" />
     <Content Include="assets\css\test.css" />
     <Content Include="assets\images\input-checked.png" />
@@ -537,6 +539,7 @@
     <Content Include="Views\Chufang\Index.cshtml" />
     <Content Include="Views\Jianyan\Create.cshtml" />
     <Content Include="Views\Jianyan\Index.cshtml" />
+    <Content Include="Views\Fankui\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

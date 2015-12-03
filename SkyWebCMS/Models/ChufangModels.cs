@@ -10,6 +10,10 @@ namespace SkyWebCMS.Models
     public class ChufangAddViewModel
     {
         public int ChufangId { get; set; }
+        [Display(Name = "处方报告")]
+        [Required(ErrorMessage = "处方报告")]
+        [ImageUpload("Chufang")]
+        public string ChufangImg { get; set; }
         [Display(Name = "诊断")]
         [Required(ErrorMessage = "请输入诊断")]
         public string ChufangZhenduan { get; set; }

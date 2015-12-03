@@ -87,8 +87,9 @@
                                     <th class="col-xs-1">患者生日</th>
                                     <th class="col-xs-1 center">归档</th>
 
-                                    <th class="col-xs-3 center">操作</th>
+                                    <th class="col-xs-2 center">操作</th>
                                     <th class="col-xs-4 center">报告</th>
+                                    <th class="col-xs-1 center">患者反馈</th>
                                 </tr>
                             </thead>
 
@@ -135,6 +136,13 @@
                                                 </a>
                                                 <a href="@Url.Action("Index", "Jianyan", new { id=@item.CustomerId})" class="btn btn-xs btn-info">
                                                     <i class="icon-suitcase bigger-120"></i>检验记录
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+                                                <a href="@Url.Action("Fankui", "Customer", new { id=@item.CustomerId})" class="btn btn-xs btn-success">
+                                                    <i class="icon-th bigger-120"></i>患者反馈
                                                 </a>
                                             </div>
                                         </td>
@@ -192,7 +200,10 @@
         });
 
         PageClick = function(no) {
-            window.location = "?p=" + no;
+           // window.location = "?p=" + no;
+           // category=全部&guidang=0
+            window.location = "?p=" + no+"&category="+getParamValue("category")+"&guidang="+getParamValue("guidang");
+
         }
 
         function getUrlParams()

@@ -69,6 +69,7 @@
                                     <th class="col-xs-3">诊断</th>
                                     <th class="col-xs-3">处置</th>
                                     <th class="col-xs-3">用药</th>
+                                    <th class="col-xs-1">查看详细报告</th>
                                    
                                     
 
@@ -90,6 +91,16 @@
                                         <td>@item.ChufangZhenduan </td>
                                         <td>@item.ChufangChuzhi </td>
                                         <td>@item.ChufangYongyao </td>
+                                        <td>
+                                        @if (string.IsNullOrEmpty(item.ChufangImg))
+                                        {
+                                            <a  class="btn btn-xs">没有图片报告</a> 
+                                        }
+                                        else
+                                        { 
+                                            <a href="@item.ChufangImg" class="btn btn-link" target="_blank">查看详细报告</a> 
+                                        }
+                                        </td>
                                     
 
                          

@@ -90,6 +90,21 @@
                                   @Html.ValidationMessageFor(model => model.ChufangYongyao)
                               </div>
                           </div>
+    
+    <div class="form-group">
+                          <div class="col-sm-2"></div>
+                              @Html.LabelFor(model => model.ChufangImg, new { @class = "col-sm-1 control-label no-padding-right" })
+
+                              <div class="col-sm-9">
+
+                                  @Html.EditorFor(model => model.ChufangImg, new { @class = "col-xs-10 col-sm-8" })
+
+                                  @Html.ValidationMessageFor(model => model.ChufangImg)
+                              </div>
+                          </div>
+    
+    
+
                       
                  
                      

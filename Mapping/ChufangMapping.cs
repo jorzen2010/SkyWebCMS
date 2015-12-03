@@ -30,7 +30,7 @@ namespace Mapping
         }
         public SqlParameter[] JsonStringToSqlParameter(string jsonString)
         {
-            SqlParameter[] arParames = new SqlParameter[6];
+            SqlParameter[] arParames = new SqlParameter[7];
             ChufangDto dto = JsonHelper.JsonDeserializeBySingleData<ChufangDto>(jsonString);
 
             arParames[0] = new SqlParameter("@ChufangId", SqlDbType.Int);
@@ -51,6 +51,9 @@ namespace Mapping
             arParames[5] = new SqlParameter("@ChufangTime", SqlDbType.DateTime);
             arParames[5].Value = dto.ChufangTime;
 
+            arParames[6] = new SqlParameter("@ChufangImg", SqlDbType.VarChar,500);
+            arParames[6].Value = dto.ChufangImg;
+
             return arParames;
         }
         public static ChufangDto getDTO(DataRow dr)
@@ -61,6 +64,7 @@ namespace Mapping
             dto.ChufangId = int.Parse(dr["ChufangId"].ToString());
 
             dto.ChufangCustomerId = int.Parse(dr["ChufangCustomerId"].ToString());
+            dto.ChufangImg = dr["ChufangImg"].ToString();
             dto.ChufangZhenduan = dr["ChufangZhenduan"].ToString();
             dto.ChufangChuzhi = dr["ChufangChuzhi"].ToString();
             dto.ChufangYongyao = dr["ChufangYongyao"].ToString();
