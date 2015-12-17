@@ -222,12 +222,10 @@ namespace Common
 
         public static DataTable GetOneByWhere(string table, string strwhere)
         {
-          
-
+         
             SqlParameter[] arParames = new SqlParameter[2];
             arParames[0] = new SqlParameter("@table ", SqlDbType.VarChar, 200);
             arParames[0].Value = table;
-
             arParames[1] = new SqlParameter("@Where ", SqlDbType.VarChar, 8000);
             arParames[1].Value = strwhere;
             SqlConnection myconn = null;

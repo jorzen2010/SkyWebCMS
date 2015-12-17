@@ -50,6 +50,21 @@ namespace Bll
             return items;
         
         }
+
+        //分类的下拉列表显示
+        public static List<SelectListItem> GetCategorySelectBlankList(string strwhere)
+        {
+            DataTable dt = CMSService.SelectSome("Category", "CMSCategory", strwhere);
+            List<SelectListItem> items = new List<SelectListItem>();
+            items.Add(new SelectListItem { Text = "请输入分类", Value = "" });
+            foreach (DataRow dr in dt.Rows)
+            {
+                CategoryDto dto = CategoryMapping.getDTO(dr);
+                items.Add(new SelectListItem { Text = dto.CategoryName, Value = dto.CategoryId.ToString() });
+            }
+            return items;
+
+        }
         //性别下拉列表
         public static List<SelectListItem> GetSexSelectList()
         {
@@ -127,6 +142,19 @@ namespace Bll
             return dto.CustomerName;
         
         }
+        public static string UserIdToName(string strWhere)
+        {
+            UserDto dto = new UserDto();
+            DataTable dt = CMSService.SelectOne("User", "CMSUser", strWhere);
+            foreach (DataRow dr in dt.Rows)
+            {
+                dto = UserMapping.getDTO(dr);
+
+            }
+            return dto.UserName;
+
+        
+        }
         public static string CategoryIdToName(string strWhere)
         {
             CategoryDto dto = new CategoryDto();
@@ -138,6 +166,27 @@ namespace Bll
             }
             return dto.CategoryName;
         
+        }
+        public static double GetFenshuByCategory(int categoryId)
+        {
+            double fenshu = 0;
+            CategoryDto dto = new CategoryDto();
+            DataTable dt = CMSService.SelectOne("Category", "CMSCategory", "CategoryId="+categoryId);
+            foreach (DataRow dr in dt.Rows)
+            {
+                dto = CategoryMapping.getDTO(dr);
+
+            }
+            try
+            {
+                fenshu = double.Parse(dto.CategoryDescription);
+            }
+            catch 
+            {
+                fenshu = 0;
+            }
+            return fenshu;
+
         }
         //用户列表
         public static List<SelectListItem> GetUserSelectList(string strwhere)

@@ -19,9 +19,33 @@ namespace SkyWebCMS.Controllers
     {
         //
         // GET: /Jixiao/
-        public ActionResult Index()
+        public ActionResult Index(int? p)
         {
-            return View();
+            Pager pager = new Pager();
+            pager.table = "CMSJixiao";
+            pager.strwhere = "1=1";
+            pager.PageSize = 2;
+            pager.PageNo = p ?? 1;
+            pager.FieldKey = "JixiaoId";
+            pager.FiledOrder = "JixiaoId Desc";
+            pager = CMSService.SelectAll("Jixiao", pager);
+
+            List<JixiaoDto> list = new List<JixiaoDto>();
+            foreach (DataRow dr in pager.EntityDataTable.Rows)
+            {
+                JixiaoDto dto = JixiaoMapping.getDTO(dr);
+                list.Add(dto);
+
+
+            }
+            pager.Entity = list.AsQueryable();
+
+            ViewBag.PageNo = p ?? 1;
+            ViewBag.PageCount = pager.PageCount;
+            ViewBag.RecordCount = pager.Amount;
+            ViewBag.Message = pager.Amount;
+
+            return View(pager.Entity);
         }
 
         //
@@ -36,9 +60,9 @@ namespace SkyWebCMS.Controllers
         public ActionResult Create()
         {
             JixiaoModel model = new JixiaoModel();
-            model.JixiaoUser = "zheshi";
-            ViewData["ParentCategory"] = MyService.GetCategorySelectList("CategoryParentId=11");
-            ViewData["Category"] = MyService.GetCategorySelectList("CategoryParentId=12");
+            model.JixiaoUser = System.Web.HttpContext.Current.Request.Cookies["User"].Value;
+            ViewData["ParentCategory"] = MyService.GetCategorySelectBlankList("CategoryParentId=11");
+            ViewData["Category"] = MyService.GetCategorySelectBlankList("CategoryParentId=12");
             return View(model);
         }
 
@@ -48,7 +72,8 @@ namespace SkyWebCMS.Controllers
         public ActionResult Create(JixiaoModel model)
         {
             JixiaoDto dto = new JixiaoDto();
-            
+           
+           
             dto.JixiaoUser = model.JixiaoUser;
             dto.JixiaoForUser = model.JixiaoForUser;
             dto.JixiaoCategory = model.JixiaoCategory;
@@ -56,7 +81,7 @@ namespace SkyWebCMS.Controllers
             dto.JixiaoRenwu = model.JixiaoRenwu;
             dto.JixiaoStatus = "待审核";
             dto.JixiaoTime = System.DateTime.Now;
-          //  dto.JixiaoFenshu = 5.65;
+            dto.JixiaoFenshu = MyService.GetFenshuByCategory(model.JixiaoCategory);
             dto.JixiaoShenheTime = System.DateTime.Now;
 
 

@@ -12,7 +12,7 @@ using Dto;
 
 namespace Mapping
 {
-    public class JixiaoMapping: IMapping
+    public class JixiaoMapping : IMapping
     {
         public string GetStoredProcedure(string actionName)
         {
@@ -27,31 +27,31 @@ namespace Mapping
             }
 
             return StoredProcedure;
-        }           
-        public  SqlParameter[] JsonStringToSqlParameter(string jsonString)
+        }
+        public SqlParameter[] JsonStringToSqlParameter(string jsonString)
         {
-            SqlParameter[] arParames = new SqlParameter[10];
+            SqlParameter[] arParames = new SqlParameter[9];
             JixiaoDto jixiaoDto = JsonHelper.JsonDeserializeBySingleData<JixiaoDto>(jsonString);
 
-            arParames[0] = new SqlParameter("@JixiaoUser", SqlDbType.Int);
+            arParames[0] = new SqlParameter("@JixiaoUser", SqlDbType.VarChar, 50);
             arParames[0].Value = jixiaoDto.JixiaoUser;
 
-            arParames[1] = new SqlParameter("@JixiaoForUser", SqlDbType.VarChar,50);
+            arParames[1] = new SqlParameter("@JixiaoForUser", SqlDbType.VarChar, 50);
             arParames[1].Value = jixiaoDto.JixiaoForUser;
 
-            arParames[2] = new SqlParameter("@JixiaoParentCategory", SqlDbType.VarChar,500);
+            arParames[2] = new SqlParameter("@JixiaoParentCategory", SqlDbType.VarChar, 500);
             arParames[2].Value = jixiaoDto.JixiaoParentCategory;
 
-            arParames[3] = new SqlParameter("@JixiaoCategory", SqlDbType.VarChar,500);
+            arParames[3] = new SqlParameter("@JixiaoCategory", SqlDbType.VarChar, 500);
             arParames[3].Value = jixiaoDto.JixiaoCategory;
 
-            arParames[4] = new SqlParameter("@JixiaoRenwu", SqlDbType.VarChar,5000);
+            arParames[4] = new SqlParameter("@JixiaoRenwu", SqlDbType.VarChar, 5000);
             arParames[4].Value = jixiaoDto.JixiaoRenwu;
 
-            arParames[5] = new SqlParameter("@JixiaoStatus", SqlDbType.VarChar,50);
+            arParames[5] = new SqlParameter("@JixiaoStatus", SqlDbType.VarChar, 50);
             arParames[5].Value = jixiaoDto.JixiaoStatus;
 
-            arParames[6] = new SqlParameter("@JixiaoFenshu", SqlDbType.Float);
+            arParames[6] = new SqlParameter("@JixiaoFenshu", SqlDbType.Real);
             arParames[6].Value = jixiaoDto.JixiaoFenshu;
 
             arParames[7] = new SqlParameter("@JixiaoTime", SqlDbType.DateTime);
@@ -64,34 +64,32 @@ namespace Mapping
 
 
 
- 
+
 
 
 
             return arParames;
         }
-        public static XueyaDto getDTO(DataRow dr) 
+        public static JixiaoDto getDTO(DataRow dr)
         {
 
-                XueyaDto xueyaDto = new XueyaDto();
+            JixiaoDto jixiaoDto = new JixiaoDto();
 
-                xueyaDto.XueyaId = int.Parse(dr["XueyaId"].ToString());
+            jixiaoDto.JixiaoId = int.Parse(dr["JixiaoId"].ToString());
+            jixiaoDto.JixiaoUser = dr["JixiaoUser"].ToString();
+            jixiaoDto.JixiaoForUser = dr["JixiaoForUser"].ToString();
+            jixiaoDto.JixiaoCategory = int.Parse(dr["JixiaoCategory"].ToString());
+            jixiaoDto.JixiaoParentCategory = int.Parse(dr["JixiaoParentCategory"].ToString());
+            jixiaoDto.JixiaoTime = DateTime.Parse(dr["JixiaoTime"].ToString());
+            jixiaoDto.JixiaoShenheTime = DateTime.Parse(dr["JixiaoShenheTime"].ToString());
+            jixiaoDto.JixiaoFenshu = double.Parse(dr["JixiaoFenshu"].ToString());
+            jixiaoDto.JixiaoRenwu = dr["JixiaoRenwu"].ToString();
+            jixiaoDto.JixiaoStatus = dr["JixiaoStatus"].ToString();
 
-                xueyaDto.CustomerId = int.Parse(dr["CustomerId"].ToString());
-                xueyaDto.XueyaGaoya = int.Parse(dr["XueyaGaoya"].ToString());
-                xueyaDto.XueyaDiya = int.Parse(dr["XueyaDiya"].ToString());
-                xueyaDto.XueyaMaibo = int.Parse(dr["XueyaMaibo"].ToString());
-                xueyaDto.XueyaTime = DateTime.Parse(dr["XueyaTime"].ToString());
-                xueyaDto.XueyaSId = dr["XueyaSId"].ToString();
-                xueyaDto.XueyaUId = int.Parse(dr["XueyaUId"].ToString());
-                xueyaDto.CustomerId = int.Parse(dr["CustomerId"].ToString());
-                xueyaDto.XueyaSource = dr["XueyaSource"].ToString();
-                xueyaDto.XueyaWeizhi = dr["XueyaWeizhi"].ToString();
-
-                return xueyaDto;
+            return jixiaoDto;
         }
 
-      
-        
+
+
     }
 }

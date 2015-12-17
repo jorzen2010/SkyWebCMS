@@ -17,10 +17,10 @@ namespace SkyWebCMS.Models
         public string JixiaoForUser { get; set; }
         [Display(Name = "任务分类")]
         [Required(ErrorMessage = "请输入任务分类")]
-        public string JixiaoParentCategory { get; set; }
+        public int JixiaoParentCategory { get; set; }
         [Display(Name = "任务具体分类")]
         [Required(ErrorMessage = "请输入任务具体分类")]
-        public string JixiaoCategory { get; set; }
+        public int JixiaoCategory { get; set; }
         [Display(Name = "任务名称")]
         [Required(ErrorMessage = "请输入任务名称")]
         public string JixiaoRenwu { get; set; }
