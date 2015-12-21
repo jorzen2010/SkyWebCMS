@@ -2,30 +2,171 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">@ViewBag.msg</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+<div class="breadcrumbs" id="breadcrumbs">
+    <script type="text/javascript">
+        try { ace.settings.check('breadcrumbs', 'fixed') } catch (e) { }
+    </script>
+
+    <ul class="breadcrumb">
+        <li>
+            <i class="icon-home home-icon"></i>
+            <a href="#">首页</a>
+        </li>
+        <li class="active">控制台</li>
+    </ul><!-- .breadcrumb -->
+
+    <div class="nav-search" id="nav-search">
+        <form class="form-search">
+            <span class="input-icon">
+                <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+                <i class="icon-search nav-search-icon"></i>
+            </span>
+        </form>
+    </div><!-- #nav-search -->
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            控制台
+            <small>
+                <i class="icon-double-angle-right"></i>
+                查看
+            </small>
+        </h1>
+    </div><!-- /.page-header -->
+
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- PAGE CONTENT BEGINS -->
+
+            <div class="alert alert-block alert-success">
+                <button type="button" class="close" data-dismiss="alert">
+                    <i class="icon-remove"></i>
+                </button>
+
+                <i class="icon-ok green"></i>
+
+                欢迎使用
+                <strong class="green">
+                   曲线社区医养结合客户管理系统
+                    <small>(v1.2)</small>
+                </strong>
+                ，为千万老人提供专业健康管理服务！
+            </div>
+
+            <div class="row">
+                <div class="space-6"></div>
+
+                <div class="col-sm-12 infobox-container">
+                    <div class="infobox infobox-green  ">
+                        <div class="infobox-icon">
+                            <i class="icon-user"></i>
+                        </div>
+
+                        <div class="infobox-data">
+                            <span class="infobox-data-number">@ViewBag.CustomerCount</span>
+                            <div class="infobox-content">客户数量</div>
+                        </div>
+                        <div class="stat stat-success">8</div>
+                    </div>
+
+                    <div class="infobox infobox-blue  ">
+                        <div class="infobox-icon">
+                            <i class="icon-file"></i>
+                        </div>
+
+                        <div class="infobox-data">
+                            <span class="infobox-data-number">1235</span>
+                            <div class="infobox-content">体质报告</div>
+                        </div>
+
+                        <div class="badge badge-success">
+                            0
+                            <i class="icon-arrow-up"></i>
+                        </div>
+                    </div>
+
+                    <div class="infobox infobox-pink  ">
+                        <div class="infobox-icon">
+                            <i class="icon-heart"></i>
+                        </div>
+
+                        <div class="infobox-data">
+                            <span class="infobox-data-number">8</span>
+                            <div class="infobox-content">血压报告</div>
+                        </div>
+                        <div class="stat stat-important">4%</div>
+                    </div>
+
+                    <div class="infobox infobox-red  ">
+                        <div class="infobox-icon">
+                            <i class="icon-book"></i>
+                        </div>
+
+                        <div class="infobox-data">
+                            <span class="infobox-data-number">7</span>
+                            <div class="infobox-content">处方报告</div>
+                        </div>
+                    </div>
+
+                    <div class="infobox infobox-red  ">
+                        <div class="infobox-icon">
+                            <i class="icon-beaker"></i>
+                        </div>
+
+                        <div class="infobox-data">
+                            <span class="infobox-data-number">7</span>
+                            <div class="infobox-content">化验报告</div>
+                        </div>
+                    </div>
+
+                    
+
+                    <div class="space-6"></div>
+
+                    <div class="infobox infobox-green infobox-small infobox-dark">
+                        <div class="infobox-chart">
+                            <span class="sparkline" data-values="3,4,2,3,4,4,2,2"></span>
+                        </div>
+
+                        <div class="infobox-data">
+                            <div class="infobox-content">完成任务</div>
+                            <div class="infobox-content">25626</div>
+                        </div>
+                    </div>
+
+                    <div class="infobox infobox-blue infobox-small infobox-dark">
+                        <div class="infobox-chart">
+                            <span class="sparkline" data-values="3,4,2,3,4,4,2,2"></span>
+                        </div>
+
+                        <div class="infobox-data">
+                            <div class="infobox-content">提交任务</div>
+                            <div class="infobox-content">25626</div>
+                        </div>
+                    </div>
+
+                    <div class="infobox infobox-orange2 infobox-small infobox-dark">
+                        <div class="infobox-chart">
+                            <span class="sparkline" data-values="3,4,2,3,4,4,2,2"></span>
+                        </div>
+
+                        <div class="infobox-data">
+                            <div class="infobox-content">完成率</div>
+                            <div class="infobox-content">90%</div>
+                        </div>
+                    </div>
+                    
+                </div>
+
+         
+
+            
+            </div><!-- /row -->
+
+          
+            <!-- PAGE CONTENT ENDS -->
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+</div><!-- /.page-content -->

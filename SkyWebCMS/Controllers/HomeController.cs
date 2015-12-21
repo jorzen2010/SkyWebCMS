@@ -21,9 +21,10 @@ namespace SkyWebCMS.Controllers
        
         public ActionResult Index()
         {
-
-
-            return RedirectToAction("Index","Customer", new { category = "全部", guidang = "0" });
+            int CustomerCount = CMSService.GetCount("CustomerDto", "CMSCustomer", "1=1");
+            ViewBag.CustomerCount = CustomerCount;
+            return View();
+            //return RedirectToAction("Index","Customer", new { category = "全部", guidang = "0" });
         }
         
     }

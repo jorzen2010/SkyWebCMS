@@ -60,7 +60,7 @@ namespace SkyWebCMS.Controllers
         public ActionResult Create()
         {
             JixiaoModel model = new JixiaoModel();
-            model.JixiaoUser = System.Web.HttpContext.Current.Request.Cookies["User"].Value;
+            model.JixiaoUser = System.Web.HttpContext.Current.Request.Cookies["UserId"].Value;
             ViewData["ParentCategory"] = MyService.GetCategorySelectBlankList("CategoryParentId=11");
             ViewData["Category"] = MyService.GetCategorySelectBlankList("CategoryParentId=12");
             return View(model);

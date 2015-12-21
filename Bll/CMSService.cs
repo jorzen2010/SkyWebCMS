@@ -67,7 +67,13 @@ namespace Bll
             pager=CommonDal.GetPager(pager);
             return pager; 
         }
-       
+        public static int GetCount(string DtoName, string table, string strWhere)
+        {
+            int count = 0;
+            count = CommonDal.GetCountByWhere(table, strWhere);
+            return count;
+        
+        }
         public static DataTable SelectOne(string DtoName,string table,string strWhere)
         {
             IMapping Mapping = MappingFactory.CreatMapping(DtoName);

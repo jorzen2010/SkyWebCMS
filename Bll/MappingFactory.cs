@@ -57,6 +57,10 @@ namespace Bll
             {
                 Mapping = new JixiaoMapping();
             }
+            if (DtoName == "Fankui")
+            {
+                Mapping = new FankuiMapping();
+            }
 
             return Mapping;
 

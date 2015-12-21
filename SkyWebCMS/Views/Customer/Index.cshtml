@@ -89,7 +89,7 @@
 
                                     <th class="col-xs-2 center">操作</th>
                                     <th class="col-xs-4 center">报告</th>
-                                    <th class="col-xs-1 center">患者反馈</th>
+                                    <th class="col-xs-1 center">沟通反馈</th>
                                 </tr>
                             </thead>
 
@@ -141,8 +141,8 @@
                                         </td>
                                         <td>
                                             <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
-                                                <a href="@Url.Action("Fankui", "Customer", new { id=@item.CustomerId})" class="btn btn-xs btn-success">
-                                                    <i class="icon-th bigger-120"></i>患者反馈
+                                                <a href="@Url.Action("Index", "Fankui", new { id=@item.CustomerId})" class="btn btn-xs btn-success">
+                                                    <i class="icon-th bigger-120"></i>沟通反馈
                                                 </a>
                                             </div>
                                         </td>

@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="ArticleMapping.cs" />
     <Compile Include="CategoryMapping.cs" />
+    <Compile Include="FankuiMapping.cs" />
     <Compile Include="ImageMapping.cs" />
     <Compile Include="ChufangMapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

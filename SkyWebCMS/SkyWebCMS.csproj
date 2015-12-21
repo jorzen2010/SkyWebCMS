@@ -191,6 +191,7 @@
     <Compile Include="Models\CustomerModels.cs" />
     <Compile Include="Models\ArticleModels.cs" />
     <Compile Include="Models\CategoryModels.cs" />
+    <Compile Include="Models\FankuiModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ImageModels.cs" />
     <Compile Include="Attributes\CMSAuthAttribute.cs" />
@@ -539,8 +540,10 @@
     <Content Include="Views\Chufang\Index.cshtml" />
     <Content Include="Views\Jianyan\Create.cshtml" />
     <Content Include="Views\Jianyan\Index.cshtml" />
-    <Content Include="Views\Fankui\Create.cshtml" />
+    <Content Include="Views\Fankui\Create-Customer.cshtml" />
     <Content Include="Views\Jixiao\Index.cshtml" />
+    <Content Include="Views\Fankui\Create.cshtml" />
+    <Content Include="Views\Fankui\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

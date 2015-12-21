@@ -294,14 +294,47 @@ namespace Common
         }
         #endregion
 
-        
+        #region 获取集合总数
+        public static int GetCountByWhere(string table, string strwhere)
+        {
+
+            int count=0;
+            SqlParameter[] arParames = new SqlParameter[2];
+            arParames[0] = new SqlParameter("@table ", SqlDbType.VarChar, 200);
+            arParames[0].Value = table;
+
+            arParames[1] = new SqlParameter("@Where ", SqlDbType.VarChar, 8000);
+            arParames[1].Value = strwhere;
+            SqlConnection myconn = null;
+            try
+            {
+                myconn = new SqlConnection(CommonDal.ConnectionString);
+                count = SqlHelper.ExecuteNonQuery(myconn, CommandType.StoredProcedure, "getCountByWhere", arParames);
+                return count;
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+
+                myconn.Close();
+                myconn.Dispose();
+            }
+
+
+        }
+        #endregion
 
 
 
-        
 
-       
 
-     
+
+
+
+
+
     }
 }

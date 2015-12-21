@@ -1,143 +1,132 @@
-﻿@using System.Configuration;
+﻿@model SkyWebCMS.Models.FankuiAddViewModel
 @{
-    ViewBag.Title = "黑龙江省中医医院";
-    Layout = null;
+    ViewBag.Title = "反馈管理";
+    ViewBag.SmallTitle = "添加反馈记录";
+}
+@section HeadJS{
+    <script src="/assets/js/ajaxfileupload.js"></script>
+}
+<div class="breadcrumbs" id="breadcrumbs">
+    <script type="text/javascript">
+        try { ace.settings.check('breadcrumbs', 'fixed') } catch (e) { }
+    </script>
+
+    <ul class="breadcrumb">
+        <li>
+            <i class="icon-home home-icon"></i>
+            <a href="#">首页</a>
+        </li>
+
+        <li>
+            <a href="#">@ViewBag.Title</a>
+        </li>
+        <li class="active">@ViewBag.SmallTitle</li>
+    </ul><!-- .breadcrumb -->
+
+    <!-- #nav-search -->
+</div>
+
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            “ @ViewBag.CustomerName ”  @ViewBag.Title
+            <small>
+                <i class="icon-double-angle-right"></i>
+                @ViewBag.SmallTitle
+            </small>
+        </h1>
+        
+    </div><!-- /.page-header -->
+
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- PAGE CONTENT BEGINS -->
+            @if (ViewBag.Status == "Error")
+            {
+
+                <div class="alert alert-warning">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <i class="icon-remove"></i>
+                    </button>
+                    <strong>提示：</strong>
+
+                    @ViewBag.msg
+                    <br />
+                </div>
+
+            }
+            <div class="row">
+                <div class="col-xs-12">
+                    
+@using (Html.BeginForm("Create", "Fankui", FormMethod.Post, new { @class="form-horizontal"}))
+                  {
+                    @Html.HiddenFor(model=>model.FankuiCustomerId)
+    <div class="form-group">
+                            @Html.LabelFor(model => model.FankuiSource, new { @class = "col-sm-3 control-label no-padding-right" })
+
+                            <div class="col-sm-9">
+                                @Html.DropDownListFor(model => model.FankuiSource, ViewData["Source"] as IEnumerable<SelectListItem>, new { @class = "col-xs-10 col-sm-8" })
+                                @Html.ValidationMessageFor(model => model.FankuiSource)
+                            </div>
+                        </div>
+    
+                          <div class="form-group">
+                         
+                              @Html.LabelFor(model => model.FankuiResult, new { @class = "col-sm-3 control-label no-padding-right" })
+
+                              <div class="col-sm-9">
+
+                                  @Html.DropDownListFor(model => model.FankuiResult, ViewData["FankuiCategory"] as IEnumerable<SelectListItem>, new { @class = "col-xs-10 col-sm-8" })
+
+
+                                  @Html.ValidationMessageFor(model => model.FankuiResult)
+                              </div>
+                          </div>
+    
+					  
+                       <div class="form-group">
+                            @Html.LabelFor(model => model.FankuiDescription, new { @class = "col-sm-3 control-label no-padding-right" })
+
+                            <div class="col-sm-9">
+
+                                @Html.TextAreaFor(model => model.FankuiDescription, new { @class = "col-xs-10 col-sm-8" })
+                                @Html.ValidationMessageFor(model => model.FankuiDescription)
+                            </div>
+                        </div>
+
+    
+
+  
+    
+                        <div class="clearfix form-actions">
+										<div class="col-md-offset-3 col-md-9">
+											<button class="btn btn-info" type="submit">
+												<i class="icon-ok bigger-110"></i>
+												提交
+											</button>
+
+											&nbsp; &nbsp; &nbsp;
+											<button class="btn" type="reset">
+												<i class="icon-undo bigger-110"></i>
+												重置
+											</button>
+										</div>
+						</div>
+}
+									
+								<!-- /.table-responsive -->
+
+                </div>
+                
+    <!-- /span -->
+            </div>
+
+            <!-- PAGE CONTENT ENDS -->
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+</div><!-- /.page-content -->
+@section BottomScripts {
+    @Scripts.Render("~/bundles/jqueryval")
 }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <title>@ViewBag.Title</title>
-    <meta name="keywords" content="关键词" />
-    <meta name="description" content="描述" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- basic styles -->
-
-    <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/assets/css/font-awesome.min.css" />
-
-    <!--[if IE 7]>
-      <link rel="stylesheet" href="/assets/css/font-awesome-ie7.min.css" />
-    <![endif]-->
-    <!-- page specific plugin styles -->
-    <!-- fonts -->
-    <!-- ace styles -->
-
-    <link rel="stylesheet" href="/assets/css/ace.min.css" />
-    <link rel="stylesheet" href="/assets/css/ace-rtl.min.css" />
-    <link rel="stylesheet" href="/assets/css/diaocha.css" />
-
-    <!--[if lte IE 8]>
-      <link rel="stylesheet" href="/assets/css/ace-ie.min.css" />
-    <![endif]-->
-    <!-- inline styles related to this page -->
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="/assets/js/html5shiv.js"></script>
-    <script src="/assets/js/respond.min.js"></script>
-    <![endif]-->
-</head>
-
-<body class="diaocha-layout">
-    <div class="navbar navbar-default">
-        <div class="container diaocha-header h4 white">
-            欢迎使用黑龙江省中医医院反馈评价系统
-            <div class="pull-right h5">
-                欢迎使用黑龙江省中医医院反馈评价系统
-            </div></div>
-        
-    </div>
-    <div class="space-12"></div>
-    <div class="container daiocha-content">
-        <h3 class="center blue">患者情况反馈调查表</h3>
-        <h5 class="center gray">调查单位：黑龙江省中医医院治未病中心 调查时间：@System.DateTime.Now</h5>
-
-        
-        <div class="container daiocha-description"><p>尊敬的患者:</p>
-        <p>您好，您已经在我中心治疗了一段时间了，为了更准确的了解您的身体情况，我们需要进行一次患者情况调查表，目标是更准确的了解您的身体情况，针对性的治疗您的疾病，我们会根据医生的专业意见和您对自己身体情况的了解，调整治疗康复方案，也希望您早日康复。
-         </p>在此对您的合作表示衷心的感谢！</div>
-        <div class="space-6"></div>
-        <div class="container">
-            <form class="form-horizontal">
-                <div class="form-group">
-                    <h4> 1、您目前的身体恢复情况如何？</h4>
-                    <div class="">
-                        <div class="radio">
-                            <label>
-                                <input class="ace" type="radio" name="FankuiReslut" id="FankuiReslut">
-                                <span class="lbl"> 已经痊愈</span>
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label>
-                                <input class="ace" type="radio" name="FankuiReslut" id="FankuiReslut">
-                                <span class="lbl"> 已经好转</span>
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label>
-                                <input class="ace" type="radio" name="FankuiReslut" id="FankuiReslut">
-                                <span class="lbl"> 没有变化</span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <h4> 2、您的身体情况说明及对我们的建议？</h4>
-                    <div>
-                        <textarea class="col-xs-12" name="FankuiDescription" id="FankuiDescription"></textarea>
-                    </div>
-                </div>
-
-                <div class="clearfix form-actions">
-                    <div class="col-md-offset-3 col-md-9">
-                        <button class="btn btn-info" type="submit">
-                            <i class="icon-ok bigger-110"></i>
-                            提交
-                        </button>
-
-                        &nbsp; &nbsp; &nbsp;
-                        <button class="btn" type="reset">
-                            <i class="icon-undo bigger-110"></i>
-                            重置
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>
-</div>
-    <!-- /.main-container -->
-    <!-- basic scripts -->
-    <!--[if !IE]> -->
-    <!-- <![endif]-->
-    <!--[if !IE]> -->
-
-    <script type="text/javascript">
-        window.jQuery || document.write("<script src='/assets/js/jquery-2.0.3.min.js'>" + "<" + "/script>");
-    </script>
-
-    <!-- <![endif]-->
-    <!--[if IE]>
-    <script type="text/javascript">
-     window.jQuery || document.write("<script src='/assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
-    </script>
-    <![endif]-->
-
-    <script type="text/javascript">
-        if ("ontouchend" in document) document.write("<script src='/assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
-    </script>
-
-    <!-- inline scripts related to this page -->
-
-    <script type="text/javascript">
-        function show_box(id) {
-            jQuery('.widget-box.visible').removeClass('visible');
-            jQuery('#' + id).addClass('visible');
-        }
-    </script>
-    @Scripts.Render("~/bundles/jqueryval")
-
-</body>
-</html>

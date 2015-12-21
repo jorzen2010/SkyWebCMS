@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="ArticleDto.cs" />
     <Compile Include="CategoryDto.cs" />
+    <Compile Include="FankuiDto.cs" />
     <Compile Include="JianyanDto.cs" />
     <Compile Include="CustomerDto.cs" />
     <Compile Include="ImageDto.cs" />
