@@ -14,6 +14,8 @@ namespace Dto
         public string JianyanImg { get; set; }
         public int JianyanCustomerId { get; set; }
         public DateTime JianyanTime { get; set; }
+
+        public int JianyanDoctor { get; set; }
         
     }
 }

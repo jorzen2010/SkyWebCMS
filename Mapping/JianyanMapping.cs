@@ -30,7 +30,7 @@ namespace Mapping
         }           
         public  SqlParameter[] JsonStringToSqlParameter(string jsonString)
         {
-            SqlParameter[] arParames = new SqlParameter[6];
+            SqlParameter[] arParames = new SqlParameter[7];
             JianyanDto jianyanDto = JsonHelper.JsonDeserializeBySingleData<JianyanDto>(jsonString);
 
             arParames[0] = new SqlParameter("@JianyanId", SqlDbType.Int);
@@ -50,6 +50,9 @@ namespace Mapping
 
             arParames[5] = new SqlParameter("@JianyanTime", SqlDbType.DateTime);
             arParames[5].Value = jianyanDto.JianyanTime;
+
+            arParames[6] = new SqlParameter("@JianyanDoctor", SqlDbType.Int);
+            arParames[6].Value = jianyanDto.JianyanDoctor;
 
 
 
@@ -73,6 +76,7 @@ namespace Mapping
                 dto.JianyanCategory = dr["JianyanCategory"].ToString();
                 dto.JianyanDescription = dr["JianyanDescription"].ToString();
                 dto.JianyanTime = DateTime.Parse(dr["JianyanTime"].ToString());
+                dto.JianyanDoctor = int.Parse(dr["JianyanDoctor"].ToString());
 
 
 

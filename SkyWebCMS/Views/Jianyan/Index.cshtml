@@ -66,7 +66,7 @@
                                 <tr>
 
                                     <th class="col-xs-2">检验时间</th>
-                                  
+                                    <th class="col-xs-2">检验医生</th>
                                     <th class="col-xs-3">检验类型</th>
                                     <th class="col-xs-3">检验结果</th>
                                     <th class="col-xs-3">查看检验单</th>
@@ -87,7 +87,7 @@
                                         <td>
                                             @item.JianyanTime
                                         </td>
-                                      
+                                        <td>@MyService.UserIdToName("UserId=" + item.JianyanDoctor) </td>
                                         <td>@MyService.CategoryIdToName("CategoryId=" + item.JianyanCategory)
                                         </td>
                                         <td>@item.JianyanDescription </td>

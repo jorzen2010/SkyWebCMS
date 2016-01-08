@@ -83,6 +83,7 @@ namespace SkyWebCMS.Controllers
                 dto.JianyanDescription = model.JianyanDescription;
                 dto.JianyanCustomerId = model.JianyanCustomerId;
                 dto.JianyanTime = System.DateTime.Now;
+                dto.JianyanDoctor = int.Parse(System.Web.HttpContext.Current.Request.Cookies["UserId"].Value);
 
                 string JsonString = JsonHelper.JsonSerializerBySingleData(dto);
                 Message msg = CMSService.Insert("Jianyan", JsonString);

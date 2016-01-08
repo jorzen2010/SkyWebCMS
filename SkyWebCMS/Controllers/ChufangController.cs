@@ -89,8 +89,8 @@ namespace SkyWebCMS.Controllers
                 { 
                 dto.ChufangImg = model.ChufangImg;
                 }
-                
 
+                dto.ChufangDoctor = int.Parse(System.Web.HttpContext.Current.Request.Cookies["UserId"].Value);
                 string JsonString = JsonHelper.JsonSerializerBySingleData(dto);
                 Message msg = CMSService.Insert("Chufang", JsonString);
                 return RedirectTo("/Chufang/Index/" + dto.ChufangCustomerId, msg.MessageInfo); 

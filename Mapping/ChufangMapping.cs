@@ -54,6 +54,9 @@ namespace Mapping
             arParames[6] = new SqlParameter("@ChufangImg", SqlDbType.VarChar,500);
             arParames[6].Value = dto.ChufangImg;
 
+            arParames[7] = new SqlParameter("@ChufangDoctor", SqlDbType.Int);
+            arParames[7].Value = dto.ChufangDoctor;
+
             return arParames;
         }
         public static ChufangDto getDTO(DataRow dr)
@@ -69,6 +72,7 @@ namespace Mapping
             dto.ChufangChuzhi = dr["ChufangChuzhi"].ToString();
             dto.ChufangYongyao = dr["ChufangYongyao"].ToString();
             dto.ChufangTime = DateTime.Parse(dr["ChufangTime"].ToString());
+            dto.ChufangDoctor = int.Parse(dr["ChufangDoctor"].ToString());
 
 
 

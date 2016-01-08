@@ -16,6 +16,8 @@ namespace Dto
         public DateTime ChufangTime { get; set; }
         public int ChufangCustomerId { get; set; }
 
+        public int ChufangDoctor { get; set; }
+
 
 
         
