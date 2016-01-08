@@ -81,14 +81,14 @@
                                 <tr>
 
 
-                                    <th class="col-xs-1">患者姓名</th>
-                                    <th class="col-xs-1">患者身份证</th>
-                                    <th class="col-xs-1">患者性别</th>
-                                    <th class="col-xs-1">患者生日</th>
+                                    <th class="col-xs-1 center">患者姓名</th>
+                                    <th class="col-xs-1 center">患者身份证</th>
+                                    <th class="col-xs-1 center">患者性别</th>
+                                    <th class="col-xs-1 center">患者生日</th>
                                     <th class="col-xs-1 center">归档</th>
 
-                                    <th class="col-xs-2 center">操作</th>
-                                    <th class="col-xs-4 center">报告</th>
+                                    <th class="col-xs-1 center">操作</th>
+                                    <th class="col-xs-1 center">报告</th>
                                     <th class="col-xs-1 center">沟通反馈</th>
                                 </tr>
                             </thead>
@@ -114,6 +114,26 @@
                                             </div>
                                         </td>
                                         <td>
+                                            <div class="btn-group">
+                                                <button data-toggle="dropdown" class="btn btn-sm btn-danger dropdown-toggle">
+                                                     身体指标测试
+                                                    <i class="icon-angle-down icon-on-right"></i>
+                                                </button>
+
+                                                <ul class="dropdown-menu dropdown-danger">
+                                                    <li>
+                                                        <a href="@Url.Action("Create", "Tizhi", new { id=@item.CustomerId})">体质测试</a>
+                                                    </li>
+
+                                                    <li>
+                                                        <a href="@Url.Action("Create", "Xueya", new { id=@item.CustomerId})">血压测量</a>
+                                                    </li>
+
+                                                  
+                                                </ul>
+                                            </div>
+
+                                            <!--
                                             <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
                                                 <a href="@Url.Action("Create", "Tizhi", new { id=@item.CustomerId})" class="btn btn-xs btn-danger">
                                                     <i class="icon-file bigger-120"></i>体质测试
@@ -122,8 +142,38 @@
                                                     <i class="icon-heart bigger-120"></i>测量血压
                                                 </a>
                                             </div>
+                                            -->
                                         </td>
                                         <td>
+                                            <div class="btn-group">
+                                                <button data-toggle="dropdown" class="btn btn-sm btn-success dropdown-toggle">
+                                                    身体指标报告
+                                                    <i class="icon-angle-down icon-on-right"></i>
+                                                </button>
+
+                                                <ul class="dropdown-menu dropdown-danger">
+                                                    <li>
+                                                        <a href="@Url.Action("List", "Tizhi", new { id=@item.CustomerId})">中医体质报告</a>
+                                                    </li>
+
+                                                    <li>
+                                                        <a href="@Url.Action("Index", "Xueya", new { id=@item.CustomerId})">血压报告</a>
+                                                    </li>
+
+                                                    <li>
+                                                        <a href="@Url.Action("Index", "Chufang", new { id=@item.CustomerId})">处方记录</a>
+                                                    </li>
+
+                                                    <li>
+                                                        <a href="@Url.Action("Index", "Jianyan", new { id=@item.CustomerId})">检验记录</a>
+                                                    </li>
+
+
+                                                </ul>
+                                            </div>
+
+                                            <!--
+
                                             <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
                                                 <a href="@Url.Action("List", "Tizhi", new { id=@item.CustomerId})" class="btn btn-xs btn-info">
                                                     <i class="icon-file bigger-120"></i>中医体质报告&nbsp;&nbsp;
@@ -138,6 +188,8 @@
                                                     <i class="icon-suitcase bigger-120"></i>检验记录
                                                 </a>
                                             </div>
+                                            -->
+
                                         </td>
                                         <td>
                                             <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">

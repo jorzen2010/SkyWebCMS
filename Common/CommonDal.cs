@@ -294,26 +294,37 @@ namespace Common
         }
         #endregion
 
-        #region 获取集合总数
-        public static int GetCountByWhere(string table, string strwhere)
+        #region 获取一些特殊值
+        public static int GetSomeValueByWhere(string table, string strwhere,string thevalue)
         {
 
-            int count=0;
-            SqlParameter[] arParames = new SqlParameter[2];
+            int count = 0;
+            SqlParameter[] arParames = new SqlParameter[3];
             arParames[0] = new SqlParameter("@table ", SqlDbType.VarChar, 200);
             arParames[0].Value = table;
 
             arParames[1] = new SqlParameter("@Where ", SqlDbType.VarChar, 8000);
             arParames[1].Value = strwhere;
+
+            arParames[2] = new SqlParameter("@thevalue ", SqlDbType.VarChar, 200);
+            arParames[2].Value = thevalue;
+           
             SqlConnection myconn = null;
             try
             {
                 myconn = new SqlConnection(CommonDal.ConnectionString);
-                count = SqlHelper.ExecuteNonQuery(myconn, CommandType.StoredProcedure, "getCountByWhere", arParames);
+                IDataReader dr = SqlHelper.ExecuteReader(myconn, CommandType.StoredProcedure, "getSomeValueByWhere", arParames);
+             
+
+                if (dr.Read())
+                {
+                    count = int.Parse(dr.GetValue(0).ToString());
+                }
                 return count;
             }
             catch (SqlException ex)
             {
+
                 throw ex;
             }
             finally
@@ -326,15 +337,6 @@ namespace Common
 
         }
         #endregion
-
-
-
-
-
-
-
-
-
 
     }
 }

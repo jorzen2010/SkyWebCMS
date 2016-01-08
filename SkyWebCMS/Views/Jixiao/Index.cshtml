@@ -87,7 +87,19 @@
                                     <td>@item.JixiaoForUser</td>
                                     <td>@item.JixiaoFenshu</td>
                                     <td>@item.JixiaoTime</td>
-                                    <td>@item.JixiaoStatus</td>
+
+
+                                    <td>
+
+                                        <a href="#" class="btn btn-xs btn-@(item.JixiaoStatus=="已审核" ? "success" : "danger")" onclick="SetStatus('CMSJixiao','JixiaoId=@item.JixiaoId','JixiaoStatus',@(item.JixiaoStatus=="已审核" ? "'未通过'" : "'已审核'"))">@(item.JixiaoStatus == "已审核" ? "已审核" : "未通过")</a>
+
+                                     
+                                    
+                                    
+                                    </td>
+
+
+
                                     <td>@item.JixiaoShenheTime</td>
                                   </tr>
 }
@@ -132,6 +144,8 @@
 <script src="/assets/js/jquery.pager.js" type="text/javascript"></script>
    <script type="text/javascript">
 
+      
+
         var pageNo = @ViewBag.PageNo;
         var pageCount = @ViewBag.PageCount;
         var RecordCount=@ViewBag.RecordCount;
@@ -150,7 +164,7 @@
         }
         function SetStatus(table,strwhere,columnname,columnvalue)
         {
-            var url = '@Url.Action("SetFieldOneByOne", "Image")?table='+table+'&strwhere='+strwhere+'&columnname='+columnname+"&columnvalue="+columnvalue;
+            var url = '@Url.Action("SetFieldOneByOne", "Jixiao")?table='+table+'&strwhere='+strwhere+'&columnname='+columnname+"&columnvalue="+columnvalue;
           
             $.getJSON(url, function(data) {
 

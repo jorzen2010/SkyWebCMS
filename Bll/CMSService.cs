@@ -67,12 +67,13 @@ namespace Bll
             pager=CommonDal.GetPager(pager);
             return pager; 
         }
-        public static int GetCount(string DtoName, string table, string strWhere)
+
+        public static int GetSomeValue(string DtoName, string table, string strWhere,string thevalue)
         {
             int count = 0;
-            count = CommonDal.GetCountByWhere(table, strWhere);
+            count = CommonDal.GetSomeValueByWhere(table, strWhere,thevalue);
             return count;
-        
+
         }
         public static DataTable SelectOne(string DtoName,string table,string strWhere)
         {

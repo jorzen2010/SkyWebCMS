@@ -24,7 +24,7 @@ namespace SkyWebCMS.Controllers
             Pager pager = new Pager();
             pager.table = "CMSJixiao";
             pager.strwhere = "1=1";
-            pager.PageSize = 2;
+            pager.PageSize = 20;
             pager.PageNo = p ?? 1;
             pager.FieldKey = "JixiaoId";
             pager.FiledOrder = "JixiaoId Desc";
@@ -79,7 +79,7 @@ namespace SkyWebCMS.Controllers
             dto.JixiaoCategory = model.JixiaoCategory;
             dto.JixiaoParentCategory = model.JixiaoParentCategory;
             dto.JixiaoRenwu = model.JixiaoRenwu;
-            dto.JixiaoStatus = "待审核";
+            dto.JixiaoStatus = "已审核";
             dto.JixiaoTime = System.DateTime.Now;
             dto.JixiaoFenshu = MyService.GetFenshuByCategory(model.JixiaoCategory);
             dto.JixiaoShenheTime = System.DateTime.Now;
