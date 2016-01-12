@@ -19,6 +19,16 @@ namespace SkyWebCMS.Controllers
     {
         //
         // GET: /Jixiao/
+        public ActionResult Baobiao()
+        {
+            int NowYear = int.Parse(System.DateTime.Now.Year.ToString());
+            ViewBag.year = NowYear;
+            ViewBag.month = int.Parse(System.DateTime.Now.Month.ToString());
+            ViewData["Users"] = MyService.GetUserList("1=1");
+            
+            return View();
+        
+        }
         public ActionResult Index(int? p)
         {
             Pager pager = new Pager();
@@ -44,6 +54,13 @@ namespace SkyWebCMS.Controllers
             ViewBag.PageCount = pager.PageCount;
             ViewBag.RecordCount = pager.Amount;
             ViewBag.Message = pager.Amount;
+            ViewBag.ZongCount = CMSService.GetSomeValue("Jixiao", "CMSJixiao", "1=1", "Count(JixiaoId)");
+            ViewBag.ShenheCount = CMSService.GetSomeValue("Jixiao", "CMSJixiao", "JixiaoStatus='已审核'", "Count(JixiaoId)");
+            ViewBag.WeishenheCount = CMSService.GetSomeValue("Jixiao", "CMSJixiao", "JixiaoStatus='未通过'", "Count(JixiaoId)");
+            ViewBag.ZongFenshu = CMSService.GetSomeValue("Jixiao", "CMSJixiao", "1=1", "SUM(JixiaoFenshu)");
+            ViewBag.ShenheFenshu = CMSService.GetSomeValue("Jixiao", "CMSJixiao", "JixiaoStatus='已审核'", "SUM(JixiaoFenshu)");
+            ViewBag.WeishenheFenshu = CMSService.GetSomeValue("Jixiao", "CMSJixiao", "JixiaoStatus='未通过'", "SUM(JixiaoFenshu)"); 
+            ViewData["Month"] =CommonTools.GetMontList();
 
             return View(pager.Entity);
         }

@@ -544,6 +544,7 @@
     <Content Include="Views\Jixiao\Index.cshtml" />
     <Content Include="Views\Fankui\Create.cshtml" />
     <Content Include="Views\Fankui\Index.cshtml" />
+    <Content Include="Views\Jixiao\Baobiao.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

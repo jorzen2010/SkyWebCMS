@@ -43,7 +43,7 @@
                 @ViewBag.Title
                 <small>
                     <i class="icon-double-angle-right"></i>
-                    @ViewBag.SmallTitle (共 @ViewBag.RecordCount 条记录)
+                    @ViewBag.SmallTitle (截止到今日 共 @ViewBag.ZongCount 条绩效项目，其中已审核 @ViewBag.ShenheCount 条，未通过 @ViewBag.WeishenheCount 条 ，总绩效分数 @ViewBag.ZongFenshu 分，其中已审核 @ViewBag.ShenheFenshu 分，未通过 @ViewBag.WeishenheFenshu 分 )
                 </small>
              </h1>
             
@@ -52,6 +52,16 @@
         </div>
     
     <!-- /.page-header -->
+    <h4 class="lighter">
+        <a href="/Customer/Index?category=全部&guidang=@Request["guidang"]" class="btn btn-sm btn-primary" name="BtnCategoryId" title="全部">全部：</a>
+       
+@foreach (String month in ViewData["Month"] as IEnumerable<String>)
+{
+    <a href="#" class="btn btn-sm btn-link" name="BtnCategoryId" title="">@month</a>
+}
+      
+
+    </h4>
 
     <div class="row">
         <div class="col-xs-12">

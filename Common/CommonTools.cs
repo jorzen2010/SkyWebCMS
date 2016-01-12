@@ -176,6 +176,24 @@ namespace Common
             return char.ToLower(input);
         }
 
+        public static List<String> GetMontList()
+        {
+            List<String> MonthList = new List<String>();
+            MonthList.Add("一月");
+            MonthList.Add("二月");
+            MonthList.Add("三月");
+            MonthList.Add("四月");
+            MonthList.Add("五月");
+            MonthList.Add("六月");
+            MonthList.Add("七月");
+            MonthList.Add("八月");
+            MonthList.Add("九月");
+            MonthList.Add("十月");
+            MonthList.Add("十一月");
+            MonthList.Add("十二月");
+            return MonthList;
+        }
+
         public static List<Char> GetCharList()
         {
             List<Char> charList = new List<char>();
