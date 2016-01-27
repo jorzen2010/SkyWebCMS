@@ -1,0 +1,117 @@
+﻿@model SkyWebCMS.Models.YuyueAddViewModel
+@{
+    ViewBag.Title = "预约医生";
+    ViewBag.SmallTitle = "预约医生";
+}
+@section HeadJS{
+    <script src="/assets/js/ajaxfileupload.js"></script>
+}
+<div class="breadcrumbs" id="breadcrumbs">
+    <script type="text/javascript">
+        try { ace.settings.check('breadcrumbs', 'fixed') } catch (e) { }
+    </script>
+
+    <ul class="breadcrumb">
+        <li>
+            <i class="icon-home home-icon"></i>
+            <a href="#">首页</a>
+        </li>
+
+        <li>
+            <a href="#">@ViewBag.Title</a>
+        </li>
+        <li class="active">@ViewBag.SmallTitle</li>
+    </ul><!-- .breadcrumb -->
+    <!-- #nav-search -->
+</div>
+
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            “ @ViewBag.CustomerName ”  @ViewBag.Title
+            <small>
+                <i class="icon-double-angle-right"></i>
+                @ViewBag.SmallTitle
+            </small>
+        </h1>
+
+    </div><!-- /.page-header -->
+
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- PAGE CONTENT BEGINS -->
+            @if (ViewBag.Status == "Error")
+            {
+
+                <div class="alert alert-warning">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <i class="icon-remove"></i>
+                    </button>
+                    <strong>提示：</strong>
+
+                    @ViewBag.msg
+                    <br />
+                </div>
+
+            }
+            <div class="row">
+                <div class="col-xs-12">
+
+                    @using (Html.BeginForm("Create", "Yuyue", FormMethod.Post, new { @class = "form-horizontal" }))
+                    {
+                        @Html.HiddenFor(model => model.YuyueId)
+                        
+                        <div class="form-group">
+                            <div class="col-sm-2"></div>
+                            @Html.LabelFor(model => model.YuyueCustomerId, new { @class = "col-sm-1 control-label no-padding-right" })
+
+                            <div class="col-sm-9 input-group">
+
+                                @Html.TextBoxFor(model => model.YuyueCustomerId, new { @class = "col-xs-10 col-sm-5" })
+
+                                @Html.ValidationMessageFor(model => model.YuyueCustomerId)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.YuyueDoctorId, new { @class = "col-sm-3 control-label no-padding-right" })
+
+                            <div class="col-sm-9">
+
+                                @Html.DropDownListFor(model => model.YuyueDoctorId, ViewData["Doctor"] as IEnumerable<SelectListItem>, new { @class = "col-xs-10 col-sm-5" })
+                                @Html.ValidationMessageFor(model => model.YuyueDoctorId)
+                            </div>
+                        </div>
+                        
+                        <div class="clearfix form-actions">
+                            <div class="col-md-offset-3 col-md-9">
+                                <button class="btn btn-info" type="submit">
+                                    <i class="icon-ok bigger-110"></i>
+                                    提交
+                                </button>
+
+                                &nbsp; &nbsp; &nbsp;
+                                <button class="btn" type="reset">
+                                    <i class="icon-undo bigger-110"></i>
+                                    重置
+                                </button>
+                            </div>
+                        </div>
+                    }
+
+                    <!-- /.table-responsive -->
+
+                </div>
+
+                <!-- /span -->
+            </div>
+
+            <!-- PAGE CONTENT ENDS -->
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+</div><!-- /.page-content -->
+@section BottomScripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

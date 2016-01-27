@@ -97,15 +97,10 @@
                                 @foreach (var item in Model)
                                 {
                                     <tr>
-
-
-
                                         <td><a href="@Url.Action("Edit", "Customer", new { id=@item.CustomerId})">@item.CustomerName</a></td>
                                         <td>@item.CustomerNumber</td>
                                         <td>@item.CustomerSex</td>
                                         <td>@item.CustomerBirthday.ToShortDateString().ToString()</td>
-
-
                                         <td>
                                             <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
                                                 <a href="@Url.Action("Guidang", "Customer", new { id=@item.CustomerId})" class="btn btn-xs btn-success">
@@ -127,6 +122,10 @@
 
                                                     <li>
                                                         <a href="@Url.Action("Create", "Xueya", new { id=@item.CustomerId})">血压测量</a>
+                                                    </li>
+
+                                                    <li>
+                                                        <a href="@Url.Action("Create", "Xueya", new { id=@item.CustomerId})">预约医生</a>
                                                     </li>
 
                                                   
