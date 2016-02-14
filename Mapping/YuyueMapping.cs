@@ -30,7 +30,7 @@ namespace Mapping
         }           
         public  SqlParameter[] JsonStringToSqlParameter(string jsonString)
         {
-            SqlParameter[] arParames = new SqlParameter[10];
+            SqlParameter[] arParames = new SqlParameter[6];
             YuyueDto yuyueDto = JsonHelper.JsonDeserializeBySingleData<YuyueDto>(jsonString);
 
             arParames[0] = new SqlParameter("@YuyueId", SqlDbType.Int);
@@ -42,8 +42,16 @@ namespace Mapping
             arParames[2] = new SqlParameter("@YuyueCustomerId", SqlDbType.Int);
             arParames[2].Value = yuyueDto.YuyueCustomerId;
 
-            arParames[4] = new SqlParameter("@YuyueTime", SqlDbType.DateTime);
-            arParames[4].Value = yuyueDto.YuyueTime;
+            arParames[3] = new SqlParameter("@YuyueDescription", SqlDbType.Text);
+            arParames[3].Value = yuyueDto.YuyueDescription;
+
+            arParames[4] = new SqlParameter("@YuyueDateTime", SqlDbType.DateTime);
+            arParames[4].Value = yuyueDto.YuyueDateTime;
+
+            arParames[5] = new SqlParameter("@YuyueStatus", SqlDbType.VarChar,50);
+            arParames[5].Value = yuyueDto.YuyueStatus;
+
+
 
             return arParames;
         }
@@ -55,7 +63,9 @@ namespace Mapping
                 yuyueDto.YuyueId = int.Parse(dr["YuyueId"].ToString());
                 yuyueDto.YuyueCustomerId = int.Parse(dr["YuyueCustomerId"].ToString());
                 yuyueDto.YuyueDoctorId = int.Parse(dr["YuyueDoctorId"].ToString());
-                yuyueDto.YuyueTime = DateTime.Parse(dr["YuyueTime"].ToString());
+                yuyueDto.YuyueDateTime = DateTime.Parse(dr["YuyueDateTime"].ToString());
+                yuyueDto.YuyueStatus = dr["YuyueStatus"].ToString();
+                yuyueDto.YuyueDescription = dr["YuyueDescription"].ToString();
 
                 return yuyueDto;
         }

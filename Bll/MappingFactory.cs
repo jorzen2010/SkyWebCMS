@@ -61,7 +61,10 @@ namespace Bll
             {
                 Mapping = new FankuiMapping();
             }
-
+            if (DtoName == "Yuyue")
+            {
+                Mapping = new YuyueMapping();
+            }
             return Mapping;
 
 

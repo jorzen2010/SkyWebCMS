@@ -16,13 +16,76 @@ using SkyWebCMS.Attributes;
 
 namespace SkyWebCMS.Controllers
 {
-    public class YuyueController : Controller
+    public class YuyueController : BaseController
     {
         //
         // GET: /Yuyue/
-        public ActionResult Index()
+        public ActionResult Index(int? p, int? id)
         {
-            return View();
+            Pager pager = new Pager();
+            pager.table = "CMSYuyue";
+            pager.strwhere = "1=1";
+            if (id != 0)
+            {
+                pager.strwhere = pager.strwhere + "YuyueDoctorId=" + id;
+            }
+           // pager.strwhere = "YuyueCustomerId=" + id;
+            pager.PageSize = 10;
+            pager.PageNo = p ?? 1;
+            pager.FieldKey = "YuyueId";
+            pager.FiledOrder = "YuyueDateTime Desc";
+            pager = CMSService.SelectAll("Yuyue", pager);
+
+            List<YuyueDto> list = new List<YuyueDto>();
+            foreach (DataRow dr in pager.EntityDataTable.Rows)
+            {
+                YuyueDto dto = YuyueMapping.getDTO(dr);
+                list.Add(dto);
+
+
+            }
+            pager.Entity = list.AsQueryable();
+
+            ViewBag.PageNo = p ?? 1;
+            ViewBag.PageCount = pager.PageCount;
+            ViewBag.RecordCount = pager.Amount;
+            ViewBag.Message = pager.Amount;
+            ViewBag.CustomerId = id;
+            ViewBag.CustomerName = MyService.CustomerIdToName("CustomerId=" + id);
+
+            return View(pager.Entity);
+        }
+
+        public ActionResult List(int? p)
+        {
+            int DoctorId = int.Parse(System.Web.HttpContext.Current.Request.Cookies["UserId"].Value);
+            Pager pager = new Pager();
+            pager.table = "CMSYuyue";
+           
+            pager.strwhere = " YuyueDoctorId=" + DoctorId;
+            pager.PageSize = 10;
+            pager.PageNo = p ?? 1;
+            pager.FieldKey = "YuyueId";
+            pager.FiledOrder = "YuyueDateTime Desc";
+            pager = CMSService.SelectAll("Yuyue", pager);
+
+            List<YuyueDto> list = new List<YuyueDto>();
+            foreach (DataRow dr in pager.EntityDataTable.Rows)
+            {
+                YuyueDto dto = YuyueMapping.getDTO(dr);
+                list.Add(dto);
+
+
+            }
+            pager.Entity = list.AsQueryable();
+
+            ViewBag.PageNo = p ?? 1;
+            ViewBag.PageCount = pager.PageCount;
+            ViewBag.RecordCount = pager.Amount;
+            ViewBag.Message = pager.Amount;
+           
+
+            return View(pager.Entity);
         }
 
         //
@@ -34,26 +97,42 @@ namespace SkyWebCMS.Controllers
 
         //
         // GET: /Yuyue/Create
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
+
+            YuyueAddViewModel model = new YuyueAddViewModel();
+            model.YuyueCustomerId = id;
+            model.YuyueCustomerName = MyService.CustomerIdToName("CustomerId=" + id);
+            ViewBag.CustomerName = MyService.CustomerIdToName("CustomerId=" + id);
             ViewData["Doctor"] = MyService.GetUserSelectList("charindex('47',UserRoles)>0");
-            return View();
+            return View(model);
         }
 
         //
         // POST: /Yuyue/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(YuyueAddViewModel model)
         {
             try
             {
-                // TODO: Add insert logic here
+                YuyueDto dto = new YuyueDto();
+                dto.YuyueCustomerId = model.YuyueCustomerId;
+                dto.YuyueDoctorId = model.YuyueDoctorId;
+                dto.YuyueDateTime = model.YuyueTime;
+                dto.YuyueDescription = model.YuyueDescription;
+                dto.YuyueStatus = "待诊";
 
-                return RedirectToAction("Index");
+                string JsonString = JsonHelper.JsonSerializerBySingleData(dto);
+                Message msg = CMSService.Insert("Yuyue", JsonString);
+
+                return RedirectTo("/Yuyue/Index/0", msg.MessageInfo); 
+
             }
             catch
             {
-                return View();
+                Message msg = new Message();
+                msg.MessageInfo="预约出问题了";
+                return RedirectTo("/Yuyue/Create/"+model.YuyueCustomerId, msg.MessageInfo); 
             }
         }
 

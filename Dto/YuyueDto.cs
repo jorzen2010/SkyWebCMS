@@ -12,7 +12,10 @@ namespace Dto
         public int YuyueDoctorId{ get; set; }
 
         public int YuyueCustomerId { get; set; }
-        public DateTime YuyueTime { get; set; }
+        public DateTime YuyueDateTime { get; set; }
+        public string YuyueDescription { get; set; }
+
+        public string YuyueStatus { get; set; }
 
 
 

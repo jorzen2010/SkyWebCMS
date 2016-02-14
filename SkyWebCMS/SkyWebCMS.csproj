@@ -210,10 +210,12 @@
     <Content Include="assets\avatar\crossdomain.xml" />
     <Content Include="assets\avatar\default.jpg" />
     <Content Include="assets\css\diaocha.css" />
+    <Content Include="assets\css\jquery.datetimepicker.css" />
     <Content Include="assets\css\labelauty.css" />
     <Content Include="assets\css\test.css" />
     <Content Include="assets\images\input-checked.png" />
     <Content Include="assets\images\input-unchecked.png" />
+    <Content Include="assets\js\jquery.datetimepicker.js" />
     <Content Include="assets\js\labelauty.js" />
     <Content Include="assets\js\laydate.dev.js" />
     <Content Include="assets\js\laydate.js" />
@@ -550,6 +552,8 @@
     <Content Include="Views\Jixiao\Baobiao.cshtml" />
     <Content Include="Views\XueyaJiance\Index.cshtml" />
     <Content Include="Views\Yuyue\Create.cshtml" />
+    <Content Include="Views\Yuyue\Index.cshtml" />
+    <Content Include="Views\Yuyue\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
