@@ -34,33 +34,27 @@
 
             <ul class="submenu">
 
+              
                 <li>
-                    <a href="@Url.Action("List", "Yuyue")">
+                    <a href="@Url.Action("ListByDay", "Yuyue", new { id = 0 ,theday=0})">
                         <i class="icon-double-angle-right"></i>
-                        今日预约
-                    </a>
-                </li>
-                <li>
-                    <a href="@Url.Action("List", "Yuyue")">
-                        <i class="icon-double-angle-right"></i>
-                        明日预约
-                    </a>
-                </li>
-                <li>
-                    <a href="@Url.Action("List", "Yuyue")">
-                        <i class="icon-double-angle-right"></i>
-                        昨日预约
+                        待诊预约
                     </a>
                 </li>
 
+                <li>
+                    <a href="@Url.Action("ListByExpire", "Yuyue", new { id = 0 ,theday=1})">
+                        <i class="icon-double-angle-right"></i>
+                        过期预约
+                    </a>
+                </li>
 
                 <li>
-                    <a href="@Url.Action("Index", "Yuyue", new  {id=0 })">
+                    <a href="@Url.Action("List", "Yuyue", new  {id=0 })">
                         <i class="icon-double-angle-right"></i>
                         全部预约
                     </a>
                 </li>
-
                
               
 

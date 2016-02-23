@@ -22,6 +22,7 @@ namespace SkyWebCMS.Controllers
         // GET: /Yuyue/
         public ActionResult Index(int? p, int? id)
         {
+
             Pager pager = new Pager();
             pager.table = "CMSYuyue";
             pager.strwhere = "1=1";
@@ -88,6 +89,110 @@ namespace SkyWebCMS.Controllers
             return View(pager.Entity);
         }
 
+        public ActionResult ListByDay(int? p,int? theday)
+        {
+            int DoctorId = int.Parse(System.Web.HttpContext.Current.Request.Cookies["UserId"].Value);
+            Pager pager = new Pager();
+            pager.table = "CMSYuyue";
+
+            DateTime today = System.DateTime.Now.Date;
+            DateTime yesterday = today.AddDays(-1);
+            DateTime tomorrow = today.AddDays(1);
+
+            if (theday == 0)
+            {
+                ViewBag.Title = "今日预约";
+                pager.strwhere = " YuyueDoctorId=" + DoctorId + " and " + "datediff(day,'" + today + "',YuyueDateTime) =0";
+            }
+            if (theday == 1)
+            {
+                ViewBag.Title = "昨日预约";
+                pager.strwhere = " YuyueDoctorId=" + DoctorId + " and " + "datediff(day,'" + yesterday + "',YuyueDateTime) =0";
+            }
+            if (theday == 2)
+            {
+                ViewBag.Title = "明日预约";
+                pager.strwhere = " YuyueDoctorId=" + DoctorId + " and " + "datediff(day,'" + tomorrow + "',YuyueDateTime) =0";
+            }
+            if (theday == 3)
+            {
+                ViewBag.Title = "全部待诊预约";
+                pager.strwhere = " YuyueDoctorId=" + DoctorId + " and " + "datediff(day,'" + yesterday + "',YuyueDateTime) >0";
+            }
+    
+           // pager.strwhere = " YuyueDoctorId=" + DoctorId;
+            pager.PageSize = 10;
+            pager.PageNo = p ?? 1;
+            pager.FieldKey = "YuyueId";
+            pager.FiledOrder = "YuyueDateTime Desc";
+            pager = CMSService.SelectAll("Yuyue", pager);
+
+            List<YuyueDto> list = new List<YuyueDto>();
+            foreach (DataRow dr in pager.EntityDataTable.Rows)
+            {
+                YuyueDto dto = YuyueMapping.getDTO(dr);
+                list.Add(dto);
+
+
+            }
+            pager.Entity = list.AsQueryable();
+
+            ViewBag.PageNo = p ?? 1;
+            ViewBag.PageCount = pager.PageCount;
+            ViewBag.RecordCount = pager.Amount;
+            ViewBag.Message = pager.Amount;
+
+
+            return View(pager.Entity);
+        }
+
+
+        public ActionResult ListByExpire(int? p, int? theday)
+        {
+            int DoctorId = int.Parse(System.Web.HttpContext.Current.Request.Cookies["UserId"].Value);
+            Pager pager = new Pager();
+            pager.table = "CMSYuyue";
+
+            DateTime today = System.DateTime.Now.Date;
+            DateTime yesterday = today.AddDays(-1);
+           
+
+            if (theday == 0)
+            {
+                ViewBag.Title = "昨日预约";
+                pager.strwhere = " YuyueDoctorId=" + DoctorId + " and " + "datediff(day,'" + yesterday + "',YuyueDateTime) =0";
+            }
+            if (theday == 1)
+            {
+                ViewBag.Title = "全部过期预约";
+                pager.strwhere = " YuyueDoctorId=" + DoctorId + " and " + "datediff(day,'" + today + "',YuyueDateTime) <0";
+            }
+
+           
+            pager.PageSize = 10;
+            pager.PageNo = p ?? 1;
+            pager.FieldKey = "YuyueId";
+            pager.FiledOrder = "YuyueDateTime Desc";
+            pager = CMSService.SelectAll("Yuyue", pager);
+
+            List<YuyueDto> list = new List<YuyueDto>();
+            foreach (DataRow dr in pager.EntityDataTable.Rows)
+            {
+                YuyueDto dto = YuyueMapping.getDTO(dr);
+                list.Add(dto);
+
+
+            }
+            pager.Entity = list.AsQueryable();
+
+            ViewBag.PageNo = p ?? 1;
+            ViewBag.PageCount = pager.PageCount;
+            ViewBag.RecordCount = pager.Amount;
+            ViewBag.Message = pager.Amount;
+
+
+            return View(pager.Entity);
+        }
         //
         // GET: /Yuyue/Details/5
         public ActionResult Details(int id)
@@ -103,6 +208,7 @@ namespace SkyWebCMS.Controllers
             YuyueAddViewModel model = new YuyueAddViewModel();
             model.YuyueCustomerId = id;
             model.YuyueCustomerName = MyService.CustomerIdToName("CustomerId=" + id);
+            model.YuyueTime = System.DateTime.Now;
             ViewBag.CustomerName = MyService.CustomerIdToName("CustomerId=" + id);
             ViewData["Doctor"] = MyService.GetUserSelectList("charindex('47',UserRoles)>0");
             return View(model);

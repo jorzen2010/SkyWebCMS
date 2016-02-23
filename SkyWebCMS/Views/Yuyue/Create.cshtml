@@ -72,7 +72,7 @@
 
                             <div class="col-sm-9">
 
-                                @Html.TextBoxFor(model => model.YuyueCustomerName, new { @class = "col-xs-10 col-sm-5" })
+                                @Html.TextBoxFor(model => model.YuyueCustomerName, new { @class = "col-xs-10 col-sm-5",@readonly=true})
                                 @Html.ValidationMessageFor(model => model.YuyueCustomerName)
                             </div>
                         </div>
