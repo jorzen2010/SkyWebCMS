@@ -318,7 +318,12 @@ namespace Common
 
                 if (dr.Read())
                 {
-                    count = int.Parse(dr.GetValue(0).ToString());
+                    string countvalue = dr.GetValue(0).ToString();
+                    if (!string.IsNullOrEmpty(countvalue))
+                    {
+                        count = int.Parse(countvalue);
+                    }
+                    
                 }
                 return count;
             }
